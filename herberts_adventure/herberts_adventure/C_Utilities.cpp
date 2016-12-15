@@ -41,10 +41,6 @@ void C_Utilities::Init()
 */
 void C_Utilities::CleanUp()
 {
-	/* If the instance of utilities exists. */
-	if (utilities_instance_)
-	{
-		/* Delete the utilities instance pointer. */
-		DELETE(utilities_instance_);
-	}
+	/* Delete the utilities instance pointer. */
+	//DELETE(utilities_instance_);
 }

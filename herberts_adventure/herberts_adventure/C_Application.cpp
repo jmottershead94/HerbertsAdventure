@@ -71,6 +71,9 @@ void C_Application::Controls()
 	/* If the escape key has been pressed. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 	{
+		/* Clean up the application. */
+		CleanUp();
+
 		/* Close the window. */
 		window_.close();
 	}
@@ -122,6 +125,9 @@ bool C_Application::Update(float dt)
 		/* If the user is closing the window. */
 		if (event_.type == sf::Event::Closed)
 		{
+			/* Clean up the application. */
+			CleanUp();
+
 			/* Close the window. */
 			window_.close();
 		}

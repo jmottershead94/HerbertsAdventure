@@ -22,6 +22,10 @@
 #define UNUSED(x) (void)(x)										/* Will allow a bypass for warning errors for parameters that aren't being used yet, but will definitely be used later in development. */
 #define DELETE(x) if(x != nullptr) {delete x; x = nullptr;}		/* Will allow a quicker way to delete pointer attributes in one line. */
 
+/* Include header files here. */
+/* SFML. */
+#include "SFML\Graphics.hpp"
+
 /* Utilities is just a standard class. */
 class C_Utilities
 {

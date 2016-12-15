@@ -18,10 +18,6 @@
 #ifndef _C_APPLICATION_H_
 #define _C_APPLICATION_H_
 
-/* Include header files here. */
-/* SFML. */
-#include "SFML\Graphics.hpp"
-
 /* Application. */
 #include "C_Utilities.h"
 

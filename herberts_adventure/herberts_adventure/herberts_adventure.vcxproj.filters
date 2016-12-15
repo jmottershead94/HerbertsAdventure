@@ -9,6 +9,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="State Machine">
+      <UniqueIdentifier>{7bfe6a21-77cd-4dd3-9277-7ae64ffe7de3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -20,12 +23,30 @@
     <ClCompile Include="C_Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C_State.cpp">
+      <Filter>State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="C_StateSplash.cpp">
+      <Filter>State Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C_Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C_State.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="C_StateSplash.h">
+      <Filter>State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

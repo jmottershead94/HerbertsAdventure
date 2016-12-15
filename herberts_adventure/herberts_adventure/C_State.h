@@ -1,0 +1,60 @@
+/*
+
+	State Class
+	===========
+
+	Created:	15th December 2016
+	Filter:		State Machine
+	Class Name:	C_State
+	Base Class:	N/A
+	Author:		Jason Mottershead
+
+	Purpose:	The state class is used to setup the state machine for the UI/game flow
+				states,	and will provide access to the attributes from the main application.
+
+				All other UI states will inherit from this base UI state and will have
+				to implement any pure virtual methods in order to work.
+
+*/
+
+/* Header guard. */
+#ifndef _C_STATE_H_
+#define _C_STATE_H_
+
+/* Include header files here. */
+/* Application. */
+#include "C_Utilities.h"
+
+/* State is just a standard class. */
+class C_State
+{
+	public:
+		/* Methods. */
+		/* Virtual. */
+		virtual ~C_State() {};
+
+		/* Pure virtual functions that every state MUST have. */
+		/* Intended to be overwritten by the more specific states. */
+		/* Handling transitions between states (either input or automatic). */
+		virtual C_State* HandleTransitions() = 0;
+
+		/* Providing each state with it's own entering sequence. */
+		virtual void OnEnter() = 0;
+
+		/* Providing each state with it's own exiting sequence. */
+		virtual void OnExit() = 0;
+
+		/* Render to setup the overall rendering process for each state. */
+		virtual void Render() = 0;
+
+		/* Not a pure virtual function because when a state cleans up, it should go back here. */
+		/* All of the pointers will be erased. */
+		virtual void CleanUp();
+		virtual void Update(float& dt);
+
+	protected:
+		/* Attributes. */
+		sf::RenderWindow* window_;	/* Will be used to point to the main game window. */
+};
+
+#endif
