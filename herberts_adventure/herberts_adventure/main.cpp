@@ -10,7 +10,7 @@
 	Credits
 	=======
 	 - SFML development team (download link is in the README file).
-	 - Game Programming Patterns by Robert Nystrom.
+	 - Game Programming Patterns by Robert Nystrom (http://gameprogrammingpatterns.com/).
 
 */
 

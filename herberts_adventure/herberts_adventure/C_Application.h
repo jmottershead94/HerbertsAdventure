@@ -1,7 +1,7 @@
 /*
 
-	Level Class
-	===========
+	Application Class
+	=================
 
 	Created:	15th December 2016
 	Filter:		Header/Source Files
@@ -14,6 +14,7 @@
 
 */
 
+/* Header guard. */
 #ifndef _C_APPLICATION_H_
 #define _C_APPLICATION_H_
 
@@ -24,6 +25,7 @@
 /* Application. */
 #include "C_Utilities.h"
 
+/* Application is just a standard class. */
 class C_Application
 {
 	public:
@@ -44,6 +46,7 @@ class C_Application
 		sf::RenderWindow window_;				/* Used to display the application. */
 		sf::Event event_;						/* Used to check window events. */
 		sf::Vector2i screen_resolution_;		/* Used to store the current resolution. */
+		C_Utilities utilities_;					/* Used to setup the singleton Utilities access for other classes. */
 
 		/* Methods. */
 		void HandleStates();
