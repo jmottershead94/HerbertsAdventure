@@ -3,6 +3,7 @@
 
 /* Macros. */
 #define UNUSED(x) (void)(x)
+#define DELETE(x) if(x != nullptr) {delete x; x = nullptr;}
 
 class C_Utilities
 {
@@ -10,8 +11,14 @@ class C_Utilities
 	/* In this instance, meaning only the application can initialise utilities. */
 	friend class C_Application;
 
+public:
+	/* Methods. */
+
+
 private:
+	/* Methods. */
 	C_Utilities();
+	void Init();
 	void CleanUp();
 };
 

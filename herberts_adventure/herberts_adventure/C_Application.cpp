@@ -17,6 +17,14 @@ void C_Application::CleanUp()
 void C_Application::HandleStates()
 {}
 
+void C_Application::Controls()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+	{
+		window_.close();
+	}
+}
+
 void C_Application::Render()
 {}
 
@@ -39,7 +47,9 @@ bool C_Application::Update(float dt)
 	/* Handles any state machine changes. */
 	HandleStates();
 
+	/* Handles any generic application controls. */
+	Controls();
+
 	/* This update has been successful. */
 	return true;
 }
-

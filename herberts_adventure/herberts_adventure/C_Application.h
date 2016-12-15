@@ -47,6 +47,7 @@ class C_Application
 
 		/* Methods. */
 		void HandleStates();
+		void Controls();
 };
 
 #endif
