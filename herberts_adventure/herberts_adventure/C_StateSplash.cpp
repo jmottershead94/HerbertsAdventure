@@ -16,6 +16,17 @@ C_StateSplash::C_StateSplash(sf::RenderWindow& window)
 
 	/* Initialising attributes. */
 	window_ = &window;
+	sf::Texture* indie_jay = new sf::Texture();
+	
+	/* Setup the splash screen image. */
+	if (!indie_jay->loadFromFile("../assets/art/indie_jay_splash_screen_1080px.png"))
+	{
+		/* Exit the application. */
+		exit(-1);
+	}
+
+	/* Set the texture to the splash screen image. */
+	sprite_.setTexture(*indie_jay);
 }
 
 /*
@@ -86,7 +97,10 @@ void C_StateSplash::OnExit()
 
 */
 void C_StateSplash::Render()
-{}
+{
+	/* Draw elements. */
+	window_->draw(sprite_);
+}
 
 /*
 

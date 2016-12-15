@@ -38,7 +38,7 @@ int main()
 	sf::Time dt;
 
 	/* Setting the resolution of the application window and initialising the application. */
-	app.Init(sf::Vector2i(1280, 720));
+	app.Init(sf::Vector2i(1920, 1080));
 
 	/* While the application window is open. */
 	while (app.display_window().isOpen())

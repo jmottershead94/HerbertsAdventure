@@ -23,7 +23,7 @@ C_Application::C_Application() :
 C_Application::~C_Application()
 {
 	/* Clean up the application. */
-	CleanUp();
+	//CleanUp();
 }
 
 /*

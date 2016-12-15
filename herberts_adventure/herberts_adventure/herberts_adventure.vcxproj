@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="C_Application.cpp" />
+    <ClCompile Include="C_Sprite.cpp" />
     <ClCompile Include="C_State.cpp" />
     <ClCompile Include="C_StateSplash.cpp" />
     <ClCompile Include="C_Timer.cpp" />
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Application.h" />
+    <ClInclude Include="C_Sprite.h" />
     <ClInclude Include="C_State.h" />
     <ClInclude Include="C_StateSplash.h" />
     <ClInclude Include="C_Timer.h" />
