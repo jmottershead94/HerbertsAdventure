@@ -19,7 +19,8 @@
 #define _C_APPLICATION_H_
 
 /* Application. */
-#include "C_Utilities.h"
+//#include "C_Utilities.h"
+#include "C_StateSplash.h"
 
 /* Application is just a standard class. */
 class C_Application
@@ -27,6 +28,7 @@ class C_Application
 	public:
 		/* Methods. */
 		C_Application();
+		~C_Application();
 		void Init(const sf::Vector2i screen_resolution);
 		void CleanUp();
 		void Render();
@@ -43,6 +45,7 @@ class C_Application
 		sf::Event event_;						/* Used to check window events. */
 		sf::Vector2i screen_resolution_;		/* Used to store the current resolution. */
 		C_Utilities utilities_;					/* Used to setup the singleton Utilities access for other classes. */
+		C_State* current_state_;				/* Used to setup the state machine for the game flow. */
 
 		/* Methods. */
 		void HandleStates();

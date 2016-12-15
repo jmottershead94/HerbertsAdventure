@@ -3,17 +3,31 @@
 #include "C_Application.h"
 
 /*
-
+	
 	Overview
 	========
 	This method will initialise default values for our attributes.
 
 */
-C_Application::C_Application()
+C_Application::C_Application() :
+	current_state_(nullptr)
 {}
 
 /*
 
+	Overview
+	========
+	This method will be called when the object is destroyed.
+
+*/
+C_Application::~C_Application()
+{
+	/* Clean up the application. */
+	CleanUp();
+}
+
+/*
+	
 	Overview
 	========
 	This method will initialise specific attribute values.
@@ -31,6 +45,10 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure");
 	window_.setFramerateLimit(kFrameRate);
 	utilities_.Init();
+
+	/* Starting the state machine. */
+	current_state_ = new C_StateSplash(window_);
+	current_state_->OnEnter();
 }
 
 /*
@@ -44,6 +62,7 @@ void C_Application::CleanUp()
 {
 	/* Clean up attribute values. */
 	utilities_.CleanUp();
+	CLEANUPDELETE(current_state_);
 }
 
 /*
@@ -55,7 +74,22 @@ void C_Application::CleanUp()
 
 */
 void C_Application::HandleStates()
-{}
+{
+	/* Creates a new state if one is required. */
+	C_State* new_state = current_state_->HandleTransitions();
+
+	/* If the new state is equal to something. */
+	if (new_state != nullptr)
+	{
+		/* Exit the previous state. */
+		current_state_->OnExit();
+		DELETE(current_state_);
+
+		/* Enter the new state. */
+		current_state_ = new_state;
+		current_state_->OnEnter();
+	}
+}
 
 /*
 
@@ -71,9 +105,6 @@ void C_Application::Controls()
 	/* If the escape key has been pressed. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 	{
-		/* Clean up the application. */
-		CleanUp();
-
 		/* Close the window. */
 		window_.close();
 	}
@@ -92,7 +123,7 @@ void C_Application::Render()
 	window_.clear();
 
 	/* Render application stuff here... */
-
+	current_state_->Render();
 
 	/* Display the new render window layout. */
 	window_.display();
@@ -125,9 +156,6 @@ bool C_Application::Update(float dt)
 		/* If the user is closing the window. */
 		if (event_.type == sf::Event::Closed)
 		{
-			/* Clean up the application. */
-			CleanUp();
-
 			/* Close the window. */
 			window_.close();
 		}
@@ -140,7 +168,7 @@ bool C_Application::Update(float dt)
 	Controls();
 
 	/* Update application attributes here... */
-
+	current_state_->Update(dt);
 
 	/* This update has been successful. */
 	return true;

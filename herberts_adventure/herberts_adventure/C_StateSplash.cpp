@@ -11,6 +11,9 @@
 */
 C_StateSplash::C_StateSplash(sf::RenderWindow& window)
 {
+	/* Initialising pointer attributes. */
+	window_ = new sf::RenderWindow();
+
 	/* Initialising attributes. */
 	window_ = &window;
 }
@@ -44,7 +47,7 @@ C_State* C_StateSplash::HandleTransitions()
 	if (timer_.Finished())
 	{
 		/* Go to the title state. */
-
+		return nullptr;
 	}
 
 	/* Otherwise, there are no state transitions. */
@@ -94,7 +97,7 @@ void C_StateSplash::Render()
 	Params
 	======
 	float& dt			-	Delta time used to determine how much time passed since
-	the last frame update.
+							the last frame update.
 
 */
 void C_StateSplash::Update(float& dt)

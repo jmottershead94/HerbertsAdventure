@@ -19,8 +19,9 @@
 #define _C_UTILITIES_H_
 
 /* Macros. */
-#define UNUSED(x) (void)(x)										/* Will allow a bypass for warning errors for parameters that aren't being used yet, but will definitely be used later in development. */
-#define DELETE(x) if(x != nullptr) {delete x; x = nullptr;}		/* Will allow a quicker way to delete pointer attributes in one line. */
+#define UNUSED(x) (void)(x)																/* Will allow a bypass for warning errors for parameters that aren't being used yet, but will definitely be used later in development. */
+#define DELETE(x) if(x != nullptr) {delete x; x = nullptr;}								/* Will allow a quicker way to delete pointer attributes in one line. */
+#define CLEANUPDELETE(x) if(x != nullptr) {x->CleanUp(); delete x; x = nullptr;}		/* Will allow a quicker way to clean up and delete pointer attributes in one line. */
 
 /* Include header files here. */
 /* SFML. */
