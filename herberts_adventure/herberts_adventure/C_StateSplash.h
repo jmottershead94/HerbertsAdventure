@@ -6,7 +6,7 @@
 	Created:	15th December 2016
 	Filter:		State Machine
 	Class Name:	C_StateSplash
-	Base Class:	N/A
+	Base Class:	C_State
 	Author:		Jason Mottershead
 
 	Purpose:	This state will take care of handling splash screen specific functionality

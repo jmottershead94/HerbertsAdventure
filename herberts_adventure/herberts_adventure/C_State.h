@@ -60,6 +60,7 @@ class C_State
 		sf::Sprite ui_bg_sprite_;		/* Used to display the background image. */
 		sf::Font font_;					/* Used to store the main font of the game. */
 		sf::Text title_text_;			/* Used to allow inheriting states their own title text. */
+		C_Timer input_delay_;			/* Used to delay input slightly between state transitions. */
 };
 
 #endif

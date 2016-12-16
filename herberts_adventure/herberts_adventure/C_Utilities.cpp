@@ -5,8 +5,28 @@
 /* The static instance of utilities. */
 C_Utilities* utilities_instance_ = nullptr;
 
+/*
+
+	Overview
+	========
+	This method will setup any text.
+
+	Params
+	======
+	sf::Text& text				-	The text that we are currently editing.
+
+	sf::Font& font				-	The font that will be used to display this text.
+
+	const std::string message	-	The string that will be displayed with this text.
+
+	const unsigned int size		-	The size of the text.
+
+	const sf::Vector2f position	-	The position of the text.
+
+*/
 void C_Utilities::SetText(sf::Text & text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position)
 {
+	/* Setting up the text. */
 	text.setFont(font);
 	text.setString(message);
 	text.setFillColor(sf::Color::White);

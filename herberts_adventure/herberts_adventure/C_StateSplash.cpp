@@ -14,10 +14,10 @@ C_StateSplash::C_StateSplash(sf::RenderWindow& window)
 	/* Initialising pointer attributes. */
 	window_ = new sf::RenderWindow();
 	ui_bg_ = new sf::Texture();
-	sf::Texture* indie_jay = new sf::Texture();
 	
 	/* Initialising attributes. */
 	window_ = &window;
+	input_delay_.set_time(0.5f);
 
 	/* If the resources have not loaded. */
 	if (!LoadResources())
@@ -25,16 +25,6 @@ C_StateSplash::C_StateSplash(sf::RenderWindow& window)
 		/* Exit the application. */
 		exit(-1);
 	}
-	
-	/* If the splash screen image cannot be loaded correctly. */
-	if (!indie_jay->loadFromFile("../assets/art/indie_jay_splash_screen_1080px.png"))
-	{
-		/* Exit the application. */
-		exit(-1);
-	}
-
-	/* Set the texture to the splash screen image. */
-	sprite_.setTexture(*indie_jay);
 }
 
 /*
@@ -64,9 +54,10 @@ bool C_StateSplash::LoadResources()
 	bool loaded = true;
 
 	/* Load the assets. */
-	loaded &= font_.loadFromFile("../assets/art/RussoOne-Regular.ttf");
+	loaded &= font_.loadFromFile("../assets/art/heygorgeous.ttf");
 	loaded &= ui_bg_->loadFromFile("../assets/art/swamp.png");
 
+	/* Set the texture of the background UI sprite. */
 	ui_bg_sprite_.setTexture(*ui_bg_);
 
 	/* Let the application know if the assets have been loaded. */
@@ -108,9 +99,22 @@ C_State* C_StateSplash::HandleTransitions()
 */
 void C_StateSplash::OnEnter()
 {
+	/* Initialising a new texture for the splash screen image. */
+	sf::Texture* indie_jay = new sf::Texture();
+
 	/* Setup the splash screen timer. */
 	timer_.set_time(4.0f);
 	timer_.start();
+
+	/* If the splash screen image cannot be loaded correctly. */
+	if (!indie_jay->loadFromFile("../assets/art/indie_jay_splash_screen_1080px.png"))
+	{
+		/* Exit the application. */
+		exit(-1);
+	}
+
+	/* Set the texture to the splash screen image. */
+	sprite_.setTexture(*indie_jay);
 }
 
 /*

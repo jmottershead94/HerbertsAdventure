@@ -6,7 +6,7 @@
 	Created:	15th December 2016
 	Filter:		State Machine
 	Class Name:	C_StateTitle
-	Base Class:	N/A
+	Base Class:	C_State
 	Author:		Jason Mottershead
 
 	Purpose:	This state will take care of handling title screen specific functionality
@@ -24,6 +24,7 @@
 /* Include header files here. */
 /* Application. */
 #include "C_State.h"
+#include "C_StateMenu.h"
 
 /* State title IS A state, therefore inherits from it. */
 class C_StateTitle : public C_State
@@ -40,7 +41,8 @@ class C_StateTitle : public C_State
 
 	private:
 		/* Attributes. */
-		sf::Text message_;
+		sf::Text message_;	/* Used to store the title screen specific text. */
+		C_Timer delay_;		/* Used to provide a slight delay for any input. */
 };
 
 #endif
