@@ -166,6 +166,7 @@
     <ClCompile Include="C_StateSplash.cpp" />
     <ClCompile Include="C_StateTitle.cpp" />
     <ClCompile Include="C_Timer.cpp" />
+    <ClCompile Include="C_UIElement.cpp" />
     <ClCompile Include="C_Utilities.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -182,6 +183,7 @@
     <ClInclude Include="C_StateSplash.h" />
     <ClInclude Include="C_StateTitle.h" />
     <ClInclude Include="C_Timer.h" />
+    <ClInclude Include="C_UIElement.h" />
     <ClInclude Include="C_Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

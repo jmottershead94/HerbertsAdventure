@@ -15,6 +15,9 @@
     <Filter Include="Objects">
       <UniqueIdentifier>{718e78b6-4d13-437e-8b11-816e0d0a9b3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{9b09a75b-6a6d-4368-b40a-6520bc8fa027}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,6 +62,9 @@
     <ClCompile Include="C_Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C_UIElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Application.h">
@@ -98,6 +104,9 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="C_Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C_UIElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
