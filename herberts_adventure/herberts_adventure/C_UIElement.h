@@ -12,11 +12,6 @@ class C_UIElement : public C_GameObject
 {
 public:
 	/* Methods. */
-	/* Virtual. */
-	/* Pure virtual because all inheriting UI elements must implement these methods. */
-	virtual void InFocusResponse() = 0;
-	virtual void OutOfFocusResponse() = 0;
-
 	C_UIElement();
 
 	/* Getters/Setters. */
@@ -25,6 +20,13 @@ public:
 
 	/* This will allow us to set the current focus value of the element. */
 	inline void set_focus(const bool value) { in_focus_ = value; }
+
+protected:
+	/* Methods. */
+	/* Virtual. */
+	/* Pure virtual because all inheriting UI elements must implement these methods. */
+	virtual void InFocusResponse() = 0;
+	virtual void OutOfFocusResponse() = 0;
 
 private:
 	/* Attributes. */
