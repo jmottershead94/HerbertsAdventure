@@ -79,8 +79,8 @@ bool C_StateSplash::LoadResources()
 */
 C_State* C_StateSplash::HandleTransitions()
 {
-	/* If the timer has finished. */
-	if (timer_.Finished() || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+	/* If the timer has finished OR if the user clicks the left mouse button OR presses the space bar. */
+	if (timer_.Finished() || sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 	{
 		/* Go to the title state. */
 		return new C_StateTitle(*this);
@@ -107,7 +107,8 @@ void C_StateSplash::OnEnter()
 	timer_.start();
 
 	/* If the splash screen image cannot be loaded correctly. */
-	if (!indie_jay->loadFromFile("../assets/art/indie_jay_splash_screen_1080px.png"))
+	if (!indie_jay->loadFromFile("../assets/art/indie_jay_splash_screen_1080px.png")
+		|| !sfx_buffer_.loadFromFile("../assets/audio/splash_screen_sound_effect.wav"))
 	{
 		/* Exit the application. */
 		exit(-1);
@@ -115,6 +116,13 @@ void C_StateSplash::OnEnter()
 
 	/* Set the texture to the splash screen image. */
 	sprite_.setTexture(*indie_jay);
+
+	/* Setup the sound */
+	sfx_.setBuffer(sfx_buffer_);
+	sfx_.setVolume(10.0f);
+
+	/* Play the sound effect. */
+	sfx_.play();
 }
 
 /*

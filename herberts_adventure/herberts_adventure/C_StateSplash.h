@@ -43,8 +43,10 @@ class C_StateSplash : public C_State
 
 	private:
 		/* Attributes. */
-		C_Timer timer_;		/* Used to provide a timed delay on the splash screen. */
-		sf::Sprite sprite_;	/* Used to store the splash screen sprite. */
+		C_Timer timer_;					/* Used to provide a timed delay on the splash screen. */
+		sf::Sprite sprite_;				/* Used to store the splash screen sprite. */
+		sf::SoundBuffer sfx_buffer_;	/* Used to setup the sound. */
+		sf::Sound sfx_;					/* Used to play the sound. */
 };
 
 #endif

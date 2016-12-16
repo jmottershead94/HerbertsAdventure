@@ -25,6 +25,7 @@
 
 /* Include header files here. */
 /* SFML. */
+#include "SFML\Audio.hpp"
 #include "SFML\Graphics.hpp"
 
 /* Utilities is just a standard class. */

@@ -40,10 +40,14 @@ C_State* C_StateMenu::HandleTransitions()
 	/* If the input delay timer has finished. */
 	if (input_delay_.Finished())
 	{
-		/* If the user clicks the left mouse button. */
+		/* If the user clicks the left mouse button OR presses the space bar. */
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 		{
 			return new C_StateGame(*this);
+		}
+		else if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+		{
+			return new C_StateCredits(*this);
 		}
 	}
 
