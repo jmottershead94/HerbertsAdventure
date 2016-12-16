@@ -5,6 +5,16 @@
 /* The static instance of utilities. */
 C_Utilities* utilities_instance_ = nullptr;
 
+void C_Utilities::SetText(sf::Text & text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position)
+{
+	text.setFont(font);
+	text.setString(message);
+	text.setFillColor(sf::Color::White);
+	text.setCharacterSize(size);
+	text.setOrigin(text.getLocalBounds().width * 0.5f, text.getLocalBounds().height * 0.5f);
+	text.setPosition(position);
+}
+
 /*
 
 	Overview

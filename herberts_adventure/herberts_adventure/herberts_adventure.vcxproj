@@ -155,18 +155,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="C_Application.cpp" />
-    <ClCompile Include="C_Sprite.cpp" />
     <ClCompile Include="C_State.cpp" />
     <ClCompile Include="C_StateSplash.cpp" />
+    <ClCompile Include="C_StateTitle.cpp" />
     <ClCompile Include="C_Timer.cpp" />
     <ClCompile Include="C_Utilities.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Application.h" />
-    <ClInclude Include="C_Sprite.h" />
     <ClInclude Include="C_State.h" />
     <ClInclude Include="C_StateSplash.h" />
+    <ClInclude Include="C_StateTitle.h" />
     <ClInclude Include="C_Timer.h" />
     <ClInclude Include="C_Utilities.h" />
   </ItemGroup>

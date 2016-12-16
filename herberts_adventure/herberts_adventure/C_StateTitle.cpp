@@ -1,6 +1,6 @@
 /* Include header files here. */
 /* Application. */
-#include "C_StateSplash.h"
+#include "C_StateTitle.h"
 
 /*
 
@@ -9,30 +9,10 @@
 	This method will initialise default values for our attributes.
 
 */
-C_StateSplash::C_StateSplash(sf::RenderWindow& window)
+C_StateTitle::C_StateTitle(const C_State& current_state) : C_State(current_state)
 {
-	/* Initialising pointer attributes. */
-	window_ = new sf::RenderWindow();
-
 	/* Initialising attributes. */
-	window_ = &window;
-
-	if (!font_.loadFromFile("../assets/art/RussoOne-Regular.ttf"))
-	{
-		exit(-1);
-	}
-
-	sf::Texture* indie_jay = new sf::Texture();
 	
-	/* Setup the splash screen image. */
-	if (!indie_jay->loadFromFile("../assets/art/indie_jay_splash_screen_1080px.png"))
-	{
-		/* Exit the application. */
-		exit(-1);
-	}
-
-	/* Set the texture to the splash screen image. */
-	sprite_.setTexture(*indie_jay);
 }
 
 /*
@@ -42,7 +22,7 @@ C_StateSplash::C_StateSplash(sf::RenderWindow& window)
 	This method will be called when the object is destroyed.
 
 */
-C_StateSplash::~C_StateSplash()
+C_StateTitle::~C_StateTitle()
 {}
 
 /*
@@ -58,14 +38,9 @@ C_StateSplash::~C_StateSplash()
 							transition to.
 
 */
-C_State* C_StateSplash::HandleTransitions()
+C_State* C_StateTitle::HandleTransitions()
 {
-	/* If the timer has finished. */
-	if (timer_.Finished())
-	{
-		/* Go to the title state. */
-		return new C_StateTitle(*this);
-	}
+	
 
 	/* Otherwise, there are no state transitions. */
 	return nullptr;
@@ -78,11 +53,9 @@ C_State* C_StateSplash::HandleTransitions()
 	Here we will provide a definition for what happens when you enter this state.
 
 */
-void C_StateSplash::OnEnter()
+void C_StateTitle::OnEnter()
 {
-	/* Setup the splash screen timer. */
-	timer_.set_time(4.0f);
-	timer_.start();
+	C_Utilities::SetText(title_text_, font_, "Herbert's Adventure!", 64, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.5f));
 }
 
 /*
@@ -92,7 +65,7 @@ void C_StateSplash::OnEnter()
 	Here we will provide a definition for what happens when you exit this state.
 
 */
-void C_StateSplash::OnExit()
+void C_StateTitle::OnExit()
 {}
 
 /*
@@ -102,10 +75,9 @@ void C_StateSplash::OnExit()
 	This is where the states will render their elements using the render window.
 
 */
-void C_StateSplash::Render()
+void C_StateTitle::Render()
 {
-	/* Draw elements. */
-	window_->draw(sprite_);
+	window_->draw(title_text_);
 }
 
 /*
@@ -120,7 +92,7 @@ void C_StateSplash::Render()
 					the last frame update.
 
 */
-void C_StateSplash::Update(float& dt)
+void C_StateTitle::Update(float& dt)
 {
 	/* To avoid warnings as errors, dt will be used later. */
 	UNUSED(dt);

@@ -35,8 +35,8 @@
     <ClCompile Include="C_Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Sprite.cpp">
-      <Filter>Objects</Filter>
+    <ClCompile Include="C_StateTitle.cpp">
+      <Filter>State Machine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,8 +55,8 @@
     <ClInclude Include="C_Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C_Sprite.h">
-      <Filter>Objects</Filter>
+    <ClInclude Include="C_StateTitle.h">
+      <Filter>State Machine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -25,7 +25,7 @@
 /* Include header files here. */
 /* Application. */
 #include "C_State.h"
-
+#include "C_StateTitle.h"
 
 /* State splash IS A state, therfore inherits from it. */
 class C_StateSplash : public C_State
@@ -44,7 +44,6 @@ class C_StateSplash : public C_State
 		/* Attributes. */
 		C_Timer timer_;		/* Used to provide a timed delay on the splash screen. */
 		sf::Sprite sprite_;	/* Used to store the splash screen sprite. */
-		//C_Sprite sprite_;
 };
 
 #endif

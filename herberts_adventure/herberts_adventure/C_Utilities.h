@@ -36,7 +36,7 @@ class C_Utilities
 
 public:
 	/* Methods. */
-	
+	static void SetText(sf::Text& text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position);
 
 private:
 	/* Methods. */

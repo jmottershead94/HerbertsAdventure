@@ -25,7 +25,6 @@
 /* Application. */
 #include "C_Utilities.h"
 #include "C_Timer.h"
-#include "C_Sprite.h"
 
 /* State is just a standard class. */
 class C_State
@@ -57,6 +56,8 @@ class C_State
 	protected:
 		/* Attributes. */
 		sf::RenderWindow* window_;	/* Will be used to point to the main game window. */
+		sf::Font font_;
+		sf::Text title_text_;
 };
 
 #endif

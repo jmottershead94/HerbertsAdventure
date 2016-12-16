@@ -23,8 +23,8 @@ void C_State::CleanUp()
 
 	Params
 	======
-	float& dt			-	Delta time used to determine how much time passed since
-							the last frame update.
+	float& dt	-	Delta time used to determine how much time passed since
+					the last frame update.
 
 */
 void C_State::Update(float& dt)
