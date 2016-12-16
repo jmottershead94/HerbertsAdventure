@@ -34,6 +34,7 @@ class C_StateSplash : public C_State
 		/* Methods. */
 		C_StateSplash(sf::RenderWindow& window);
 		~C_StateSplash();
+		bool LoadResources();
 		C_State* HandleTransitions();
 		void OnEnter();
 		void OnExit();

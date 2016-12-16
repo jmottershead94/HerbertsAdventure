@@ -13,18 +13,20 @@ C_StateSplash::C_StateSplash(sf::RenderWindow& window)
 {
 	/* Initialising pointer attributes. */
 	window_ = new sf::RenderWindow();
-
+	ui_bg_ = new sf::Texture();
+	sf::Texture* indie_jay = new sf::Texture();
+	
 	/* Initialising attributes. */
 	window_ = &window;
 
-	if (!font_.loadFromFile("../assets/art/RussoOne-Regular.ttf"))
+	/* If the resources have not loaded. */
+	if (!LoadResources())
 	{
+		/* Exit the application. */
 		exit(-1);
 	}
-
-	sf::Texture* indie_jay = new sf::Texture();
 	
-	/* Setup the splash screen image. */
+	/* If the splash screen image cannot be loaded correctly. */
 	if (!indie_jay->loadFromFile("../assets/art/indie_jay_splash_screen_1080px.png"))
 	{
 		/* Exit the application. */
@@ -49,6 +51,32 @@ C_StateSplash::~C_StateSplash()
 
 	Overview
 	========
+	This method will load in common resources.
+
+	Returns
+	=======
+	boolean true/false	-	If the assets have loaded or not.
+
+*/
+bool C_StateSplash::LoadResources()
+{
+	/* The current loaded status of the assets. */
+	bool loaded = true;
+
+	/* Load the assets. */
+	loaded &= font_.loadFromFile("../assets/art/RussoOne-Regular.ttf");
+	loaded &= ui_bg_->loadFromFile("../assets/art/swamp.png");
+
+	ui_bg_sprite_.setTexture(*ui_bg_);
+
+	/* Let the application know if the assets have been loaded. */
+	return loaded;
+}
+
+/*
+
+	Overview
+	========
 	This method will provide a way for each state to transition into other states,
 	usually based on input.
 
@@ -61,7 +89,7 @@ C_StateSplash::~C_StateSplash()
 C_State* C_StateSplash::HandleTransitions()
 {
 	/* If the timer has finished. */
-	if (timer_.Finished())
+	if (timer_.Finished() || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 	{
 		/* Go to the title state. */
 		return new C_StateTitle(*this);
