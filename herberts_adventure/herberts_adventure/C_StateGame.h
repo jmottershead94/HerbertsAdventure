@@ -42,6 +42,7 @@ public:
 
 private:
 	/* Attributes. */
+	
 };
 
 #endif

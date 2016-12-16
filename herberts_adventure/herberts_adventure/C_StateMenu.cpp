@@ -40,14 +40,29 @@ C_State* C_StateMenu::HandleTransitions()
 	/* If the input delay timer has finished. */
 	if (input_delay_.Finished())
 	{
-		/* If the user clicks the left mouse button OR presses the space bar. */
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+		/* If the user pressed the left mouse button. */
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			return new C_StateGame(*this);
-		}
-		else if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
-		{
-			return new C_StateCredits(*this);
+			/* If the user clicked on the play button. */
+			if (play_.getGlobalBounds().contains((float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y))
+			{
+				/* Go to the game. */
+				return new C_StateGame(*this);
+			}
+
+			/* If the user clicked on the credits button. */
+			if (credits_.getGlobalBounds().contains((float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y))
+			{
+				/* Go to credits. */
+				return new C_StateCredits(*this);
+			}
+
+			/* If the user clicked on the credits button. */
+			if (quit_.getGlobalBounds().contains((float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y))
+			{
+				/* Go to credits. */
+				window_->close();
+			}
 		}
 	}
 
@@ -100,6 +115,19 @@ void C_StateMenu::Render()
 	window_->draw(options_);
 	window_->draw(credits_);
 	window_->draw(quit_);
+
+	if (play_.getGlobalBounds().contains((float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y))
+	{
+		/* The play button is in focus. */
+		play_.setCharacterSize(65);
+		play_.setFillColor(sf::Color::Red);
+	}
+	else
+	{
+		/* The play button is out of focus. */
+		play_.setCharacterSize(50);
+		play_.setFillColor(sf::Color::White);
+	}
 }
 
 /*
@@ -118,4 +146,7 @@ void C_StateMenu::Update(float& dt)
 {
 	/* To avoid warnings as errors, dt will be used later. */
 	UNUSED(dt);
+
+	/* Move the cursor game object with the mouse. */
+	cursor_.setPosition((sf::Vector2f)sf::Mouse::getPosition());
 }

@@ -65,6 +65,9 @@ void C_StateGame::OnEnter()
 
 	/* Start the input delay timer. */
 	input_delay_.start();
+
+	/* Initialise the level. */
+	level_.Init(window_);
 }
 
 /*
@@ -89,6 +92,9 @@ void C_StateGame::Render()
 	/* Draw elements. */
 	window_->draw(ui_bg_sprite_);
 	window_->draw(title_text_);
+
+	/* Render level elements. */
+	level_.Render();
 }
 
 /*
@@ -105,6 +111,6 @@ void C_StateGame::Render()
 */
 void C_StateGame::Update(float& dt)
 {
-	/* To avoid warnings as errors, dt will be used later. */
-	UNUSED(dt);
+	/* Handle level updates. */
+	level_.Update(dt);
 }

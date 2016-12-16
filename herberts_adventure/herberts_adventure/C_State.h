@@ -25,6 +25,7 @@
 /* Application. */
 #include "C_Utilities.h"
 #include "C_Timer.h"
+#include "C_Level.h"
 
 /* State is just a standard class. */
 class C_State
@@ -56,11 +57,14 @@ class C_State
 	protected:
 		/* Attributes. */
 		sf::RenderWindow* window_;		/* Will be used to point to the main game window. */
+		//sf::Event* event_;				/* Used to access input and window events. */
 		sf::Texture* ui_bg_;			/* Used to store the background image for different states. */
 		sf::Sprite ui_bg_sprite_;		/* Used to display the background image. */
 		sf::Font font_;					/* Used to store the main font of the game. */
 		sf::Text title_text_;			/* Used to allow inheriting states their own title text. */
 		C_Timer input_delay_;			/* Used to delay input slightly between state transitions. */
+		C_Level	level_;					/* Used to access the level for the game state (and possibly game over for game play elements). */
+		C_GameObject cursor_;			/* Allows the user to use the mouse for UI controls. */
 };
 
 #endif

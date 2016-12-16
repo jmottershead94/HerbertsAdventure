@@ -48,7 +48,7 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	utilities_.Init();
 
 	/* Starting the state machine. */
-	current_state_ = new C_StateSplash(window_);
+	current_state_ = new C_StateSplash(&window_);
 	current_state_->OnEnter();
 }
 
@@ -162,11 +162,11 @@ bool C_Application::Update(float dt)
 		}
 	}
 
-	/* Handles any state machine changes. */
-	HandleStates();
-
 	/* Handles any generic application controls. */
 	Controls();
+
+	/* Handles any state machine changes. */
+	HandleStates();
 
 	/* Update application attributes here... */
 	current_state_->Update(dt);
