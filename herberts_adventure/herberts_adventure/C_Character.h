@@ -29,7 +29,7 @@ class C_Character : public C_GameObject
 		/* Methods. */
 		C_Character();
 		~C_Character();
-		void Init(const std::string filename, const sf::Vector2f position);
+		void Init(const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 	protected:

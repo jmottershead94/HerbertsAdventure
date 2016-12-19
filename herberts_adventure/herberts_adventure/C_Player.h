@@ -29,7 +29,7 @@ class C_Player : public C_Character
 		/* Methods. */
 		C_Player();
 		~C_Player();
-		void Init(const std::string filename, const sf::Vector2f position);
+		void Init(const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 	protected:

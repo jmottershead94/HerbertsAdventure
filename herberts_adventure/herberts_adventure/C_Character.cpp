@@ -36,10 +36,10 @@ C_Character::~C_Character()
 	const sf::Vector2f position	-	This will set the position of the game object.
 
 */
-void C_Character::Init(const std::string filename, const sf::Vector2f position)
+void C_Character::Init(const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
 {
 	/* Handles base game object initialisation. */
-	C_GameObject::Init(filename, position);
+	C_GameObject::Init(filename, position, rotation, scale);
 }
 
 /*
