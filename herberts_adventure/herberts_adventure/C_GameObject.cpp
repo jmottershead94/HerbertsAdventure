@@ -36,7 +36,7 @@ C_GameObject::~C_GameObject()
 	const sf::Vector2f position	-	This will set the position of the game object.
 
 */
-void C_GameObject::Init(const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
+void C_GameObject::Init(C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
 {
 	/* Loading a texture. */
 	sf::Texture* texture = new sf::Texture();
@@ -47,6 +47,9 @@ void C_GameObject::Init(const std::string filename, const sf::Vector2f position,
 	setPosition(position);
 	setRotation(rotation);
 	setScale(scale);
+
+	/* Initialising local attributes. */
+	input_ = input;
 }
 
 /*
@@ -65,4 +68,7 @@ void C_GameObject::Update(float& dt)
 {
 	/* To avoid warnings as errors, dt will be used later. */
 	UNUSED(dt);
+
+	/* Update the input component. */
+	input_->Update(*this);
 }

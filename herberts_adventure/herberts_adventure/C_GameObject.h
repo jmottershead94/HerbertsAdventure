@@ -22,6 +22,10 @@
 /* Include header files here. */
 /* Application. */
 #include "C_Utilities.h"
+#include "C_InputComponent.h"
+
+/* Forward declaration. */
+class C_InputComponent;
 
 /* Game object IS A sprite, therefore inherits from it. */
 class C_GameObject : public sf::Sprite
@@ -30,22 +34,30 @@ class C_GameObject : public sf::Sprite
 		/* Methods. */
 		C_GameObject();
 		~C_GameObject();
-		void Init(const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
+		void Init(C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 		/* Getters / Setters. */
-		inline const sf::Vector2f& velocity() { return (velocity_); }
-
+		/* This will allow us to get the value of the object movement speed. */
 		inline const float& movement_speed() { return (speed_); }
 
+		/* This will allow us to get the current value of the object velocity. */
+		inline const sf::Vector2f& velocity() { return (velocity_); }
+
+		/* This will allow us to access the object's input component. */
+		inline const C_InputComponent* input_component() { return input_; }
+
+		/* This will allow us to set the value of the velocity. */
 		inline void set_velocity(const sf::Vector2f value) { velocity_ = value; }
 
+		/* This will allow us to add onto the value of the current velocity value. */
 		inline void add_velocity(const sf::Vector2f value) { velocity_ += value; }
 
 	private:
 		/* Attributes. */
-		sf::Vector2f velocity_;		/* How fast the game object is moving. */
 		const float speed_ = 4.0f;	/* How fast game objects can move. */
+		sf::Vector2f velocity_;		/* How fast the game object is moving. */
+		C_InputComponent* input_;	/* Used to access the input component. */
 };
 
 #endif

@@ -23,6 +23,7 @@
 #include "C_Utilities.h"
 #include "C_Player.h"
 #include "C_Collision2D.h"
+#include "C_DemoInputComponent.h"
 
 /* Level is just a standard class. */
 class C_Level

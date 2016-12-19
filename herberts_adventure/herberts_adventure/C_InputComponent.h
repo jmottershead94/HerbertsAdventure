@@ -21,6 +21,9 @@
 /* Application. */
 #include "C_GameObject.h"
 
+/* Forward declaration. */
+class C_GameObject;
+
 /* Input component is just a standard class. */
 class C_InputComponent
 {

@@ -37,13 +37,10 @@ C_Player::~C_Player()
 	const sf::Vector2f position	-	This will set the position of the game object.
 
 */
-void C_Player::Init(C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
+void C_Player::Init(const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
 {
 	/* Handles character initialisation. */
-	C_Character::Init(filename, position, rotation, scale);
-
-	/* Initialising local attributes. */
-	input_ = input;
+	C_Character::Init(new C_PlayerInputComponent(), filename, position, rotation, scale);
 }
 
 /*
@@ -62,7 +59,4 @@ void C_Player::Update(float & dt)
 {
 	/* Handles character updates. */
 	C_Character::Update(dt);
-
-	/* Update the input component. */
-	input_->Update(*this);
 }
