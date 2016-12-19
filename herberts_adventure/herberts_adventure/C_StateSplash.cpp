@@ -13,7 +13,7 @@
 	sf::RenderWindow* window	-	Provides access to the main render window in the application class.
 
 */
-C_StateSplash::C_StateSplash(sf::RenderWindow* window)
+C_StateSplash::C_StateSplash(sf::RenderWindow* window, sf::Font* font)
 {
 	/* Initialising pointer attributes. */
 	window_ = new sf::RenderWindow();
@@ -21,6 +21,7 @@ C_StateSplash::C_StateSplash(sf::RenderWindow* window)
 
 	/* Initialising attributes. */
 	window_ = window;
+	font_ = font;
 	input_delay_.set_time(0.5f);
 	
 	/* If the resources have not loaded. */
@@ -58,7 +59,7 @@ bool C_StateSplash::LoadResources()
 	bool loaded = true;
 
 	/* Load the assets. */
-	loaded &= font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf");
+	//loaded &= font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf");
 	loaded &= ui_bg_->loadFromFile("../assets/art/SPR_swamp.png");
 
 	/* Set the texture of the background UI sprite. */

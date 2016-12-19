@@ -67,12 +67,12 @@ void C_StateCredits::OnEnter()
 {
 	const std::string splash_sfx_text = "Twinkle Download Link: www.freesound.org/people/fschaeffer/sounds/337949/\nLicense Link: creativecommons.org/licenses/by-nc/3.0/\nCreator: fschaeffer\nChanges : None.";
 	
-	C_Utilities::SetText(title_text_, font_, "Credits", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
-	C_Utilities::SetText(splash_sfx_credit_, font_, splash_sfx_text, 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.45f));
-	C_Utilities::SetText(developer_credit_, font_, "Developed by Jason Mottershead", 20, sf::Vector2f(window_->getSize().x * 0.16f, window_->getSize().y * 0.7f));
+	C_Utilities::SetText(title_text_, *font_, "Credits", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
+	C_Utilities::SetText(splash_sfx_credit_, *font_, splash_sfx_text, 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.45f));
+	C_Utilities::SetText(developer_credit_, *font_, "Developed by Jason Mottershead", 20, sf::Vector2f(window_->getSize().x * 0.16f, window_->getSize().y * 0.7f));
 
 	/* Initialising local attributes. */
-	button_menu_.Init(window_, &font_, "Back", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.9f));
+	button_menu_.Init(window_, font_, "Back", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.9f));
 
 	/* Start the input delay timer. */
 	input_delay_.start();

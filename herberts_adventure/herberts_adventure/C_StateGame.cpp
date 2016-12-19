@@ -61,7 +61,7 @@ C_State* C_StateGame::HandleTransitions()
 */
 void C_StateGame::OnEnter()
 {
-	C_Utilities::SetText(title_text_, font_, "VIDEA GAEM", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
+	C_Utilities::SetText(title_text_, *font_, "VIDEA GAEM", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
 
 	/* Start the input delay timer. */
 	input_delay_.start();

@@ -47,8 +47,10 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	window_.setFramerateLimit(kFrameRate);
 	utilities_.Init();
 
+	font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf");
+
 	/* Starting the state machine. */
-	current_state_ = new C_StateSplash(&window_);
+	current_state_ = new C_StateSplash(&window_, &font_);
 	current_state_->OnEnter();
 }
 
@@ -126,6 +128,9 @@ void C_Application::Render()
 	/* Render application stuff here... */
 	current_state_->Render();
 
+	/* Display the fps. */
+	window_.draw(fps_counter_);
+
 	/* Display the new render window layout. */
 	window_.display();
 }
@@ -148,8 +153,11 @@ void C_Application::Render()
 */
 bool C_Application::Update(float dt)
 {
-	/* To avoid warnings as errors, dt will be used later. */
-	//UNUSED(dt);
+	/* Assign fps value. */
+	fps_ = 1.0f / dt;
+
+	/* Set the fps text. */
+	C_Utilities::SetText(fps_counter_, font_, "FPS: " + std::to_string(fps_), 20, sf::Vector2f(window_.getSize().x * 0.9f, window_.getSize().y * 0.99f));
 
 	/* While the window is checking for events. */
 	while (window_.pollEvent(event_))

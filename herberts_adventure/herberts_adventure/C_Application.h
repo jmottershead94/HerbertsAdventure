@@ -18,8 +18,10 @@
 #ifndef _C_APPLICATION_H_
 #define _C_APPLICATION_H_
 
+/* Standard. */
+#include <iomanip>
+
 /* Application. */
-//#include "C_Utilities.h"
 #include "C_StateSplash.h"
 
 /* Application is just a standard class. */
@@ -41,9 +43,12 @@ class C_Application
 	private:
 		/* Attributes */
 		const unsigned int kFrameRate = 60;		/* Used to determine the framerate of the application. */
+		float fps_;							/* Used to display the frame rate. */
 		sf::RenderWindow window_;				/* Used to display the application. */
 		sf::Event event_;						/* Used to check window events. */
 		sf::Vector2i screen_resolution_;		/* Used to store the current resolution. */
+		sf::Text fps_counter_;					/* Used to display the FPS. */
+		sf::Font font_;							/* The main font to use for the game. */
 		C_Utilities utilities_;					/* Used to setup the singleton Utilities access for other classes. */
 		C_State* current_state_;				/* Used to setup the state machine for the game flow. */
 

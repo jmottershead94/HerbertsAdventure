@@ -79,13 +79,13 @@ C_State* C_StateMenu::HandleTransitions()
 */
 void C_StateMenu::OnEnter()
 {
-	C_Utilities::SetText(title_text_, font_, "Herbert's Adventure!", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
+	C_Utilities::SetText(title_text_, *font_, "Herbert's Adventure!", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
 
 	/* Initialising local attributes. */
-	button_play_.Init(window_, &font_, "Play!", 50, sf::Vector2f(window_->getSize().x * 0.2f, window_->getSize().y * 0.65f));
-	button_options_.Init(window_, &font_, "Options", 50, sf::Vector2f(window_->getSize().x * 0.4f, window_->getSize().y * 0.65f));
-	button_credits_.Init(window_, &font_, "Credits", 50, sf::Vector2f(window_->getSize().x * 0.6f, window_->getSize().y * 0.65f));
-	button_quit_.Init(window_, &font_, "Quit", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.65f));
+	button_play_.Init(window_, font_, "Play!", 50, sf::Vector2f(window_->getSize().x * 0.2f, window_->getSize().y * 0.65f));
+	button_options_.Init(window_, font_, "Options", 50, sf::Vector2f(window_->getSize().x * 0.4f, window_->getSize().y * 0.65f));
+	button_credits_.Init(window_, font_, "Credits", 50, sf::Vector2f(window_->getSize().x * 0.6f, window_->getSize().y * 0.65f));
+	button_quit_.Init(window_, font_, "Quit", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.65f));
 
 	/* Start the input delay timer. */
 	input_delay_.start();

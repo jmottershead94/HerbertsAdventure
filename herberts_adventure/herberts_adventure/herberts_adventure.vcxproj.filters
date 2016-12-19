@@ -24,6 +24,9 @@
     <Filter Include="Components">
       <UniqueIdentifier>{c63a6634-4f54-42f0-a6b9-fc4f8a6d09ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Input">
+      <UniqueIdentifier>{e6abe5d8-1e34-469c-98c1-016a31d2df80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -86,14 +89,14 @@
     <ClCompile Include="C_Collision2D.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="C_DemoInputComponent.cpp">
+      <Filter>Components\Input</Filter>
+    </ClCompile>
     <ClCompile Include="C_InputComponent.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Input</Filter>
     </ClCompile>
     <ClCompile Include="C_PlayerInputComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="C_DemoInputComponent.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,14 +157,14 @@
     <ClInclude Include="C_Collision2D.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="C_DemoInputComponent.h">
+      <Filter>Components\Input</Filter>
+    </ClInclude>
     <ClInclude Include="C_InputComponent.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Input</Filter>
     </ClInclude>
     <ClInclude Include="C_PlayerInputComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="C_DemoInputComponent.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

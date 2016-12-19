@@ -60,7 +60,7 @@ class C_State
 		sf::RenderWindow* window_;		/* Will be used to point to the main game window. */
 		sf::Texture* ui_bg_;			/* Used to store the background image for different states. */
 		sf::Sprite ui_bg_sprite_;		/* Used to display the background image. */
-		sf::Font font_;					/* Used to store the main font of the game. */
+		sf::Font* font_;				/* Will be used to point to the main font. */
 		sf::Text title_text_;			/* Used to allow inheriting states their own title text. */
 		C_Timer input_delay_;			/* Used to delay input slightly between state transitions. */
 		C_Level	level_;					/* Used to access the level for the game state (and possibly game over for game play elements). */
