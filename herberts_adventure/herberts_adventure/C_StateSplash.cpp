@@ -58,8 +58,8 @@ bool C_StateSplash::LoadResources()
 	bool loaded = true;
 
 	/* Load the assets. */
-	loaded &= font_.loadFromFile("../assets/art/heygorgeous.ttf");
-	loaded &= ui_bg_->loadFromFile("../assets/art/swamp.png");
+	loaded &= font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf");
+	loaded &= ui_bg_->loadFromFile("../assets/art/SPR_swamp.png");
 
 	/* Set the texture of the background UI sprite. */
 	ui_bg_sprite_.setTexture(*ui_bg_);
@@ -111,8 +111,8 @@ void C_StateSplash::OnEnter()
 	timer_.start();
 
 	/* If the splash screen image cannot be loaded correctly. */
-	if (!indie_jay->loadFromFile("../assets/art/indie_jay_splash_screen_1080px.png")
-		|| !sfx_buffer_.loadFromFile("../assets/audio/splash_screen_sound_effect.wav"))
+	if (!indie_jay->loadFromFile("../assets/art/SPR_indie_jay_splash_screen_1080px.png")
+		|| !sfx_buffer_.loadFromFile("../assets/audio/AUD_splash_screen_sound_effect.wav"))
 	{
 		/* Exit the application. */
 		exit(-1);
