@@ -30,10 +30,16 @@ C_GameObject::~C_GameObject()
 
 	Params
 	======
+	C_InputComponent* input		-	Used to provide input for this game object.
+
 	const std::string filename	-	This will allow the application to specify the texture filename
 									for the game object.
 
 	const sf::Vector2f position	-	This will set the position of the game object.
+
+	const float rotation		-	This will set the rotation of the game object.
+
+	const sf::Vector2 scale		-	This will set the scale of the game object.
 
 */
 void C_GameObject::Init(C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
