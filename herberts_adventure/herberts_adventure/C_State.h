@@ -23,7 +23,7 @@
 
 /* Include header files here. */
 /* Box2D. */
-#include <Box2D\Box2D.h>
+#include <Box2D.h>
 
 /* Application. */
 #include "C_Utilities.h"

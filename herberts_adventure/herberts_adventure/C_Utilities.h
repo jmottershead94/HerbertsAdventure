@@ -29,7 +29,7 @@
 #include "SFML\Graphics.hpp"
 
 /* Box2D. */
-#include <Box2D\Common\b2Math.h>
+#include <Common\b2Math.h>
 
 /* Utilities is just a standard class. */
 class C_Utilities
