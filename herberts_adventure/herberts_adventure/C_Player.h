@@ -36,7 +36,11 @@ class C_Player : public C_Character
 
 
 	private:
+		/* Attributes. */
+		const float speed_ = 4.0f;
 
+		/* Methods. */
+		void Controls(float& dt);
 };
 
 #endif

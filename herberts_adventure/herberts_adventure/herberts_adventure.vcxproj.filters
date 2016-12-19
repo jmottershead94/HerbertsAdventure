@@ -18,6 +18,9 @@
     <Filter Include="UI">
       <UniqueIdentifier>{9b09a75b-6a6d-4368-b40a-6520bc8fa027}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{552d504f-8371-4a53-a5d1-d83b48cbc2bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -72,7 +75,13 @@
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="C_Player.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rigidbody2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Collision2D.cpp">
+      <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,7 +134,13 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="C_Player.h">
-      <Filter>Header Files</Filter>
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rigidbody2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Collision2D.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

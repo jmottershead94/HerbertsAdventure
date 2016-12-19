@@ -28,7 +28,8 @@ void C_Level::Init(sf::RenderWindow* window)
 {
 	/* Initialising local attributes. */
 	window_ = window;
-	test_.Init("SPR_button.png", sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
+	test_.Init("SPR_button.png", sf::Vector2f(window_->getSize().x * 0.25f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
+	collider_test_.Init("SPR_button.png", sf::Vector2f(window_->getSize().x * 0.75f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
 }
 
 /*
@@ -55,6 +56,7 @@ void C_Level::Render()
 {
 	/* Draw elements. */
 	window_->draw(test_);
+	window_->draw(collider_test_);
 }
 
 /*
@@ -73,4 +75,13 @@ void C_Level::Update(float& dt)
 {
 	/* Update attributes. */
 	test_.Update(dt);
+	collider_test_.Update(dt);
+
+	/* Testing out collision checks. */
+	if (collider_.is_colliding(test_, collider_test_))
+	{
+		/* Testing out collision response. */
+		collider_test_.move(sf::Vector2f(collider_test_.getGlobalBounds().width, 0.0f));
+		collider_test_.rotate(90.0f);
+	}
 }
