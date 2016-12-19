@@ -54,6 +54,12 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 		exit(-1);
 	}
 
+	/* Defining how much gravity there is. */
+	b2Vec2 gravity(0.0f, -9.8f);
+
+	/* Creating the Box2D world. */
+	world_ = new b2World(gravity);
+
 	/* Starting the state machine. */
 	current_state_ = new C_StateSplash(&window_, &font_);
 	current_state_->OnEnter();
@@ -71,6 +77,7 @@ void C_Application::CleanUp()
 	/* Clean up attribute values. */
 	utilities_.CleanUp();
 	CLEANUPDELETE(current_state_);
+	DELETE(world_);
 }
 
 /*
@@ -187,6 +194,9 @@ bool C_Application::Update(float dt)
 	/* Calculate and setup the FPS text. */
 	SetUpFPS(dt);
 	
+	int32 velocity_iterations = 8;
+	int32 position_iterations = 3;
+
 	/* While the window is checking for events. */
 	while (window_.pollEvent(event_))
 	{
@@ -206,6 +216,9 @@ bool C_Application::Update(float dt)
 
 	/* Update application attributes here... */
 	current_state_->Update(dt);
+
+	/* Updates the physics engine. */
+	world_->Step(fps_, velocity_iterations, position_iterations);
 
 	/* This update has been successful. */
 	return true;
