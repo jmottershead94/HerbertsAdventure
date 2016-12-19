@@ -21,6 +21,7 @@
 /* Include header files here. */
 /* Application. */
 #include "C_Character.h"
+#include "C_InputComponent.h"
 
 /* Player IS A character, therefore inherits from it. */
 class C_Player : public C_Character
@@ -37,7 +38,7 @@ class C_Player : public C_Character
 
 	private:
 		/* Attributes. */
-		const float speed_ = 4.0f;
+		C_InputComponent input_;	/* Used to access the input component. */
 
 		/* Methods. */
 		void Controls(float& dt);

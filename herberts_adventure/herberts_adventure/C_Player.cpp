@@ -66,28 +66,28 @@ void C_Player::Controls(float& dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
 	{
 		/* Move the player up. */
-		add_velocity(sf::Vector2f(0.0f, -speed_));
+		add_velocity(sf::Vector2f(0.0f, -movement_speed()));
 	}
 
 	/* If the user presses left. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 	{
 		/* Move the player left. */
-		add_velocity(sf::Vector2f(-speed_, 0.0f));
+		add_velocity(sf::Vector2f(-movement_speed(), 0.0f));
 	}
 
 	/* If the user presses down. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
 	{
 		/* Move the player down. */
-		add_velocity(sf::Vector2f(0.0f, speed_));
+		add_velocity(sf::Vector2f(0.0f, movement_speed()));
 	}
 
 	/* If the user presses right. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
 		/* Move the player right. */
-		add_velocity(sf::Vector2f(speed_, 0.0f));
+		add_velocity(sf::Vector2f(movement_speed(), 0.0f));
 	}
 
 	/* Move the player character. */
@@ -111,6 +111,6 @@ void C_Player::Update(float & dt)
 	/* Handles character updates. */
 	C_Character::Update(dt);
 
-	/* Updating attributes. */
-	Controls(dt);
+	/* Update the input component. */
+	input_.Update(*this);
 }

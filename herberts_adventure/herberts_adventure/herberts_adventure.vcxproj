@@ -159,6 +159,7 @@
     <ClCompile Include="C_Character.cpp" />
     <ClCompile Include="C_Collision2D.cpp" />
     <ClCompile Include="C_GameObject.cpp" />
+    <ClCompile Include="C_InputComponent.cpp" />
     <ClCompile Include="C_Level.cpp" />
     <ClCompile Include="C_Player.cpp" />
     <ClCompile Include="C_Rigidbody2D.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="C_Character.h" />
     <ClInclude Include="C_Collision2D.h" />
     <ClInclude Include="C_GameObject.h" />
+    <ClInclude Include="C_InputComponent.h" />
     <ClInclude Include="C_Level.h" />
     <ClInclude Include="C_Player.h" />
     <ClInclude Include="C_Rigidbody2D.h" />

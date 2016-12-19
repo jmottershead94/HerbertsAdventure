@@ -21,6 +21,9 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{552d504f-8371-4a53-a5d1-d83b48cbc2bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{c63a6634-4f54-42f0-a6b9-fc4f8a6d09ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,6 +86,9 @@
     <ClCompile Include="C_Collision2D.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="C_InputComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Application.h">
@@ -141,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="C_Collision2D.h">
       <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="C_InputComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
