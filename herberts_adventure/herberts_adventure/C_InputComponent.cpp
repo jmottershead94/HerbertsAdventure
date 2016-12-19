@@ -1,11 +1,39 @@
+/* Include header files here. */
+/* Application. */
 #include "C_InputComponent.h"
 
+/*
+
+	Overview
+	========
+	This method will initialise default values for our attributes.
+
+*/
 C_InputComponent::C_InputComponent()
 {}
 
+/*
+
+	Overview
+	========
+	This method will be called when the object is destroyed.
+
+*/
 C_InputComponent::~C_InputComponent()
 {}
 
+/*
+
+	Overview
+	========
+	This method will allow the input component to update any game
+	object with user input.
+
+	Params
+	======
+	C_GameObject& game_object	-	The game object that will be updated with user input.
+
+*/
 void C_InputComponent::Update(C_GameObject & game_object)
 {
 	/* Resetting the velocity. */
