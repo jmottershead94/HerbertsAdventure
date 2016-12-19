@@ -26,6 +26,7 @@
 #include "C_Utilities.h"
 #include "C_Timer.h"
 #include "C_Level.h"
+#include "C_Button.h"
 
 /* State is just a standard class. */
 class C_State

@@ -149,7 +149,7 @@ void C_Application::Render()
 bool C_Application::Update(float dt)
 {
 	/* To avoid warnings as errors, dt will be used later. */
-	UNUSED(dt);
+	//UNUSED(dt);
 
 	/* While the window is checking for events. */
 	while (window_.pollEvent(event_))
