@@ -47,7 +47,12 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	window_.setFramerateLimit(kFrameRate);
 	utilities_.Init();
 
-	font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf");
+	/* If the main font file does not load. */
+	if (!font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf"))
+	{
+		/* Exit the application. */
+		exit(-1);
+	}
 
 	/* Starting the state machine. */
 	current_state_ = new C_StateSplash(&window_, &font_);

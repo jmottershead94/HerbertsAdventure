@@ -12,6 +12,8 @@
 	======
 	sf::RenderWindow* window	-	Provides access to the main render window in the application class.
 
+	sf::Font* font				-	Provides access to the main font in the application class.
+
 */
 C_StateSplash::C_StateSplash(sf::RenderWindow* window, sf::Font* font)
 {
