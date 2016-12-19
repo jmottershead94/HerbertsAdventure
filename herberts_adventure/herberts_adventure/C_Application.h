@@ -20,6 +20,7 @@
 
 /* Standard. */
 #include <iomanip>
+#include <sstream>
 
 /* Application. */
 #include "C_StateSplash.h"
@@ -34,6 +35,7 @@ class C_Application
 		void Init(const sf::Vector2i screen_resolution);
 		void CleanUp();
 		void Render();
+		void SetUpFPS(float& dt);
 		bool Update(float dt);
 
 		/* Getters. */

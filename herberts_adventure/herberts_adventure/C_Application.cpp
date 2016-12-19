@@ -139,6 +139,32 @@ void C_Application::Render()
 
 	Overview
 	========
+	This method will setup the fps counter text.
+
+	Params
+	======
+	float& dt			-	Delta time used to determine how much time passed since
+							the last frame update.
+
+*/
+void C_Application::SetUpFPS(float& dt)
+{
+	/* Assign fps value. */
+	fps_ = 1.0f / dt;
+
+	/* Set the fps to 2 decimal places. */
+	std::ostringstream os;
+	os << std::fixed << std::setprecision(2) << fps_;
+	std::string fps = "FPS: " + os.str();
+
+	/* Set the fps text. */
+	C_Utilities::SetText(fps_counter_, font_, fps, 20, sf::Vector2f(window_.getSize().x * 0.9f, window_.getSize().y * 0.99f));
+}
+
+/*
+
+	Overview
+	========
 	This method will update every frame.
 
 	Params
@@ -153,12 +179,9 @@ void C_Application::Render()
 */
 bool C_Application::Update(float dt)
 {
-	/* Assign fps value. */
-	fps_ = 1.0f / dt;
-
-	/* Set the fps text. */
-	C_Utilities::SetText(fps_counter_, font_, "FPS: " + std::to_string(fps_), 20, sf::Vector2f(window_.getSize().x * 0.9f, window_.getSize().y * 0.99f));
-
+	/* Calculate and setup the FPS text. */
+	SetUpFPS(dt);
+	
 	/* While the window is checking for events. */
 	while (window_.pollEvent(event_))
 	{
