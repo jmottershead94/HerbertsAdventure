@@ -41,7 +41,8 @@ public:
 
 private:
 	/* Attributes. */
-	sf::Text splash_sfx_credit_;
+	sf::Text splash_sfx_credit_, developer_credit_;	/* The text used to display credits for assets used. */
+	C_Button button_menu_;							/* The button used to navigate back to the main menu. */
 };
 
 #endif

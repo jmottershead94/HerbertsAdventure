@@ -26,6 +26,31 @@ C_GameObject::~C_GameObject()
 
 	Overview
 	========
+	This method will initialise specific attribute values.
+
+	Params
+	======
+	const std::string filename	-	This will allow the application to specify the texture filename
+									for the game object.
+
+	const sf::Vector2f position	-	This will set the position of the game object.
+
+*/
+void C_GameObject::Init(const std::string filename, const sf::Vector2f position)
+{
+	/* Loading a texture. */
+	sf::Texture* texture = new sf::Texture();
+	texture->loadFromFile("../assets/art/" + filename);
+
+	/* Initialising the game object. */
+	setTexture(*texture);
+	setPosition(position);
+}
+
+/*
+
+	Overview
+	========
 	This method will update every frame.
 
 	Params

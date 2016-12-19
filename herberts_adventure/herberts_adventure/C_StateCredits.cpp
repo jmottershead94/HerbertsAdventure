@@ -41,10 +41,14 @@ C_State* C_StateCredits::HandleTransitions()
 	if (input_delay_.Finished())
 	{
 		/* If the user clicks the left mouse button OR presses the space bar. */
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			/* Go to the main menu. */
-			return new C_StateMenu(*this);
+			/* If the user clicked on the menu button. */
+			if (button_menu_.is_mouse_over())
+			{
+				/* Go to the main menu. */
+				return new C_StateMenu(*this);
+			}
 		}
 	}
 
@@ -62,8 +66,13 @@ C_State* C_StateCredits::HandleTransitions()
 void C_StateCredits::OnEnter()
 {
 	const std::string splash_sfx_text = "Twinkle Download Link: www.freesound.org/people/fschaeffer/sounds/337949/\nLicense Link: creativecommons.org/licenses/by-nc/3.0/\nCreator: fschaeffer\nChanges : None.";
+	
 	C_Utilities::SetText(title_text_, font_, "Credits", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
 	C_Utilities::SetText(splash_sfx_credit_, font_, splash_sfx_text, 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.45f));
+	C_Utilities::SetText(developer_credit_, font_, "Developed by Jason Mottershead", 20, sf::Vector2f(window_->getSize().x * 0.16f, window_->getSize().y * 0.7f));
+
+	/* Initialising local attributes. */
+	button_menu_.Init(window_, &font_, "Back", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.9f));
 
 	/* Start the input delay timer. */
 	input_delay_.start();
@@ -92,6 +101,8 @@ void C_StateCredits::Render()
 	window_->draw(ui_bg_sprite_);
 	window_->draw(title_text_);
 	window_->draw(splash_sfx_credit_);
+	window_->draw(developer_credit_);
+	button_menu_.Render();
 }
 
 /*
@@ -108,6 +119,6 @@ void C_StateCredits::Render()
 */
 void C_StateCredits::Update(float& dt)
 {
-	/* To avoid warnings as errors, dt will be used later. */
-	UNUSED(dt);
+	/* Update attributes. */
+	button_menu_.Update(dt);
 }

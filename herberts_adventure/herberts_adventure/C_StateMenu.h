@@ -44,8 +44,7 @@ public:
 
 private:
 	/* Attributes. */
-	//sf::Text play_, options_, credits_, quit_;	/* Used to store the title screen specific text. */
-	C_Button button_play_, button_options_, button_credits_, button_quit_;
+	C_Button button_play_, button_options_, button_credits_, button_quit_;	/* The buttons used for this state. */
 };
 
 #endif

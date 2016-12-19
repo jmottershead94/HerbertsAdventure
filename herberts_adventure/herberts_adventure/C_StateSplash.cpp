@@ -17,12 +17,10 @@ C_StateSplash::C_StateSplash(sf::RenderWindow* window)
 {
 	/* Initialising pointer attributes. */
 	window_ = new sf::RenderWindow();
-	//event_ = new sf::Event();
 	ui_bg_ = new sf::Texture();
 
 	/* Initialising attributes. */
 	window_ = window;
-	//event_ = game_event;
 	input_delay_.set_time(0.5f);
 	
 	/* If the resources have not loaded. */

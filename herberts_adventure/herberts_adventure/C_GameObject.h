@@ -30,6 +30,7 @@ class C_GameObject : public sf::Sprite
 		/* Methods. */
 		C_GameObject();
 		~C_GameObject();
+		void Init(const std::string filename, const sf::Vector2f position);
 		void Update(float& dt);
 };
 

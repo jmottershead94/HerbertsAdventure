@@ -26,24 +26,51 @@ C_Level::C_Level() :
 */
 void C_Level::Init(sf::RenderWindow* window)
 {
-	/* Initialising attributes. */
+	/* Initialising local attributes. */
 	window_ = window;
-	test_.setColor(sf::Color::White);
-	test_.setPosition(sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.5f));
+	test_.Init("button.png", sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.5f));
 }
 
+/*
+
+	Overview
+	========
+	Here we will clean up any pointer attributes in this class.
+
+*/
 void C_Level::CleanUp()
 {
 	/* Clean up pointer attributes. */
 	DELETE(window_);
 }
 
+/*
+
+	Overview
+	========
+	This method will draw level elements.
+
+*/
 void C_Level::Render()
 {
+	/* Draw elements. */
 	window_->draw(test_);
 }
 
+/*
+
+	Overview
+	========
+	This method will update every frame.
+
+	Params
+	======
+	float& dt	-	Delta time used to determine how much time passed since
+					the last frame update.
+
+*/
 void C_Level::Update(float& dt)
 {
+	/* Update attributes. */
 	test_.Update(dt);
 }

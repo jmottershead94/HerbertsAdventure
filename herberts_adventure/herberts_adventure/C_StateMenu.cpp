@@ -113,7 +113,6 @@ void C_StateMenu::Render()
 	/* Draw elements. */
 	window_->draw(ui_bg_sprite_);
 	window_->draw(title_text_);
-
 	button_play_.Render();
 	button_options_.Render();
 	button_credits_.Render();
@@ -134,14 +133,9 @@ void C_StateMenu::Render()
 */
 void C_StateMenu::Update(float& dt)
 {
-	/* To avoid warnings as errors, dt will be used later. */
-	//UNUSED(dt);
-
+	/* Update attributes. */
 	button_play_.Update(dt);
 	button_options_.Update(dt);
 	button_credits_.Update(dt);
 	button_quit_.Update(dt);
-
-	/* Move the cursor game object with the mouse. */
-	cursor_.setPosition((sf::Vector2f)sf::Mouse::getPosition());
 }
