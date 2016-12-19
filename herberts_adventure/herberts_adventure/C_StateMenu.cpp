@@ -37,34 +37,34 @@ C_StateMenu::~C_StateMenu()
 */
 C_State* C_StateMenu::HandleTransitions()
 {
-	///* If the input delay timer has finished. */
-	//if (input_delay_.Finished())
-	//{
-	//	/* If the user pressed the left mouse button. */
-	//	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	//	{
-	//		/* If the user clicked on the play button. */
-	//		if (play_.getGlobalBounds().contains((float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y))
-	//		{
-	//			/* Go to the game. */
-	//			return new C_StateGame(*this);
-	//		}
+	/* If the input delay timer has finished. */
+	if (input_delay_.Finished())
+	{
+		/* If the user pressed the left mouse button. */
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			/* If the user clicked on the play button. */
+			if (button_play_.is_mouse_over())
+			{
+				/* Go to the game. */
+				return new C_StateGame(*this);
+			}
 
-	//		/* If the user clicked on the credits button. */
-	//		if (credits_.getGlobalBounds().contains((float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y))
-	//		{
-	//			/* Go to credits. */
-	//			return new C_StateCredits(*this);
-	//		}
+			/* If the user clicked on the credits button. */
+			if (button_credits_.is_mouse_over())
+			{
+				/* Go to credits. */
+				return new C_StateCredits(*this);
+			}
 
-	//		/* If the user clicked on the credits button. */
-	//		if (quit_.getGlobalBounds().contains((float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y))
-	//		{
-	//			/* Go to credits. */
-	//			window_->close();
-	//		}
-	//	}
-	//}
+			/* If the user clicked on the quit button. */
+			if (button_quit_.is_mouse_over())
+			{
+				/* Close the window. */
+				window_->close();
+			}
+		}
+	}
 
 	/* Otherwise, there are no state transitions. */
 	return nullptr;
@@ -80,11 +80,8 @@ C_State* C_StateMenu::HandleTransitions()
 void C_StateMenu::OnEnter()
 {
 	C_Utilities::SetText(title_text_, font_, "Herbert's Adventure!", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
-	/*C_Utilities::SetText(play_, font_, "Play!", 50, sf::Vector2f(window_->getSize().x * 0.2f, window_->getSize().y * 0.65f));
-	C_Utilities::SetText(options_, font_, "Options", 50, sf::Vector2f(window_->getSize().x * 0.4f, window_->getSize().y * 0.65f));
-	C_Utilities::SetText(credits_, font_, "Credits", 50, sf::Vector2f(window_->getSize().x * 0.6f, window_->getSize().y * 0.65f));
-	C_Utilities::SetText(quit_, font_, "Quit", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.65f));*/
 
+	/* Initialising local attributes. */
 	button_play_.Init(window_, &font_, "Play!", 50, sf::Vector2f(window_->getSize().x * 0.2f, window_->getSize().y * 0.65f));
 	button_options_.Init(window_, &font_, "Options", 50, sf::Vector2f(window_->getSize().x * 0.4f, window_->getSize().y * 0.65f));
 	button_credits_.Init(window_, &font_, "Credits", 50, sf::Vector2f(window_->getSize().x * 0.6f, window_->getSize().y * 0.65f));
@@ -121,24 +118,6 @@ void C_StateMenu::Render()
 	button_options_.Render();
 	button_credits_.Render();
 	button_quit_.Render();
-
-	/*window_->draw(play_);
-	window_->draw(options_);
-	window_->draw(credits_);
-	window_->draw(quit_);*/
-
-	//if (play_.getGlobalBounds().contains((float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y))
-	//{
-	//	/* The play button is in focus. */
-	//	play_.setCharacterSize(65);
-	//	play_.setFillColor(sf::Color::Red);
-	//}
-	//else
-	//{
-	//	/* The play button is out of focus. */
-	//	play_.setCharacterSize(50);
-	//	play_.setFillColor(sf::Color::White);
-	//}
 }
 
 /*

@@ -16,7 +16,7 @@ void C_Button::Init(sf::RenderWindow* window, sf::Font* font, const std::string 
 	original_colour_ = text_.getFillColor();
 	original_scale_ = size;
 	highlighted_colour_ = sf::Color::Red;
-	highlighted_scale_ = original_scale_ + 15;
+	highlighted_scale_ = original_scale_ + 10;
 }
 
 void C_Button::Render()
