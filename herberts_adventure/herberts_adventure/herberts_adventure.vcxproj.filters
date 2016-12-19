@@ -89,6 +89,12 @@
     <ClCompile Include="C_InputComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="C_PlayerInputComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DemoInputComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Application.h">
@@ -149,6 +155,12 @@
       <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="C_InputComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="C_PlayerInputComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="C_DemoInputComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

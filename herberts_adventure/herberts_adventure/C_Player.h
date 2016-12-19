@@ -21,7 +21,7 @@
 /* Include header files here. */
 /* Application. */
 #include "C_Character.h"
-#include "C_InputComponent.h"
+#include "C_PlayerInputComponent.h"
 
 /* Player IS A character, therefore inherits from it. */
 class C_Player : public C_Character
@@ -30,7 +30,7 @@ class C_Player : public C_Character
 		/* Methods. */
 		C_Player();
 		~C_Player();
-		void Init(const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
+		void Init(C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 	protected:
@@ -38,10 +38,7 @@ class C_Player : public C_Character
 
 	private:
 		/* Attributes. */
-		C_InputComponent input_;	/* Used to access the input component. */
-
-		/* Methods. */
-		void Controls(float& dt);
+		C_InputComponent* input_;	/* Used to access the input component. */
 };
 
 #endif

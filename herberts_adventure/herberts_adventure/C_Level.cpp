@@ -28,7 +28,7 @@ void C_Level::Init(sf::RenderWindow* window)
 {
 	/* Initialising local attributes. */
 	window_ = window;
-	test_.Init("SPR_button.png", sf::Vector2f(window_->getSize().x * 0.25f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
+	test_.Init(new C_PlayerInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.25f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
 	collider_test_.Init("SPR_button.png", sf::Vector2f(window_->getSize().x * 0.75f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
 }
 
