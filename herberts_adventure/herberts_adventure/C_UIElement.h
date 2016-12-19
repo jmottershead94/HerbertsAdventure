@@ -1,3 +1,18 @@
+/*
+
+	UI Element Class
+	================
+
+	Created:	16th December 2016
+	Filter:		UI
+	Class Name:	C_UIElement
+	Base Class: C_GameObject
+	Author:		Jason Mottershead
+
+	Purpose:	UI Element will allow game objects to become part of the UI system,
+				and will provide functionality for UI focus and a focus response.
+
+*/
 
 /* Header guard. */
 #ifndef _C_UIELEMENT_H_
@@ -12,8 +27,10 @@ class C_UIElement : public C_GameObject
 {
 	public:
 		/* Methods. */
+		/* Virtual. */
+		virtual ~C_UIElement();
+
 		C_UIElement();
-		~C_UIElement();
 		void Init(sf::RenderWindow* window, sf::Font* font);
 		void Update(float& dt);
 

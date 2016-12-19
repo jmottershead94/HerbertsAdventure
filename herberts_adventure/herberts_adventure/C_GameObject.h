@@ -1,7 +1,7 @@
 /*
 
-	State Game Class
-	================
+	Game Object Class
+	=================
 
 	Created:	16th December 2016
 	Filter:		Objects
@@ -9,7 +9,9 @@
 	Base Class:	sf::Sprite
 	Author:		Jason Mottershead
 
-	Purpose:	Game object will be responsible for handling 
+	Purpose:	Game object will be responsible for handling all base object functionality
+				for the game and provide access to useful and common attributes for each
+				inheriting object.
 
 */
 

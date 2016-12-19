@@ -10,7 +10,7 @@
 
 	Params
 	======
-	sf::RenderWindow& window	-	Provides access to the main render window in the application class.
+	sf::RenderWindow* window	-	Provides access to the main render window in the application class.
 
 */
 C_StateSplash::C_StateSplash(sf::RenderWindow* window)
