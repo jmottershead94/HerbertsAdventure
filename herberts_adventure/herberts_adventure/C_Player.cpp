@@ -59,33 +59,39 @@ void C_Player::Controls(float& dt)
 	/* To avoid warnings as errors, dt will be used later. */
 	UNUSED(dt);
 
+	/* Resetting the velocity. */
+	set_velocity(sf::Vector2f(0.0f, 0.0f));
+
 	/* If the user presses up. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
 	{
 		/* Move the player up. */
-		move(sf::Vector2f(0.0f, -speed_));
+		add_velocity(sf::Vector2f(0.0f, -speed_));
 	}
 
 	/* If the user presses left. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 	{
 		/* Move the player left. */
-		move(sf::Vector2f(-speed_, 0.0f));
+		add_velocity(sf::Vector2f(-speed_, 0.0f));
 	}
 
 	/* If the user presses down. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
 	{
 		/* Move the player down. */
-		move(sf::Vector2f(0.0f, speed_));
+		add_velocity(sf::Vector2f(0.0f, speed_));
 	}
 
 	/* If the user presses right. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
 		/* Move the player right. */
-		move(sf::Vector2f(speed_, 0.0f));
+		add_velocity(sf::Vector2f(speed_, 0.0f));
 	}
+
+	/* Move the player character. */
+	move(velocity());
 }
 
 /*

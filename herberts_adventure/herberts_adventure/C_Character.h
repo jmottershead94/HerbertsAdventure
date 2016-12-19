@@ -36,7 +36,7 @@ class C_Character : public C_GameObject
 
 
 	private:
-
+		
 };
 
 #endif

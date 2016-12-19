@@ -32,6 +32,17 @@ class C_GameObject : public sf::Sprite
 		~C_GameObject();
 		void Init(const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
+
+		/* Getters / Setters. */
+		inline const sf::Vector2f& velocity() { return (velocity_); }
+
+		inline void set_velocity(const sf::Vector2f value) { velocity_ = value; }
+
+		inline void add_velocity(const sf::Vector2f value) { velocity_ += value; }
+
+	private:
+		/* Attributes. */
+		sf::Vector2f velocity_;	/* How fast the game object is moving. */
 };
 
 #endif
