@@ -156,8 +156,10 @@
   <ItemGroup>
     <ClCompile Include="C_Application.cpp" />
     <ClCompile Include="C_Button.cpp" />
+    <ClCompile Include="C_Character.cpp" />
     <ClCompile Include="C_GameObject.cpp" />
     <ClCompile Include="C_Level.cpp" />
+    <ClCompile Include="C_Player.cpp" />
     <ClCompile Include="C_State.cpp" />
     <ClCompile Include="C_StateCredits.cpp" />
     <ClCompile Include="C_StateGame.cpp" />
@@ -174,8 +176,10 @@
   <ItemGroup>
     <ClInclude Include="C_Application.h" />
     <ClInclude Include="C_Button.h" />
+    <ClInclude Include="C_Character.h" />
     <ClInclude Include="C_GameObject.h" />
     <ClInclude Include="C_Level.h" />
+    <ClInclude Include="C_Player.h" />
     <ClInclude Include="C_State.h" />
     <ClInclude Include="C_StateCredits.h" />
     <ClInclude Include="C_StateGame.h" />

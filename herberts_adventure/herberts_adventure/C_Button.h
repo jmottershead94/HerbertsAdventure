@@ -1,9 +1,9 @@
 /*
 
-	UI Element Class
-	================
+	Button Class
+	============
 
-	Created:	16th December 2016
+	Created:	19th December 2016
 	Filter:		UI
 	Class Name:	C_Button
 	Base Class: C_UIElement

@@ -2,7 +2,7 @@
 #define _C_LEVEL_H_
 
 #include "C_Utilities.h"
-#include "C_GameObject.h"
+#include "C_Player.h"
 
 class C_Level
 {
@@ -16,7 +16,7 @@ public:
 
 private:
 	sf::RenderWindow* window_;	/* Points to the main render window in the application class. */
-	C_GameObject test_;			/* Testing game objects out. */
+	C_Player test_;				/* Testing game objects out. */
 };
 
 #endif
