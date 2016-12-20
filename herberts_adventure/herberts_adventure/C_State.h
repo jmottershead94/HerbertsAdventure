@@ -22,9 +22,6 @@
 #define _C_STATE_H_
 
 /* Include header files here. */
-/* Box2D. */
-#include <Box2D\Box2D.h>
-
 /* Application. */
 #include "C_Utilities.h"
 #include "C_Timer.h"
