@@ -41,7 +41,7 @@ class C_Level
 		sf::RenderWindow* window_;		/* Points to the main render window in the application class. */
 		b2World* world_;				/* Points to the main world in the application class. */
 		C_Player test_;					/* Testing game objects out. */
-		C_GameObject collider_test_;	/* Testing collisions out. */
+		C_Character collider_test_;		/* Testing collisions out. */
 		C_Collision2D collider_;		/* Testing collisions out. */
 		C_GameObject floor_;	
 };
