@@ -79,5 +79,5 @@ void C_GameObject::Update(float& dt)
 
 	/* Update the input component. */
 	input_->Update(*this);
-	rigidbody_->Update(*this);
+	rigidbody_->Update(*this, dt);
 }

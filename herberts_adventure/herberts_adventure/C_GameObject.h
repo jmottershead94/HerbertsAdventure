@@ -63,7 +63,7 @@ class C_GameObject : public sf::Sprite
 
 	private:
 		/* Attributes. */
-		const float speed_ = 4.0f;				/* How fast game objects can move. */
+		const float speed_ = 100.0f;				/* How fast game objects can move. */
 		sf::Vector2f velocity_;					/* How fast the game object is moving. */
 		b2World* world_;						/* Used to access the Box2D world. */
 		C_Rigidbody2DComponent* rigidbody_;		/* . */

@@ -24,8 +24,8 @@ void C_PhysicsBody::Init(C_GameObject& game_object, const bool is_kinematic, con
 	body_ = game_object.world()->CreateBody(&body_def_);
 	body_->SetTransform(b2Vec2(FRAMEWORK_BOX2D_POS_X(game_object.getPosition().x + FRAMEWORK_BOX2D_SIZE(game_object.getGlobalBounds().width * 0.5f)), FRAMEWORK_BOX2D_POS_Y(game_object.getPosition().y) + FRAMEWORK_BOX2D_SIZE(game_object.getGlobalBounds().height * 0.5f)), C_Utilities::DegToRad(game_object.getRotation()));
 	
-	std::cout << "Position X: " << (game_object.getPosition().x + FRAMEWORK_BOX2D_SIZE(game_object.getGlobalBounds().width * 0.5f)) << std::endl;
-	std::cout << "Position Y: " << (game_object.getPosition().y + FRAMEWORK_BOX2D_SIZE(game_object.getGlobalBounds().height * 0.5f)) << std::endl;
+	std::cout << "Position X: " << FRAMEWORK_BOX2D_POS_X(game_object.getPosition().x) + FRAMEWORK_BOX2D_SIZE(game_object.getGlobalBounds().width * 0.5f) << std::endl;
+	std::cout << "Position Y: " << FRAMEWORK_BOX2D_POS_Y(game_object.getPosition().y) + FRAMEWORK_BOX2D_SIZE(game_object.getGlobalBounds().height * 0.5f) << std::endl;
 
 	shape_.SetAsBox(FRAMEWORK_BOX2D_SIZE(game_object.getGlobalBounds().width) * BOX2D_FRAMEWORK_SIZE_OFFSET, FRAMEWORK_BOX2D_SIZE(game_object.getGlobalBounds().height) * BOX2D_FRAMEWORK_SIZE_OFFSET);
 	
@@ -49,12 +49,13 @@ void C_PhysicsBody::Init(C_GameObject& game_object, const bool is_kinematic, con
 	body_->SetUserData(&game_object);
 }
 
-void C_PhysicsBody::Update(C_GameObject& game_object)
+void C_PhysicsBody::Update(C_GameObject& game_object, float& dt)
 {
+	UNUSED(dt);
 	b2Vec2 position = body_->GetPosition();
 	float32 rotation = body_->GetAngle();
 
-	game_object.setPosition(BOX2D_FRAMEWORK_POS_X(position.x), BOX2D_FRAMEWORK_POS_Y(position.y));
+	game_object.setPosition(sf::Vector2f(BOX2D_FRAMEWORK_POS_X(position.x), BOX2D_FRAMEWORK_POS_Y(position.y)));
 	game_object.setRotation(C_Utilities::RadToDeg(rotation));
 
 	//std::cout << "Position X: " << game_object.getPosition().x << std::endl;

@@ -9,7 +9,7 @@ class C_PhysicsBody : public C_Rigidbody2DComponent
 		C_PhysicsBody();
 		~C_PhysicsBody();
 		virtual void Init(C_GameObject& game_object, const bool is_kinematic, const float density, const float friction, const float bounciness);
-		virtual void Update(C_GameObject& game_object);
+		virtual void Update(C_GameObject& game_object, float& dt);
 };
 
 #endif
