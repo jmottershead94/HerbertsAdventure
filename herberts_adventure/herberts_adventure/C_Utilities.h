@@ -24,6 +24,9 @@
 #define CLEANUPDELETE(x) if(x != nullptr) {x->CleanUp(); delete x; x = nullptr;}		/* Will allow a quicker way to clean up and delete pointer attributes in one line. */
 
 /* Include header files here. */
+/* Standard. */
+#include <iostream>
+
 /* SFML. */
 #include "SFML\Audio.hpp"
 #include "SFML\Graphics.hpp"

@@ -21,14 +21,16 @@ void C_PhysicsBody::Init(C_GameObject& game_object, const bool is_kinematic, con
 		body_def_.type = b2_dynamicBody;
 	}
 
-	float32 x = game_object.getPosition().x;
-	float32 y = game_object.getPosition().y;
+	//float32 x = game_object.getPosition().x;
+	//float32 y = game_object.getPosition().y;
+	//float32 angle = C_Utilities::DegToRad(game_object.getRotation());
 
-	body_def_.position.Set(x, y);
-	body_def_.angle = C_Utilities::DegToRad(game_object.getRotation());
+	//body_def_.position.Set(x, y);
+	//body_def_.angle = angle;
 	body_ = game_object.world()->CreateBody(&body_def_);
-	
-	shape_.SetAsBox(game_object.getTexture()->getSize().x * 0.5f - b2_polygonRadius, game_object.getTexture()->getSize().y * 0.5f - b2_polygonRadius);
+	body_->SetTransform(b2Vec2(game_object.getPosition().x, game_object.getPosition().y), C_Utilities::DegToRad(game_object.getRotation()));
+
+	shape_.SetAsBox(game_object.getScale().x * BOX2D_FRAMEWORK_SIZE_OFFSET, game_object.getScale().y * BOX2D_FRAMEWORK_SIZE_OFFSET);
 
 	fixture_def_.shape = &shape_;
 
@@ -41,7 +43,7 @@ void C_PhysicsBody::Init(C_GameObject& game_object, const bool is_kinematic, con
 	}
 	else
 	{
-		body_->CreateFixture(&shape_, 0);
+		body_->CreateFixture(&shape_, 0.0f);
 	}
 
 	body_->SetUserData(&game_object);
@@ -52,5 +54,8 @@ void C_PhysicsBody::Update(C_GameObject& game_object)
 	b2Vec2 position = body_->GetPosition();
 	float32 rotation = body_->GetAngle();
 	game_object.setPosition(position.x, position.y);
-	game_object.setRotation(rotation * -1.0f);
+	game_object.setRotation(C_Utilities::RadToDeg(rotation));
+
+	//std::cout << "Position X: " << game_object.getPosition().x << std::endl;
+	//std::cout << "Position Y: " << game_object.getPosition().y << std::endl;	
 }

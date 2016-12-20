@@ -49,6 +49,11 @@ class C_GameObject : public sf::Sprite
 		/* This will allow us to get the current Box2D world. */
 		inline b2World* world() { return world_; }
 
+		/* This will allow us to access the object's rigidbody. */
+		inline C_Rigidbody2DComponent* rigidbody() { return rigidbody_; }
+
+		//inline b2Body* body() { return rigidbody()->body(); }
+
 		/* This will allow us to access the object's input component. */
 		inline const C_InputComponent* input_component() { return input_; }
 

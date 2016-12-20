@@ -175,5 +175,8 @@
     <ClInclude Include="C_PhysicsBody.h">
       <Filter>Components\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="box2D_conversions.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
