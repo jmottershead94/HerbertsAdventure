@@ -9,7 +9,8 @@
 	Base Class: N/A
 	Author:		Jason Mottershead
 
-	Purpose:	To setup input for a game object.
+	Purpose:	To setup input for a game object. This will be the base class
+				for all input components.
 
 */
 

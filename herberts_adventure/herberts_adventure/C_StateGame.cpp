@@ -67,7 +67,7 @@ void C_StateGame::OnEnter()
 	input_delay_.start();
 
 	/* Initialise the level. */
-	level_.Init(window_);
+	level_.Init(world_, window_);
 }
 
 /*

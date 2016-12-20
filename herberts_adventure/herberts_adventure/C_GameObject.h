@@ -23,9 +23,11 @@
 /* Application. */
 #include "C_Utilities.h"
 #include "C_InputComponent.h"
+#include "C_Rigidbody2DComponent.h"
 
 /* Forward declaration. */
 class C_InputComponent;
+class C_Rigidbody2DComponent;
 
 /* Game object IS A sprite, therefore inherits from it. */
 class C_GameObject : public sf::Sprite
@@ -34,7 +36,7 @@ class C_GameObject : public sf::Sprite
 		/* Methods. */
 		C_GameObject();
 		~C_GameObject();
-		void Init(C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
+		void Init(b2World* world, C_Rigidbody2DComponent* rigidbody, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 		/* Getters / Setters. */
@@ -43,6 +45,9 @@ class C_GameObject : public sf::Sprite
 
 		/* This will allow us to get the current value of the object velocity. */
 		inline const sf::Vector2f& velocity() { return (velocity_); }
+
+		/* This will allow us to get the current Box2D world. */
+		inline b2World* world() { return world_; }
 
 		/* This will allow us to access the object's input component. */
 		inline const C_InputComponent* input_component() { return input_; }
@@ -55,9 +60,11 @@ class C_GameObject : public sf::Sprite
 
 	private:
 		/* Attributes. */
-		const float speed_ = 4.0f;	/* How fast game objects can move. */
-		sf::Vector2f velocity_;		/* How fast the game object is moving. */
-		C_InputComponent* input_;	/* Used to access the input component. */
+		const float speed_ = 4.0f;				/* How fast game objects can move. */
+		sf::Vector2f velocity_;					/* How fast the game object is moving. */
+		b2World* world_;						/* Used to access the Box2D world. */
+		C_Rigidbody2DComponent* rigidbody_;		/* . */
+		C_InputComponent* input_;				/* Used to access the input component. */
 };
 
 #endif

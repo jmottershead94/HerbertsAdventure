@@ -55,13 +55,13 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	}
 
 	/* Defining how much gravity there is. */
-	b2Vec2 gravity(0.0f, -9.8f);
+	b2Vec2 gravity(0.0f, 9.8f);
 
 	/* Creating the Box2D world. */
 	world_ = new b2World(gravity);
 
 	/* Starting the state machine. */
-	current_state_ = new C_StateSplash(&window_, &font_);
+	current_state_ = new C_StateSplash(&window_, &font_, world_);
 	current_state_->OnEnter();
 }
 

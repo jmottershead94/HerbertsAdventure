@@ -41,10 +41,10 @@ C_Player::~C_Player()
 	const sf::Vector2 scale		-	This will set the scale of the game object.
 
 */
-void C_Player::Init(const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
+void C_Player::Init(b2World* world, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
 {
 	/* Handles character initialisation. */
-	C_Character::Init(new C_PlayerInputComponent(), filename, position, rotation, scale);
+	C_Character::Init(world, new C_PlayerInputComponent(), filename, position, rotation, scale);
 }
 
 /*

@@ -24,12 +24,16 @@ C_Level::C_Level() :
 	sf::RenderWindow* window	-	Provides access to the main render window in the application class.
 
 */
-void C_Level::Init(sf::RenderWindow* window)
+void C_Level::Init(b2World* world, sf::RenderWindow* window)
 {
 	/* Initialising local attributes. */
 	window_ = window;
-	test_.Init("SPR_button.png", sf::Vector2f(window_->getSize().x * 0.25f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
-	collider_test_.Init(new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.75f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
+	world_ = world;
+	test_.Init(world_, "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.25f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
+
+	C_PhysicsBody* physics_body = new C_PhysicsBody();
+	collider_test_.Init(world_, physics_body, new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.75f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
+	physics_body->Init(collider_test_, false, 1.0f, 0.3f, 0.3f);
 }
 
 /*

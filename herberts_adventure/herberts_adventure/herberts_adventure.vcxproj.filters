@@ -27,6 +27,9 @@
     <Filter Include="Components\Input">
       <UniqueIdentifier>{e6abe5d8-1e34-469c-98c1-016a31d2df80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Physics">
+      <UniqueIdentifier>{d3ee57f2-4fc5-4ec3-ba6e-4d4223fe63f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,9 +86,6 @@
     <ClCompile Include="C_Player.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="C_Rigidbody2D.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
     <ClCompile Include="C_Collision2D.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
@@ -97,6 +97,12 @@
     </ClCompile>
     <ClCompile Include="C_PlayerInputComponent.cpp">
       <Filter>Components\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Rigidbody2DComponent.cpp">
+      <Filter>Components\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="C_PhysicsBody.cpp">
+      <Filter>Components\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,9 +157,6 @@
     <ClInclude Include="C_Player.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="C_Rigidbody2D.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
     <ClInclude Include="C_Collision2D.h">
       <Filter>Physics</Filter>
     </ClInclude>
@@ -165,6 +168,12 @@
     </ClInclude>
     <ClInclude Include="C_PlayerInputComponent.h">
       <Filter>Components\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Rigidbody2DComponent.h">
+      <Filter>Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="C_PhysicsBody.h">
+      <Filter>Components\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

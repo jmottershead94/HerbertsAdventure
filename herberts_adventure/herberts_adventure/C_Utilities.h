@@ -41,8 +41,13 @@ class C_Utilities
 public:
 	/* Methods. */
 	static void SetText(sf::Text& text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position);
+	static float DegToRad(float degrees);
+	static float RadToDeg(float radians);
 
 private:
+	/* Attributes. */
+	const float PI = 3.14159265358979323846f;
+
 	/* Methods. */
 	C_Utilities();
 	void Init();

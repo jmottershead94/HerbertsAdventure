@@ -166,9 +166,10 @@
     <ClCompile Include="C_GameObject.cpp" />
     <ClCompile Include="C_InputComponent.cpp" />
     <ClCompile Include="C_Level.cpp" />
+    <ClCompile Include="C_PhysicsBody.cpp" />
     <ClCompile Include="C_Player.cpp" />
     <ClCompile Include="C_PlayerInputComponent.cpp" />
-    <ClCompile Include="C_Rigidbody2D.cpp" />
+    <ClCompile Include="C_Rigidbody2DComponent.cpp" />
     <ClCompile Include="C_State.cpp" />
     <ClCompile Include="C_StateCredits.cpp" />
     <ClCompile Include="C_StateGame.cpp" />
@@ -191,9 +192,10 @@
     <ClInclude Include="C_GameObject.h" />
     <ClInclude Include="C_InputComponent.h" />
     <ClInclude Include="C_Level.h" />
+    <ClInclude Include="C_PhysicsBody.h" />
     <ClInclude Include="C_Player.h" />
     <ClInclude Include="C_PlayerInputComponent.h" />
-    <ClInclude Include="C_Rigidbody2D.h" />
+    <ClInclude Include="C_Rigidbody2DComponent.h" />
     <ClInclude Include="C_State.h" />
     <ClInclude Include="C_StateCredits.h" />
     <ClInclude Include="C_StateGame.h" />

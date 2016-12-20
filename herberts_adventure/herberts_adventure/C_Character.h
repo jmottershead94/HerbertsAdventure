@@ -21,6 +21,7 @@
 /* Include header files here. */
 /* Application. */
 #include "C_GameObject.h"
+#include "C_PhysicsBody.h"
 
 /* Character IS A game object, therefore inherits from it. */
 class C_Character : public C_GameObject
@@ -29,7 +30,7 @@ class C_Character : public C_GameObject
 		/* Methods. */
 		C_Character();
 		~C_Character();
-		void Init(C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
+		void Init(b2World* world, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 	protected:
