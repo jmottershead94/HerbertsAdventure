@@ -32,9 +32,10 @@ void C_Level::Init(b2World* world, sf::RenderWindow* window)
 	test_.Init(world_, "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
 	collider_test_.Init(world_, new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
 
-	C_PhysicsBody* floor_physics_body = new C_PhysicsBody();
+	//C_PhysicsBody* floor_physics_body = new C_PhysicsBody();
+	C_NullPhysicsComponent* floor_physics_body = new C_NullPhysicsComponent();
 	floor_.Init(world_, floor_physics_body, new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.0f, window_->getSize().y * 0.85f), 0.0f, sf::Vector2f(17.0f, 1.0f));
-	floor_physics_body->Init(floor_, true, 1.0f, 0.3f, 0.0f);
+	//floor_physics_body->Init(floor_, true, 1.0f, 0.3f, 0.3f);
 }
 
 /*
@@ -83,11 +84,11 @@ void C_Level::Update(float& dt)
 	test_.Update(dt);
 	collider_test_.Update(dt);
 
-	/* Testing out collision checks. */
-	if (collider_.is_colliding(test_, collider_test_))
-	{
-		/* Testing out collision response. */
-		collider_test_.move(sf::Vector2f(collider_test_.getGlobalBounds().width, 0.0f));
-		collider_test_.rotate(90.0f);
-	}
+	///* Testing out collision checks. */
+	//if (collider_.is_colliding(test_, collider_test_))
+	//{
+	//	/* Testing out collision response. */
+	//	collider_test_.move(sf::Vector2f(collider_test_.getGlobalBounds().width, 0.0f));
+	//	collider_test_.rotate(90.0f);
+	//}
 }
