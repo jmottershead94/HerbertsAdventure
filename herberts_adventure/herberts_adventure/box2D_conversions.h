@@ -10,10 +10,10 @@
 #define DISPLAY_HEIGHT				1080
 
 // To convert the Box2D coordinates to framework coordinates.
-#define BOX2D_FRAMEWORK_SCALE						1.0f
+#define BOX2D_FRAMEWORK_SCALE						25.0f
 #define BOX2D_FRAMEWORK_OFFSET_X					0.0f
 #define BOX2D_FRAMEWORK_OFFSET_Y					0.0f
-#define BOX2D_FRAMEWORK_SIZE_OFFSET					0.5f
+#define BOX2D_FRAMEWORK_SIZE_OFFSET					0.925f
 
 // To convert the Box2D coordinates into framework coordinates.
 #define BOX2D_FRAMEWORK_SIZE(s) ((s)*BOX2D_FRAMEWORK_SCALE)
