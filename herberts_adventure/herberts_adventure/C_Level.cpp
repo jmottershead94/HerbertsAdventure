@@ -33,7 +33,7 @@ void C_Level::Init(b2World* world, sf::RenderWindow* window)
 
 	C_PhysicsBody* physics_body = new C_PhysicsBody();
 	collider_test_.Init(world_, physics_body, new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.5f), 90.0f, sf::Vector2f(1.0f, 1.0f));
-	physics_body->Init(collider_test_, false, 1.0f, 0.3f, 0.3f);
+	physics_body->Init(collider_test_, false, 1.0f, 0.3f, 0.0f);
 
 	C_PhysicsBody* floor_physics_body = new C_PhysicsBody();
 	floor_.Init(world_, floor_physics_body, new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.0f, window_->getSize().y * 0.85f), 0.0f, sf::Vector2f(17.0f, 1.0f));

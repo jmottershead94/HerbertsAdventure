@@ -48,7 +48,7 @@ void C_Character::Init(b2World* world, C_InputComponent* input, const std::strin
 	
 	/* Handles base game object initialisation. */
 	C_GameObject::Init(world, physics_body, input, filename, position, rotation, scale);
-	physics_body->Init(*this, false, 1.0f, 0.3f, 0.3f);
+	physics_body->Init(*this, false, 1.0f, 0.3f, 0.0f);
 }
 
 /*

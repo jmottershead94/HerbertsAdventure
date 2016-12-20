@@ -55,7 +55,7 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	}
 
 	/* Defining how much gravity there is. */
-	b2Vec2 gravity(0.0f, 10.0f);
+	b2Vec2 gravity(0.0f, -10.0f);
 
 	/* Creating the Box2D world. */
 	world_ = new b2World(gravity);
@@ -194,8 +194,8 @@ bool C_Application::Update(float dt)
 	/* Calculate and setup the FPS text. */
 	SetUpFPS(dt);
 	
-	int32 velocity_iterations = 8;
-	int32 position_iterations = 3;
+	int32 velocity_iterations = 6;
+	int32 position_iterations = 2;
 
 	/* While the window is checking for events. */
 	while (window_.pollEvent(event_))

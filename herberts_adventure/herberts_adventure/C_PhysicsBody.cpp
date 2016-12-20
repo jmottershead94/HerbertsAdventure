@@ -21,16 +21,13 @@ void C_PhysicsBody::Init(C_GameObject& game_object, const bool is_kinematic, con
 		body_def_.type = b2_dynamicBody;
 	}
 
-	//float32 x = game_object.getPosition().x;
-	//float32 y = game_object.getPosition().y;
-	//float32 angle = C_Utilities::DegToRad(game_object.getRotation());
-
-	//body_def_.position.Set(x, y);
-	//body_def_.angle = angle;
 	body_ = game_object.world()->CreateBody(&body_def_);
-	body_->SetTransform(b2Vec2(game_object.getPosition().x, game_object.getPosition().y), C_Utilities::DegToRad(game_object.getRotation()));
+	body_->SetTransform(b2Vec2(FRAMEWORK_BOX2D_POS_X(game_object.getPosition().x), FRAMEWORK_BOX2D_POS_Y(game_object.getPosition().y)), C_Utilities::DegToRad(game_object.getRotation()));
 
-	shape_.SetAsBox(game_object.getScale().x * BOX2D_FRAMEWORK_SIZE_OFFSET, game_object.getScale().y * BOX2D_FRAMEWORK_SIZE_OFFSET);
+	shape_.SetAsBox(FRAMEWORK_BOX2D_SIZE(game_object.getTexture()->getSize().x * game_object.getScale().x), FRAMEWORK_BOX2D_SIZE(game_object.getTexture()->getSize().y * game_object.getScale().y));
+	
+	std::cout << "Size X: " << FRAMEWORK_BOX2D_SIZE(game_object.getTexture()->getSize().x * game_object.getScale().x) * BOX2D_FRAMEWORK_SIZE_OFFSET << std::endl;
+	std::cout << "Size Y: " << FRAMEWORK_BOX2D_SIZE(game_object.getTexture()->getSize().y * game_object.getScale().y) * BOX2D_FRAMEWORK_SIZE_OFFSET << std::endl;
 
 	fixture_def_.shape = &shape_;
 
@@ -53,7 +50,8 @@ void C_PhysicsBody::Update(C_GameObject& game_object)
 {
 	b2Vec2 position = body_->GetPosition();
 	float32 rotation = body_->GetAngle();
-	game_object.setPosition(position.x, position.y);
+
+	game_object.setPosition(BOX2D_FRAMEWORK_POS_X(position.x), BOX2D_FRAMEWORK_POS_Y(position.y));
 	game_object.setRotation(C_Utilities::RadToDeg(rotation));
 
 	//std::cout << "Position X: " << game_object.getPosition().x << std::endl;
