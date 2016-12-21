@@ -25,6 +25,7 @@ class C_Body
 	private:
 		/* Attributes. */
 		int id_ = 0;
+		C_Body* colliding_body_;	/* Stores the body that the collider is currently colliding with. */
 		sf::Vector2f position_;		/* Stores the position of the collider */
 		float rotation_;			/* Stores the rotation of the collider. */
 		sf::FloatRect collider_;	/* Stores the bounds of the collider. */

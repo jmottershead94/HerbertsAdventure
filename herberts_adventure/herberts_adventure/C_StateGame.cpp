@@ -78,7 +78,9 @@ void C_StateGame::OnEnter()
 
 */
 void C_StateGame::OnExit()
-{}
+{
+	world_->CleanUp();
+}
 
 /*
 

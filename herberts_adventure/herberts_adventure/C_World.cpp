@@ -5,7 +5,7 @@ C_World::C_World()
 
 C_World::~C_World()
 {
-	bodies_.clear();
+	
 }
 
 void C_World::Init(const sf::Vector2f gravity)
@@ -16,7 +16,10 @@ void C_World::Init(const sf::Vector2f gravity)
 
 void C_World::CleanUp()
 {
-
+	if (!bodies_.empty())
+	{
+		bodies_.clear();
+	}
 }
 
 void C_World::ProcessBodies(float& dt)
@@ -40,18 +43,25 @@ void C_World::ProcessBodies(float& dt)
 					/* If the body is not equal to the other body we are looking at. */
 					if ((**body).id_ != (**other_body).id_)
 					{
-						/* If the current body is not colliding with any of the other bodies. */
-						if (!(**body).collider_.intersects((**other_body).collider_))
+						/* If the current body is not colliding with anything else. */
+						if ((**body).colliding_body_ == nullptr)
 						{
-							//std::cout << "Applying gravity!" << std::endl;
-							//C_Debug::PrintToConsole("Applying gravity!");
+							/* If the current body is not colliding with any of the other bodies. */
+							if (!(**body).collider_.intersects((**other_body).collider_))
+							{
+								//std::cout << "Applying gravity!" << std::endl;
+								//C_Debug::PrintToConsole("Applying gravity!");
+								(**body).colliding_body_ = nullptr;
 
-							/* Apply gravity to the body. */
-							(**body).ApplyForce(-gravity_);
-						}
-						else
-						{
-							C_Debug::PrintToConsole("Collision!");
+								/* Apply gravity to the body. */
+								(**body).ApplyForce(-gravity_);
+							}
+							else
+							{
+								(**body).colliding_body_ = (*other_body);
+
+								C_Debug::PrintToConsole("Collision!");
+							}
 						}
 					}
 				}
