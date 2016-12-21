@@ -46,6 +46,7 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Default);
 	window_.setFramerateLimit(kFrameRate);
 	utilities_.Init();
+	debug_.Init();
 
 	/* If the main font file does not load. */
 	if (!font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf"))
@@ -55,10 +56,11 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	}
 
 	/* Defining how much gravity there is. */
-	b2Vec2 gravity(0.0f, -10.0f);
+	sf::Vector2f gravity(0.0f, -10.0f);
 
 	/* Creating the Box2D world. */
-	world_ = new b2World(gravity);
+	world_ = new C_World();
+	world_->Init(gravity);
 
 	/* Starting the state machine. */
 	current_state_ = new C_StateSplash(&window_, &font_, world_);
@@ -194,8 +196,8 @@ bool C_Application::Update(float dt)
 	/* Calculate and setup the FPS text. */
 	SetUpFPS(dt);
 	
-	int32 velocity_iterations = 6;
-	int32 position_iterations = 2;
+	//int32 velocity_iterations = 6;
+	//int32 position_iterations = 2;
 
 	/* While the window is checking for events. */
 	while (window_.pollEvent(event_))
@@ -218,7 +220,8 @@ bool C_Application::Update(float dt)
 	current_state_->Update(dt);
 
 	/* Updates the physics engine. */
-	world_->Step(fps_, velocity_iterations, position_iterations);
+	//world_->Step(fps_, velocity_iterations, position_iterations);
+	world_->Update(dt);
 
 	/* This update has been successful. */
 	return true;

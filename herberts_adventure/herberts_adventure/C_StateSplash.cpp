@@ -15,7 +15,7 @@
 	sf::Font* font				-	Provides access to the main font in the application class.
 
 */
-C_StateSplash::C_StateSplash(sf::RenderWindow* window, sf::Font* font, b2World* world)
+C_StateSplash::C_StateSplash(sf::RenderWindow* window, sf::Font* font, C_World* world)
 {
 	/* Initialising pointer attributes. */
 	window_ = new sf::RenderWindow();

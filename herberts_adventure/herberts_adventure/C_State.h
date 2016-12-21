@@ -62,7 +62,7 @@ class C_State
 		sf::Sprite ui_bg_sprite_;		/* Used to display the background image. */
 		sf::Font* font_;				/* Will be used to point to the main font. */
 		sf::Text title_text_;			/* Used to allow inheriting states their own title text. */
-		b2World* world_;				/* Will be used to point to the main Box2D world. */
+		C_World* world_;				/* Will be used to point to the main Box2D world. */
 		C_Timer input_delay_;			/* Used to delay input slightly between state transitions. */
 		C_Level	level_;					/* Used to access the level for the game state (and possibly game over for game play elements). */
 };

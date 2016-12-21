@@ -30,6 +30,9 @@
     <Filter Include="Components\Physics">
       <UniqueIdentifier>{d3ee57f2-4fc5-4ec3-ba6e-4d4223fe63f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{31b8be15-e869-4c35-b6e8-78ceb356f3a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -107,6 +110,15 @@
     <ClCompile Include="C_NullPhysicsComponent.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="C_Body.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="C_World.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Debug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Application.h">
@@ -183,6 +195,15 @@
     </ClInclude>
     <ClInclude Include="C_NullPhysicsComponent.h">
       <Filter>Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Body.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="C_World.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Debug.h">
+      <Filter>Debug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

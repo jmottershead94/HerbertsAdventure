@@ -159,9 +159,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="C_Application.cpp" />
+    <ClCompile Include="C_Body.cpp" />
     <ClCompile Include="C_Button.cpp" />
     <ClCompile Include="C_Character.cpp" />
     <ClCompile Include="C_Collision2D.cpp" />
+    <ClCompile Include="C_Debug.cpp" />
     <ClCompile Include="C_DemoInputComponent.cpp" />
     <ClCompile Include="C_GameObject.cpp" />
     <ClCompile Include="C_InputComponent.cpp" />
@@ -182,14 +184,17 @@
     <ClCompile Include="C_Timer.cpp" />
     <ClCompile Include="C_UIElement.cpp" />
     <ClCompile Include="C_Utilities.cpp" />
+    <ClCompile Include="C_World.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="box2D_conversions.h" />
     <ClInclude Include="C_Application.h" />
+    <ClInclude Include="C_Body.h" />
     <ClInclude Include="C_Button.h" />
     <ClInclude Include="C_Character.h" />
     <ClInclude Include="C_Collision2D.h" />
+    <ClInclude Include="C_Debug.h" />
     <ClInclude Include="C_DemoInputComponent.h" />
     <ClInclude Include="C_GameObject.h" />
     <ClInclude Include="C_InputComponent.h" />
@@ -210,6 +215,7 @@
     <ClInclude Include="C_Timer.h" />
     <ClInclude Include="C_UIElement.h" />
     <ClInclude Include="C_Utilities.h" />
+    <ClInclude Include="C_World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

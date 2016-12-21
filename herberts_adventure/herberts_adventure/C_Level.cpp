@@ -24,7 +24,7 @@ C_Level::C_Level() :
 	sf::RenderWindow* window	-	Provides access to the main render window in the application class.
 
 */
-void C_Level::Init(b2World* world, sf::RenderWindow* window)
+void C_Level::Init(C_World* world, sf::RenderWindow* window)
 {
 	/* Initialising local attributes. */
 	window_ = window;
@@ -32,10 +32,10 @@ void C_Level::Init(b2World* world, sf::RenderWindow* window)
 	test_.Init(world_, "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
 	collider_test_.Init(world_, new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.5f), 0.0f, sf::Vector2f(1.0f, 1.0f));
 
-	//C_PhysicsBody* floor_physics_body = new C_PhysicsBody();
-	C_NullPhysicsComponent* floor_physics_body = new C_NullPhysicsComponent();
+	C_PhysicsBody* floor_physics_body = new C_PhysicsBody();
+	//C_NullPhysicsComponent* floor_physics_body = new C_NullPhysicsComponent();
 	floor_.Init(world_, floor_physics_body, new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.0f, window_->getSize().y * 0.85f), 0.0f, sf::Vector2f(17.0f, 1.0f));
-	//floor_physics_body->Init(floor_, true, 1.0f, 0.3f, 0.3f);
+	floor_physics_body->Init(floor_, 100.0f, true, 1.0f, 0.3f, 0.3f);
 }
 
 /*

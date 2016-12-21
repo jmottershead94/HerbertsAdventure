@@ -25,24 +25,26 @@
 #include "box2D_conversions.h"
 
 class C_GameObject;
+class C_Body;
 
 /* Input component is just a standard class. */
 class C_Rigidbody2DComponent
 {
 	public:
 		virtual ~C_Rigidbody2DComponent();
-		virtual void Init(C_GameObject& game_object, const bool is_kinematic, const float density, const float friction, const float bounciness) = 0;
+		virtual void Init(C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness) = 0;
 		virtual void Update(C_GameObject& game_object, float& dt) = 0;
 
 		/* Getters. */
-		inline b2Body* body() { return body_; }
+		//inline b2Body* body() { return body_; }
 
 	protected:
 		/* Attributes. */
-		b2BodyDef body_def_;
+		C_Body* body_;
+		/*b2BodyDef body_def_;
 		b2Body* body_;
 		b2PolygonShape shape_;
-		b2FixtureDef fixture_def_;
+		b2FixtureDef fixture_def_;*/
 };
 
 #endif

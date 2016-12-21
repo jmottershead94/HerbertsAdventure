@@ -31,7 +31,7 @@ class C_Level
 	public:
 		/* Methods. */
 		C_Level();
-		void Init(b2World* world, sf::RenderWindow* window);
+		void Init(C_World* world, sf::RenderWindow* window);
 		void CleanUp();
 		void Render();
 		void Update(float& dt);
@@ -39,7 +39,7 @@ class C_Level
 	private:
 		/* Attributes. */
 		sf::RenderWindow* window_;		/* Points to the main render window in the application class. */
-		b2World* world_;				/* Points to the main world in the application class. */
+		C_World* world_;				/* Points to the main world in the application class. */
 		C_Player test_;					/* Testing game objects out. */
 		C_Character collider_test_;		/* Testing collisions out. */
 		C_Collision2D collider_;		/* Testing collisions out. */

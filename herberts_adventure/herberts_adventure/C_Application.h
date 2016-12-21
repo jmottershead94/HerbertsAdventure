@@ -20,7 +20,6 @@
 
 /* Standard. */
 #include <iomanip>
-#include <sstream>
 
 /* Application. */
 #include "C_StateSplash.h"
@@ -51,8 +50,9 @@ class C_Application
 		sf::Vector2i screen_resolution_;		/* Used to store the current resolution. */
 		sf::Text fps_counter_;					/* Used to display the FPS. */
 		sf::Font font_;							/* The main font to use for the game. */
-		b2World* world_;						/* The main box2D world. */
+		C_World* world_;						/* The main box2D world. */
 		C_Utilities utilities_;					/* Used to setup the singleton Utilities access for other classes. */
+		C_Debug debug_;							/* Used to setup the singleton Debug access for other classes. */
 		C_State* current_state_;				/* Used to setup the state machine for the game flow. */
 
 		/* Methods. */

@@ -32,7 +32,7 @@ class C_StateSplash : public C_State
 {
 	public:
 		/* Methods. */
-		C_StateSplash(sf::RenderWindow* window, sf::Font* font, b2World* world);
+		C_StateSplash(sf::RenderWindow* window, sf::Font* font, C_World* world);
 		~C_StateSplash();
 		bool LoadResources();
 		C_State* HandleTransitions();
