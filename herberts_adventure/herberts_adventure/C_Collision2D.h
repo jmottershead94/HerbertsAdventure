@@ -20,19 +20,32 @@
 
 /* Include header files here. */
 /* Application. */
-#include "C_GameObject.h"
+#include "C_Body.h"
+
+class C_Body;
 
 /* Collision 2D is just a standard class. */
 class C_Collision2D
 {
 	public:
+		/* Attributes. */
+		enum CollidedSide
+		{
+			none,
+			left,
+			top,
+			right,
+			bottom
+		};
+
 		/* Methods. */
 		C_Collision2D();
 		~C_Collision2D();
+		CollidedSide IsColliding(C_Body& game_object, C_Body& other_game_object);
 
 		/* Getters. */
 		/* This will allow us to check if two game objects are colliding. */
-		inline const bool is_colliding(C_GameObject& game_object, C_GameObject& other_game_object) { return (game_object.getGlobalBounds().intersects(other_game_object.getGlobalBounds())); }
+		//inline const bool is_colliding(C_GameObject& game_object, C_GameObject& other_game_object) { return (game_object.getGlobalBounds().intersects(other_game_object.getGlobalBounds())); }
 };
 
 #endif

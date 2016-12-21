@@ -50,6 +50,7 @@ public:
 	static void SetText(sf::Text& text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position);
 	static float DegToRad(float degrees);
 	static float RadToDeg(float radians);
+	static float& Abs(float& value);
 
 private:
 	/* Attributes. */

@@ -4,14 +4,13 @@ C_World::C_World()
 {}
 
 C_World::~C_World()
-{
-	
-}
+{}
 
 void C_World::Init(const sf::Vector2f gravity)
 {
 	/* Initialising local attributes. */
 	gravity_ = gravity;
+	collider_manager_ = new C_Collision2D();
 }
 
 void C_World::CleanUp()
@@ -24,7 +23,7 @@ void C_World::CleanUp()
 
 void C_World::ProcessBodies(float& dt)
 {
-	UNUSED(dt);
+	//UNUSED(dt);
 
 	//C_Debug::PrintToConsole("Updating bodies");
 
@@ -47,20 +46,43 @@ void C_World::ProcessBodies(float& dt)
 						if ((**body).colliding_body_ == nullptr)
 						{
 							/* If the current body is not colliding with any of the other bodies. */
-							if (!(**body).collider_.intersects((**other_body).collider_))
+							//if (!(**body).collider_.intersects((**other_body).collider_))
+							if(collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::none)
 							{
-								//std::cout << "Applying gravity!" << std::endl;
-								//C_Debug::PrintToConsole("Applying gravity!");
 								(**body).colliding_body_ = nullptr;
+								(**body).on_ground_ = false;
 
-								/* Apply gravity to the body. */
-								(**body).ApplyForce(-gravity_);
+								if (!(**body).on_ground_)
+								{
+									/* Apply gravity to the body. */
+									(**body).ApplyForce(-gravity_, dt);
+								}
 							}
 							else
 							{
 								(**body).colliding_body_ = (*other_body);
 
-								C_Debug::PrintToConsole("Collision!");
+								if (collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::bottom)
+								{
+									//(**body).colliding_body_ = (*other_body);
+									(**body).on_ground_ = true;
+									C_Debug::PrintToConsole("Bottom Collision!");
+								}
+								else if (collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::top)
+								{
+									//(**body).colliding_body_ = (*other_body);
+									C_Debug::PrintToConsole("Top Collision!");
+								}
+								else if (collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::right)
+								{
+									//(**body).colliding_body_ = (*other_body);
+									C_Debug::PrintToConsole("Right Collision!");
+								}
+								else if (collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::left)
+								{
+									//(**body).colliding_body_ = (*other_body);
+									C_Debug::PrintToConsole("Left Collision!");
+								}
 							}
 						}
 					}

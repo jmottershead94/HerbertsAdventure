@@ -80,6 +80,6 @@ void C_GameObject::Update(float& dt)
 	UNUSED(dt);
 
 	/* Update the input component. */
-	input_->Update(*this);
+	input_->Update(*this, dt);
 	rigidbody_->Update(*this, dt);
 }

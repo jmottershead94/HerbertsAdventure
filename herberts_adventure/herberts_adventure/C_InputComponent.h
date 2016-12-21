@@ -31,7 +31,7 @@ class C_InputComponent
 	public:
 		/* Methods. */
 		virtual ~C_InputComponent();
-		virtual void Update(C_GameObject& game_object) = 0;
+		virtual void Update(C_GameObject& game_object, float& dt) = 0;
 };
 
 #endif

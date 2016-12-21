@@ -34,8 +34,9 @@ C_DemoInputComponent::~C_DemoInputComponent()
 	C_GameObject& game_object	-	The game object that will be updated with user input.
 
 */
-void C_DemoInputComponent::Update(C_GameObject& game_object)
+void C_DemoInputComponent::Update(C_GameObject& game_object, float& dt)
 {
 	/* Have some AI control the game object... */
 	UNUSED(game_object);
+	UNUSED(dt);
 }

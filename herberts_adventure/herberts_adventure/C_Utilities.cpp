@@ -92,3 +92,14 @@ float C_Utilities::RadToDeg(float radians)
 {
 	return ((radians * 180.0f) / utilities_instance_->PI);
 }
+
+float& C_Utilities::Abs(float& value)
+{
+	if (value < 0.0f)
+	{
+		value *= -1.0f;
+		return value;
+	}
+
+	return value;
+}

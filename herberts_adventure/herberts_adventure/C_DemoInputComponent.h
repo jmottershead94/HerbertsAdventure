@@ -28,7 +28,7 @@ public:
 	/* Methods. */
 	C_DemoInputComponent();
 	~C_DemoInputComponent();
-	virtual void Update(C_GameObject& game_object);
+	virtual void Update(C_GameObject& game_object, float& dt);
 };
 
 #endif

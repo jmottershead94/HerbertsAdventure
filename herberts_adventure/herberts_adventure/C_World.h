@@ -1,11 +1,14 @@
 #ifndef _C_WORLD_H_
 #define _C_WORLD_H_
 
-#include "C_Body.h"
 #include <vector>
+
+#include "C_Collision2D.h"
+#include "C_Body.h"
 
 class C_GameObject;
 class C_Body;
+class C_Collision2D;
 
 class C_World
 {
@@ -23,6 +26,8 @@ class C_World
 		/* Attributes. */
 		sf::Vector2f gravity_;
 		std::vector<C_Body*> bodies_;
+		C_Collision2D* collider_manager_;
+
 };
 
 #endif
