@@ -22,3 +22,9 @@ void C_Debug::PrintToConsole(std::string message)
 {
 	std::cout << message << std::endl;
 }
+
+//template <typename T>
+void C_Debug::PrintToConsole(std::string message, float extra)
+{
+	std::cout << message << std::to_string(extra) << std::endl;
+}

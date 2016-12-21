@@ -13,6 +13,8 @@ public:
 	/* Methods. */
 	static void PrintToConsole(std::string message);
 
+	static void PrintToConsole(std::string message, float extra);// { std::cout << message << extra << std::endl; }
+	
 private:
 	C_Debug();
 	~C_Debug();

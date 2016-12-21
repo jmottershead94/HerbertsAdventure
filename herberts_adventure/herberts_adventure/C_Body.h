@@ -14,14 +14,17 @@ class C_Body
 		/* Methods. */
 		C_Body();
 		~C_Body();
-		void Init(C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
+		void Init(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
 		void Update(C_GameObject& game_object);
 
-		/* Setters. */
+		/* Getters / Setters. */
+		inline const float& mass() { return (mass_); }
+
 		inline void ApplyForce(const sf::Vector2f acceleration) { position_ += (mass_ * acceleration); }
 
 	private:
 		/* Attributes. */
+		int id_ = 0;
 		sf::Vector2f position_;		/* Stores the position of the collider */
 		float rotation_;			/* Stores the rotation of the collider. */
 		sf::FloatRect collider_;	/* Stores the bounds of the collider. */

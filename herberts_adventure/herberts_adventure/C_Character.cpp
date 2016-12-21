@@ -42,14 +42,14 @@ C_Character::~C_Character()
 	const sf::Vector2 scale		-	This will set the scale of the game object.
 
 */
-void C_Character::Init(C_World* world, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
+void C_Character::Init(const int id, C_World* world, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
 {
 	C_PhysicsBody* physics_body = new C_PhysicsBody();
 	//C_NullPhysicsComponent* physics_body = new C_NullPhysicsComponent();
 
 	/* Handles base game object initialisation. */
-	C_GameObject::Init(world, physics_body, input, filename, position, rotation, scale);
-	physics_body->Init(*this, false, 1.0f, 1.0f, 0.3f, 0.0f);
+	C_GameObject::Init(id, world, physics_body, input, filename, position, rotation, scale);
+	physics_body->Init(id, *this, 1.0f, false, 1.0f, 0.3f, 0.0f);
 }
 
 /*

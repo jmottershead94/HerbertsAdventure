@@ -17,7 +17,7 @@ class C_World
 		void CleanUp();
 		void ProcessBodies(float& dt);
 		void Update(float& dt);
-		C_Body* CreateBody(C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
+		C_Body* CreateBody(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
 
 	private:
 		/* Attributes. */

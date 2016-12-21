@@ -31,7 +31,7 @@ class C_Character : public C_GameObject
 		/* Methods. */
 		C_Character();
 		~C_Character();
-		void Init(C_World* world, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
+		void Init(const int id, C_World* world, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 	protected:

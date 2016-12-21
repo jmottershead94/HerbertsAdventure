@@ -38,12 +38,14 @@ class C_GameObject : public sf::Sprite
 		/* Methods. */
 		C_GameObject();
 		~C_GameObject();
-		void Init(C_World* world, C_Rigidbody2DComponent* rigidbody, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
+		void Init(const int id, C_World* world, C_Rigidbody2DComponent* rigidbody, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 		/* Getters / Setters. */
 		/* This will allow us to get the value of the object movement speed. */
 		inline const float& movement_speed() { return (speed_); }
+
+		inline const int& id() { return id_; }
 
 		/* This will allow us to get the current value of the object velocity. */
 		inline const sf::Vector2f& velocity() { return (velocity_); }
@@ -65,7 +67,8 @@ class C_GameObject : public sf::Sprite
 
 	private:
 		/* Attributes. */
-		const float speed_ = 10000.0f;				/* How fast game objects can move. */
+		const float speed_ = 10000.0f;			/* How fast game objects can move. */
+		int id_ = 0;
 		sf::Vector2f velocity_;					/* How fast the game object is moving. */
 		C_World* world_;						/* Used to access the Box2D world. */
 		C_Rigidbody2DComponent* rigidbody_;		/* . */
