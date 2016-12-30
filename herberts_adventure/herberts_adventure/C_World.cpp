@@ -33,12 +33,12 @@ void C_World::CheckBodyCollisions(C_Body& body)
 			if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::none)
 			{
 				body.on_ground_ = false;
-				body.collided_ = false;
+				body.collision_flags_.push_back(false);
 			}
 			else
 			{
-				body.colliding_body_ = (*other_body);
-				body.collided_ = true;
+				body.colliding_bodies_.push_back((*other_body));
+				body.collision_flags_.push_back(true);
 
 				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::bottom)
 				{
@@ -57,9 +57,27 @@ void C_World::CheckBodyCollisions(C_Body& body)
 
 void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 {
+	/* Assume the body has not collided. */
+	body.collided_ = false;
+
 	if (!body.on_ground_)
 	{
 		body.ApplyForce(-gravity_, dt);
+	}
+
+	for (std::vector<bool>::iterator collision = body.collision_flags_.begin(); collision != body.collision_flags_.end(); collision++)
+	{
+		if ((*collision))
+		{
+			body.collided_ = true;
+			break;
+		}
+	}
+
+	if (!body.collided_)
+	{
+		body.colliding_bodies_.clear();
+		body.collision_flags_.clear();
 	}
 }
 

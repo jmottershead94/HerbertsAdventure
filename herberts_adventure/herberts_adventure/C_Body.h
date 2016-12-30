@@ -16,10 +16,15 @@ class C_Body
 		~C_Body();
 		void Init(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
 		void ApplyForce(const sf::Vector2f force, float& dt);
+		void ResetCollisionProperties();
 		//bool Raycast();
 		void Update(C_GameObject& game_object);
 
 		/* Getters / Setters. */
+		inline std::vector<C_Body*> colliding_bodies() { return colliding_bodies_; }
+
+		inline std::vector<bool> collision_flags() { return collision_flags_; }
+
 		inline const float& mass() { return (mass_); }
 
 		inline const bool& on_the_ground() { return on_ground_; }
@@ -29,10 +34,17 @@ class C_Body
 		inline sf::Vector2f& velocity() { return velocity_; }
 
 		inline sf::FloatRect& collider() { return collider_; }
+
+		inline void set_on_ground(const bool value) { on_ground_ = value; }
+
+		inline void set_collided(const bool value) { collided_ = value; }
+
 		//inline void ApplyForce(const sf::Vector2f acceleration) { position_ += (mass_ * acceleration); }
 
 	private:
 		/* Attributes. */
+		std::vector<C_Body*> colliding_bodies_;
+		std::vector<bool> collision_flags_;
 		int id_ = 0;
 		bool on_ground_ = false;
 		bool collided_ = false;

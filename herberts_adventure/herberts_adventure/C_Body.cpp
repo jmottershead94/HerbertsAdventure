@@ -41,6 +41,14 @@ void C_Body::ApplyForce(const sf::Vector2f force, float& dt)
 	position_ += (translation_ * dt);
 }
 
+void C_Body::ResetCollisionProperties()
+{
+	on_ground_ = false;
+	collided_ = false;
+	colliding_bodies_.clear();
+	collision_flags_.clear();
+}
+
 void C_Body::Update(C_GameObject & game_object)
 {
 	/* Updating the collider with the game object it is attached to. */
