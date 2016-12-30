@@ -25,6 +25,7 @@
 
 /* Include header files here. */
 /* Standard. */
+#include <iomanip>
 #include <iostream>
 
 /* SFML. */
@@ -51,6 +52,7 @@ public:
 	static float DegToRad(float degrees);
 	static float RadToDeg(float radians);
 	static float& Abs(float& value);
+	static std::string FloatToString(int precision, float value);
 
 private:
 	/* Attributes. */

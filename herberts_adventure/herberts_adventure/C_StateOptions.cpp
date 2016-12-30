@@ -67,8 +67,10 @@ void C_StateOptions::OnEnter()
 {
 	C_Utilities::SetText(title_text_, *font_, "Options", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
 	C_Utilities::SetText(display_fps_text_, *font_, "Display FPS", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
-	C_Utilities::SetText(display_option_text_, *font_, "VSync", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
-	C_Utilities::SetText(sound_option_text_, *font_, "Sound Option Example", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
+	C_Utilities::SetText(vsync_text_, *font_, "VSync", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
+	C_Utilities::SetText(master_volume_text_, *font_, "Master Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
+	C_Utilities::SetText(music_volume_text_, *font_, "Music Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f));
+	C_Utilities::SetText(sfx_volume_text_, *font_, "SFX Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.7f));
 
 	/* Initialising local attributes. */
 	button_game_.Init(window_, font_, "Game", 50, sf::Vector2f(window_->getSize().x * 0.25f, window_->getSize().y * 0.4f));
@@ -79,9 +81,17 @@ void C_StateOptions::OnEnter()
 	toggle_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
 	toggle_vsync_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
 
+	slider_master_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
+	slider_music_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.55f));
+	slider_sfx_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.65f));
+
 	/* Set the option toggle values. */
 	toggle_fps_.set_checked(C_Options::DisplayFPS());
 	toggle_vsync_.set_checked(C_Options::UseVSync());
+
+	slider_master_volume_.set_value(C_Options::MasterVolume());
+	slider_music_volume_.set_value(C_Options::MusicVolume());
+	slider_sfx_volume_.set_value(C_Options::SFXVolume());
 
 	/* Start with the game options displayed. */
 	button_game_.set_clicked(true);
@@ -108,13 +118,26 @@ void C_StateOptions::RenderGameOptions()
 
 void C_StateOptions::RenderDisplayOptions()
 {
-	window_->draw(display_option_text_);
+	window_->draw(vsync_text_);
 	window_->draw(toggle_vsync_);
 }
 
 void C_StateOptions::RenderSoundOptions()
 {
-	window_->draw(sound_option_text_);
+	window_->draw(master_volume_text_);
+	window_->draw(music_volume_text_);
+	window_->draw(sfx_volume_text_);
+	window_->draw(slider_master_volume_);
+	window_->draw(slider_music_volume_);
+	window_->draw(slider_sfx_volume_);
+
+	C_Utilities::SetText(master_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_master_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.5f));
+	C_Utilities::SetText(music_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_music_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.6f));
+	C_Utilities::SetText(sfx_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_sfx_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.7f));
+
+	window_->draw(master_volume_value_text_);
+	window_->draw(music_volume_value_text_);
+	window_->draw(sfx_volume_value_text_);
 }
 
 /*
@@ -192,7 +215,13 @@ void C_StateOptions::HandleDisplayOptionUpdates(float& dt)
 
 void C_StateOptions::HandleSoundOptionUpdates(float& dt)
 {
-	UNUSED(dt);
+	slider_master_volume_.Update(dt);
+	slider_music_volume_.Update(dt);
+	slider_sfx_volume_.Update(dt);
+
+	C_Options::SetMasterVolume(slider_master_volume_.value());
+	C_Options::SetMusicVolume(slider_music_volume_.value());
+	C_Options::SetSFXVolume(slider_sfx_volume_.value());
 }
 
 /*

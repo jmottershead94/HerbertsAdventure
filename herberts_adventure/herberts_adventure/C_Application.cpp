@@ -180,13 +180,8 @@ void C_Application::SetUpFPS(float& dt)
 	/* Assign fps value. */
 	fps_ = 1.0f / dt;
 
-	/* Set the fps to 2 decimal places. */
-	std::ostringstream os;
-	os << std::fixed << std::setprecision(2) << fps_;
-	std::string fps = "FPS: " + os.str();
-
 	/* Set the fps text. */
-	C_Utilities::SetText(fps_counter_, font_, fps, 20, sf::Vector2f(window_.getSize().x * 0.9f, window_.getSize().y * 0.99f));
+	C_Utilities::SetText(fps_counter_, font_, "FPS: " + C_Utilities::FloatToString(2, fps_), 20, sf::Vector2f(window_.getSize().x * 0.9f, window_.getSize().y * 0.99f));
 }
 
 /*

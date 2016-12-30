@@ -18,9 +18,6 @@
 #ifndef _C_APPLICATION_H_
 #define _C_APPLICATION_H_
 
-/* Standard. */
-#include <iomanip>
-
 /* Application. */
 #include "C_StateSplash.h"
 

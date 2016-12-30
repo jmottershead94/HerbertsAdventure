@@ -26,10 +26,8 @@ void C_Toggle::Init(sf::RenderWindow * window, sf::Font* font, const sf::Vector2
 	setScale(sf::Vector2f(1.0f, 1.0f));
 }
 
-void C_Toggle::Update(float & dt)
+void C_Toggle::Update(float& dt)
 {
-	UNUSED(dt);
-
 	if (interactable_)
 	{
 		/* Handles base UI element updates. */

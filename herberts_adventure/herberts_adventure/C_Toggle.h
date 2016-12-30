@@ -28,7 +28,6 @@ class C_Toggle : public C_UIElement
 		bool interactable_;
 		bool is_checked_;
 		bool just_changed_;
-		sf::RenderWindow* window_;
 		sf::Sprite sprite_;
 };
 

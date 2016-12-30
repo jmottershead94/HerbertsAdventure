@@ -103,3 +103,12 @@ float& C_Utilities::Abs(float& value)
 
 	return value;
 }
+
+std::string C_Utilities::FloatToString(int precision, float value)
+{
+	/* Set the fps to 2 decimal places. */
+	std::ostringstream os;
+	os << std::fixed << std::setprecision(precision) << value;
+	std::string string_value = os.str();
+	return string_value;
+}

@@ -26,6 +26,7 @@
 #include "C_State.h"
 #include "C_StateMenu.h"
 #include "C_Toggle.h"
+#include "C_Slider.h"
 
 /* State credits IS A state, therefore inherits from it. */
 class C_StateOptions : public C_State
@@ -48,10 +49,14 @@ class C_StateOptions : public C_State
 
 	private:
 		/* Attributes. */
-		sf::Text display_fps_text_, display_option_text_, sound_option_text_;	/* The text used to display the option for display fps information. */
-		C_Button button_game_, button_display_, button_sound_;					/* The buttons used for the different application options. */
-		C_Button button_menu_;													/* The button used to navigate back to the main menu. */
-		C_Toggle toggle_fps_, toggle_vsync_;								/* . */
+		sf::Text display_fps_text_;													/* The text used to display the option for display fps information. */
+		sf::Text vsync_text_;
+		sf::Text master_volume_text_, music_volume_text_, sfx_volume_text_;
+		sf::Text master_volume_value_text_, music_volume_value_text_, sfx_volume_value_text_;
+		C_Button button_game_, button_display_, button_sound_;						/* The buttons used for the different application options. */
+		C_Button button_menu_;														/* The button used to navigate back to the main menu. */
+		C_Toggle toggle_fps_, toggle_vsync_;										/* . */
+		C_Slider slider_master_volume_, slider_music_volume_, slider_sfx_volume_;	/* . */
 };
 
 #endif
