@@ -19,6 +19,9 @@ public:
 	static void SetVSync(const bool value);
 	static bool& UseVSync();
 
+	static void SetLockedFPS(const bool value);
+	static bool& LockFPS();
+
 	/* Sound Options. */
 	static void SetMasterVolume(const float value);
 	static float& MasterVolumeSlider();
@@ -34,6 +37,7 @@ private:
 	/* Attributes. */
 	/* Game Options. */
 	bool display_fps_;
+	bool lock_fps_;
 
 	/* Display Options. */
 	bool vsync_;

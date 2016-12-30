@@ -6,9 +6,10 @@ C_Options* options_instance_ = nullptr;
 C_Options::C_Options() :
 	display_fps_(true),
 	vsync_(true),
+	lock_fps_(true),
 	master_volume_(100.0f),
-	music_volume_(70.0f),
-	sfx_volume_(70.0f)
+	music_volume_(30.0f),
+	sfx_volume_(30.0f)
 {}
 
 /*
@@ -72,9 +73,19 @@ void C_Options::SetVSync(const bool value)
 	}
 }
 
+void C_Options::SetLockedFPS(const bool value)
+{
+	options_instance_->lock_fps_ = value;
+}
+
 bool& C_Options::UseVSync()
 {
 	return options_instance_->vsync_;
+}
+
+bool& C_Options::LockFPS()
+{
+	return (options_instance_->lock_fps_);
 }
 
 /* Sound Options. */

@@ -44,7 +44,6 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	screen_resolution_ = screen_resolution;
 	window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Fullscreen);
 	//window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Default);
-	window_.setFramerateLimit(kFrameRate);
 	utilities_.Init();
 	options_.Init();
 	debug_.Init();
@@ -149,6 +148,18 @@ void C_Application::Render()
 		/* Display the fps. */
 		window_.draw(fps_counter_);
 	}
+
+	if (C_Options::LockFPS())
+	{
+		/* Try and lock to 60 fps. */
+		window_.setFramerateLimit(kFrameRate);
+	}
+	else
+	{
+		/* Remove the fps limit. */
+		window_.setFramerateLimit(0);
+	}
+	
 
 	if (C_Options::UseVSync())
 	{

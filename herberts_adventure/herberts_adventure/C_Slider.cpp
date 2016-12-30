@@ -10,7 +10,7 @@ C_Slider::C_Slider() :
 C_Slider::~C_Slider()
 {}
 
-void C_Slider::Init(sf::RenderWindow * window, sf::Font* font, const sf::Vector2f position)
+void C_Slider::Init(sf::RenderWindow * window, sf::Font* font, const sf::Vector2f position, size_t amount_of_options, sf::Vector2f range)
 {
 	/* Handles base UI element initialisation. */
 	C_UIElement::Init(window, font);
@@ -18,8 +18,10 @@ void C_Slider::Init(sf::RenderWindow * window, sf::Font* font, const sf::Vector2
 	/* Loading a texture. */
 	sf::Texture* texture = new sf::Texture();
 	texture->loadFromFile("../assets/art/SPR_ui.png");
+	amount_of_options_ = amount_of_options;
+	range_ = range;
 
-	for (size_t i = 0; i < sprites_.size(); i++)
+	for (size_t i = 0; i < amount_of_options_; i++)
 	{
 		sprites_.at(i).setTexture(*texture);
 		sprites_.at(i).setTextureRect(sf::IntRect(0, 0, 128, 128));
@@ -59,7 +61,7 @@ void C_Slider::CheckSlider(sf::Sprite& sprite, int index)
 	{
 		if (is_mouse_over(sprite) && !just_changed_)
 		{
-			value_ = (float)(index + 1) * 10.0f;
+			value_ = (float)(index + 1) * (range_.y / amount_of_options_);
 			just_changed_ = true;
 		}
 	}
@@ -72,23 +74,23 @@ void C_Slider::Update(float& dt)
 		/* Handles base UI element updates. */
 		C_UIElement::Update(dt);
 
-		for (size_t i = 0; i < sprites_.size(); i++)
+		for (size_t i = 0; i < amount_of_options_; i++)
 		{
 			CheckSlider(sprites_.at(i), i);
 		}
 	}
 
-	if (value_ >= 0.0f)
+	if (value_ >= range_.x)
 	{
-		for (size_t i = 0; i < (size_t)(value_ * 0.1f); i++)
+		for (size_t i = 0; i < (size_t)(value_ * (amount_of_options_ / range_.y)); i++)
 		{
 			sprites_.at(i).setTextureRect(sf::IntRect(128, 0, 128, 128));
 		}
 	}
 
-	if (value_ <= 100.0f)
+	if (value_ <= range_.y)
 	{
-		for (size_t i = (size_t)(value_ * 0.1f); i < sprites_.size(); i++)
+		for (size_t i = (size_t)(value_ * (amount_of_options_ / range_.y)); i < sprites_.size(); i++)
 		{
 			sprites_.at(i).setTextureRect(sf::IntRect(0, 0, 128, 128));
 		}

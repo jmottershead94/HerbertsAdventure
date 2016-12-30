@@ -68,7 +68,8 @@ C_State* C_StateOptions::HandleTransitions()
 void C_StateOptions::OnEnter()
 {
 	C_Utilities::SetText(title_text_, *font_, "Options", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
-	C_Utilities::SetText(display_fps_text_, *font_, "Display FPS", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
+	C_Utilities::SetText(display_fps_text_, *font_, "Display FPS Stats", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
+	C_Utilities::SetText(fps_text_, *font_, "Lock FPS", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f));
 	C_Utilities::SetText(vsync_text_, *font_, "VSync", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
 	C_Utilities::SetText(master_volume_text_, *font_, "Master Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
 	C_Utilities::SetText(music_volume_text_, *font_, "Music Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f));
@@ -81,15 +82,19 @@ void C_StateOptions::OnEnter()
 	button_menu_.Init(window_, font_, "Back", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.9f));
 
 	toggle_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
+
 	toggle_vsync_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
+	toggle_locked_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.55f));
 
-	slider_master_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.475f));
-	slider_music_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.575f));
-	slider_sfx_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.675f));
+	slider_master_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.475f), 10, sf::Vector2f(0.0f, 100.0f));
+	slider_music_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.575f), 10, sf::Vector2f(0.0f, 100.0f));
+	slider_sfx_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.675f), 10, sf::Vector2f(0.0f, 100.0f));
 
-	/* Set the option toggle values. */
+	/* Set the saved option values. */
 	toggle_fps_.set_checked(C_Options::DisplayFPS());
+	
 	toggle_vsync_.set_checked(C_Options::UseVSync());
+	toggle_locked_fps_.set_checked(C_Options::LockFPS());
 
 	slider_master_volume_.set_value(C_Options::MasterVolumeSlider());
 	slider_music_volume_.set_value(C_Options::MusicVolume());
@@ -121,7 +126,9 @@ void C_StateOptions::RenderGameOptions()
 void C_StateOptions::RenderDisplayOptions()
 {
 	window_->draw(vsync_text_);
+	window_->draw(fps_text_);
 	window_->draw(toggle_vsync_);
+	window_->draw(toggle_locked_fps_);
 }
 
 void C_StateOptions::RenderSoundOptions()
@@ -130,19 +137,19 @@ void C_StateOptions::RenderSoundOptions()
 	window_->draw(music_volume_text_);
 	window_->draw(sfx_volume_text_);
 
-	for (int i = 0; i < 10; i++)
+	for (size_t i = 0; i < slider_master_volume_.amount_of_options(); i++)
 	{
-		window_->draw(slider_master_volume_.get_sprites()[i]);
+		window_->draw(slider_master_volume_.get_sprites().at(i));
 	}
 
-	for (int i = 0; i < 10; i++)
+	for (size_t i = 0; i < slider_music_volume_.amount_of_options(); i++)
 	{
-		window_->draw(slider_music_volume_.get_sprites()[i]);
+		window_->draw(slider_music_volume_.get_sprites().at(i));
 	}
 
-	for (int i = 0; i < 10; i++)
+	for (size_t i = 0; i < slider_sfx_volume_.amount_of_options(); i++)
 	{
-		window_->draw(slider_sfx_volume_.get_sprites()[i]);
+		window_->draw(slider_sfx_volume_.get_sprites().at(i));
 	}
 
 	C_Utilities::SetText(master_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_master_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.5f));
@@ -230,7 +237,7 @@ void C_StateOptions::Render()
 void C_StateOptions::HandleGameOptionUpdates(float& dt)
 {
 	toggle_fps_.Update(dt);
-
+	
 	/* Set the value of the display FPS option to the toggle value of the fps option. */
 	C_Options::SetDisplayFPS(toggle_fps_.checked());
 }
@@ -238,7 +245,10 @@ void C_StateOptions::HandleGameOptionUpdates(float& dt)
 void C_StateOptions::HandleDisplayOptionUpdates(float& dt)
 {
 	toggle_vsync_.Update(dt);
+	toggle_locked_fps_.Update(dt);
+
 	C_Options::SetVSync(toggle_vsync_.checked());
+	C_Options::SetLockedFPS(toggle_locked_fps_.checked());
 }
 
 void C_StateOptions::HandleSoundOptionUpdates(float& dt)
