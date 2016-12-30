@@ -16,12 +16,15 @@ class C_Body
 		~C_Body();
 		void Init(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
 		void ApplyForce(const sf::Vector2f force, float& dt);
+		//bool Raycast();
 		void Update(C_GameObject& game_object);
 
 		/* Getters / Setters. */
 		inline const float& mass() { return (mass_); }
 
 		inline const bool& on_the_ground() { return on_ground_; }
+
+		inline const bool& has_collided() { return collided_; }
 
 		inline sf::Vector2f& velocity() { return velocity_; }
 
@@ -32,8 +35,10 @@ class C_Body
 		/* Attributes. */
 		int id_ = 0;
 		bool on_ground_ = false;
+		bool collided_ = false;
 		C_Body* colliding_body_;	/* Stores the body that the collider is currently colliding with. */
 		sf::Vector2f position_;		/* Stores the position of the collider */
+		sf::Vector2f translation_;	
 		sf::Vector2f velocity_;
 		float rotation_;			/* Stores the rotation of the collider. */
 		sf::FloatRect collider_;	/* Stores the bounds of the collider. */

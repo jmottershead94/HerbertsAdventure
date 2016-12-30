@@ -173,7 +173,6 @@
     <ClCompile Include="C_PhysicsBody.cpp" />
     <ClCompile Include="C_Player.cpp" />
     <ClCompile Include="C_PlayerInputComponent.cpp" />
-    <ClCompile Include="C_Rigidbody2DComponent.cpp" />
     <ClCompile Include="C_Slider.cpp" />
     <ClCompile Include="C_State.cpp" />
     <ClCompile Include="C_StateCredits.cpp" />

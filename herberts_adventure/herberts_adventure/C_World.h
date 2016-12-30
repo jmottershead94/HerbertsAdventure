@@ -18,6 +18,8 @@ class C_World
 		~C_World();
 		void Init(const sf::Vector2f gravity);
 		void CleanUp();
+		void CheckBodyCollisions(C_Body& body);
+		void BodyCollisionResponse(C_Body& body, float& dt);
 		void ProcessBodies(float& dt);
 		void Update(float& dt);
 		C_Body* CreateBody(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);

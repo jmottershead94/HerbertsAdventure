@@ -101,9 +101,6 @@
     <ClCompile Include="C_PlayerInputComponent.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>
-    <ClCompile Include="C_Rigidbody2DComponent.cpp">
-      <Filter>Components\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="C_PhysicsBody.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>

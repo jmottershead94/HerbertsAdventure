@@ -23,16 +23,22 @@ void C_Body::Init(const int id, C_GameObject& game_object, const float mass, con
 
 void C_Body::ApplyForce(const sf::Vector2f force, float& dt)
 {
+	UNUSED(dt);
+	velocity_ = sf::Vector2f(0.0f, 0.0f);
+	translation_ = sf::Vector2f(0.0f, 0.0f);
+
 	/* Calculate the acceleration based on the force desired and the mass of the body. */
 	sf::Vector2f a = force / inverse_mass_;
 
 	/* Calculate the difference in the velocity. */
-	sf::Vector2f dv = a * dt;
+	sf::Vector2f dv = a/* * dt*/;
 	velocity_ += dv;
 
 	/* Calculate the difference in the position. */
-	sf::Vector2f ds = velocity_ * dt;
-	position_ += ds;
+	sf::Vector2f ds = velocity_/* * dt*/;
+	translation_ += ds;
+
+	position_ += (translation_ * dt);
 }
 
 void C_Body::Update(C_GameObject & game_object)

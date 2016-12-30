@@ -21,13 +21,52 @@ void C_World::CleanUp()
 	}
 }
 
+void C_World::CheckBodyCollisions(C_Body& body)
+{
+	/* O(N^2) - Well this sucks... */
+	/* Loop through all of the bodies backwards. */
+	for (std::vector<C_Body*>::iterator other_body = bodies_.begin(); other_body != bodies_.end(); other_body++)
+	{
+		/* If the body is not equal to the other body we are looking at. */
+		if (body.id_ != (**other_body).id_)
+		{
+			if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::none)
+			{
+				body.on_ground_ = false;
+				body.collided_ = false;
+			}
+			else
+			{
+				body.colliding_body_ = (*other_body);
+				body.collided_ = true;
+
+				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::bottom)
+				{
+					body.on_ground_ = true;
+				}
+				else if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::top)
+				{}
+				else if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::right)
+				{}
+				else if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::left)
+				{}
+			}
+		}
+	}
+}
+
+void C_World::BodyCollisionResponse(C_Body& body, float& dt)
+{
+	if (!body.on_ground_)
+	{
+		body.ApplyForce(-gravity_, dt);
+	}
+}
+
 void C_World::ProcessBodies(float& dt)
 {
-	//UNUSED(dt);
+	UNUSED(dt);
 
-	//C_Debug::PrintToConsole("Updating bodies");
-
-	/* O(N^2) - Well this sucks... */
 	/* Looping through all of the bodies. */
 	if (!bodies_.empty())
 	{
@@ -36,57 +75,11 @@ void C_World::ProcessBodies(float& dt)
 			/* If the body is dynamic. */
 			if (!(**body).is_kinematic_)
 			{
-				/* Loop through all of the bodies backwards. */
-				for (std::vector<C_Body*>::iterator other_body = bodies_.begin(); other_body != bodies_.end(); other_body++)
-				{
-					/* If the body is not equal to the other body we are looking at. */
-					if ((**body).id_ != (**other_body).id_)
-					{
-						/* If the current body is not colliding with anything else. */
-						if ((**body).colliding_body_ == nullptr)
-						{
-							/* If the current body is not colliding with any of the other bodies. */
-							//if (!(**body).collider_.intersects((**other_body).collider_))
-							if(collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::none)
-							{
-								(**body).colliding_body_ = nullptr;
-								(**body).on_ground_ = false;
+				/* Loop through each body in the world and check for collisions. */
+				CheckBodyCollisions((**body));
 
-								if (!(**body).on_ground_)
-								{
-									/* Apply gravity to the body. */
-									(**body).ApplyForce(-gravity_, dt);
-								}
-							}
-							else
-							{
-								(**body).colliding_body_ = (*other_body);
-
-								if (collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::bottom)
-								{
-									//(**body).colliding_body_ = (*other_body);
-									(**body).on_ground_ = true;
-									C_Debug::PrintToConsole("Bottom Collision!");
-								}
-								else if (collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::top)
-								{
-									//(**body).colliding_body_ = (*other_body);
-									C_Debug::PrintToConsole("Top Collision!");
-								}
-								else if (collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::right)
-								{
-									//(**body).colliding_body_ = (*other_body);
-									C_Debug::PrintToConsole("Right Collision!");
-								}
-								else if (collider_manager_->IsColliding((**body), (**other_body)) == C_Collision2D::left)
-								{
-									//(**body).colliding_body_ = (*other_body);
-									C_Debug::PrintToConsole("Left Collision!");
-								}
-							}
-						}
-					}
-				}
+				/* Provide a response for any collisions. */
+				BodyCollisionResponse((**body), dt);
 			}
 		}
 	}

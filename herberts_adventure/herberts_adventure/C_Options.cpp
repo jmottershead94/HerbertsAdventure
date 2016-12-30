@@ -7,9 +7,9 @@ C_Options::C_Options() :
 	display_fps_(true),
 	vsync_(true),
 	lock_fps_(true),
-	master_volume_(100.0f),
-	music_volume_(30.0f),
-	sfx_volume_(30.0f)
+	master_volume_(10.0f),
+	music_volume_(10.0f),
+	sfx_volume_(10.0f)
 {}
 
 /*
