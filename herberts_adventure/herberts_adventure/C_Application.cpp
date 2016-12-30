@@ -192,7 +192,7 @@ void C_Application::SetUpFPS(float& dt)
 	fps_ = 1.0f / dt;
 
 	/* Set the fps text. */
-	C_Utilities::SetText(fps_counter_, font_, "FPS: " + C_Utilities::FloatToString(2, fps_), 20, sf::Vector2f(window_.getSize().x * 0.9f, window_.getSize().y * 0.99f));
+	C_Utilities::SetText(fps_counter_, font_, "FPS: " + C_Utilities::FloatToString(2, fps_), 20, sf::Vector2f(window_.getSize().x * 0.9f, window_.getSize().y * 0.99f), C_Utilities::TextAlignment::centre);
 }
 
 /*

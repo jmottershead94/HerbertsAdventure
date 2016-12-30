@@ -70,10 +70,10 @@ void C_StateCredits::OnEnter()
 	const std::string splash_sfx_text = "Twinkle Download Link: www.freesound.org/people/fschaeffer/sounds/337949/\nLicense Link: creativecommons.org/licenses/by-nc/3.0/\nCreator: fschaeffer\nChanges : None.";
 	const std::string main_music_text = "Short Swing Download Link: www.freesound.org/people/ValentinSosnitskiy/sounds/317463/\nLicense Link: creativecommons.org/licenses/by/3.0/\nCreator: ValentinSosnitskiy\nChanges : None.";
 
-	C_Utilities::SetText(title_text_, *font_, "Credits", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
-	C_Utilities::SetText(splash_sfx_credit_, *font_, splash_sfx_text, 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.45f));
-	C_Utilities::SetText(main_music_credit_, *font_, main_music_text, 20, sf::Vector2f(window_->getSize().x * 0.4f, window_->getSize().y * 0.6f));
-	C_Utilities::SetText(developer_credit_, *font_, "Game developed by Jason Mottershead", 20, sf::Vector2f(window_->getSize().x * 0.19f, window_->getSize().y * 0.75f));
+	C_Utilities::SetText(title_text_, *font_, "Credits", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f), C_Utilities::TextAlignment::centre);
+	C_Utilities::SetText(splash_sfx_credit_, *font_, splash_sfx_text, 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.45f), C_Utilities::TextAlignment::centre);
+	C_Utilities::SetText(main_music_credit_, *font_, main_music_text, 20, sf::Vector2f(window_->getSize().x * 0.4f, window_->getSize().y * 0.6f), C_Utilities::TextAlignment::centre);
+	C_Utilities::SetText(developer_credit_, *font_, "Game developed by Jason Mottershead", 20, sf::Vector2f(window_->getSize().x * 0.19f, window_->getSize().y * 0.75f), C_Utilities::TextAlignment::centre);
 
 	/* Initialising local attributes. */
 	button_menu_.Init(window_, font_, "Back", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.9f));

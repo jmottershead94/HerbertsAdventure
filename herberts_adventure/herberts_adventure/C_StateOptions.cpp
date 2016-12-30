@@ -67,13 +67,13 @@ C_State* C_StateOptions::HandleTransitions()
 */
 void C_StateOptions::OnEnter()
 {
-	C_Utilities::SetText(title_text_, *font_, "Options", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
-	C_Utilities::SetText(display_fps_text_, *font_, "Display FPS Stats", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
-	C_Utilities::SetText(fps_text_, *font_, "Lock FPS", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f));
-	C_Utilities::SetText(vsync_text_, *font_, "VSync", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
-	C_Utilities::SetText(master_volume_text_, *font_, "Master Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
-	C_Utilities::SetText(music_volume_text_, *font_, "Music Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f));
-	C_Utilities::SetText(sfx_volume_text_, *font_, "SFX Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.7f));
+	C_Utilities::SetText(title_text_, *font_, "Options", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f), C_Utilities::TextAlignment::centre);
+	C_Utilities::SetText(display_fps_text_, *font_, "Display FPS Stats", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::left);
+	C_Utilities::SetText(fps_text_, *font_, "Lock FPS", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f), C_Utilities::TextAlignment::left);
+	C_Utilities::SetText(vsync_text_, *font_, "VSync", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::left);
+	C_Utilities::SetText(master_volume_text_, *font_, "Master Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::left);
+	C_Utilities::SetText(music_volume_text_, *font_, "Music Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f), C_Utilities::TextAlignment::left);
+	C_Utilities::SetText(sfx_volume_text_, *font_, "SFX Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.7f), C_Utilities::TextAlignment::left);
 
 	/* Initialising local attributes. */
 	button_game_.Init(window_, font_, "Game", 50, sf::Vector2f(window_->getSize().x * 0.25f, window_->getSize().y * 0.4f));
@@ -155,9 +155,9 @@ void C_StateOptions::RenderSoundOptions()
 		window_->draw(slider_sfx_volume_.get_sprites().at(i));
 	}
 
-	C_Utilities::SetText(master_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_master_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.5f));
-	C_Utilities::SetText(music_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_music_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.6f));
-	C_Utilities::SetText(sfx_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_sfx_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.7f));
+	C_Utilities::SetText(master_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_master_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::centre);
+	C_Utilities::SetText(music_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_music_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.6f), C_Utilities::TextAlignment::centre);
+	C_Utilities::SetText(sfx_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_sfx_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.7f), C_Utilities::TextAlignment::centre);
 
 	window_->draw(master_volume_value_text_);
 	window_->draw(music_volume_value_text_);

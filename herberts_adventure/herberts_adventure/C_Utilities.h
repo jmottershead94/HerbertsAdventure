@@ -47,8 +47,16 @@ class C_Utilities
 	friend class C_Application;
 
 public:
+	/* Attributes */
+	enum TextAlignment
+	{
+		left,
+		centre,
+		right
+	};
+
 	/* Methods. */
-	static void SetText(sf::Text& text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position);
+	static void SetText(sf::Text& text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position, TextAlignment alignment);
 	static float DegToRad(float degrees);
 	static float RadToDeg(float radians);
 	static float& Abs(float& value);

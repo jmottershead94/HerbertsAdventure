@@ -63,8 +63,8 @@ C_State* C_StateTitle::HandleTransitions()
 */
 void C_StateTitle::OnEnter()
 {
-	C_Utilities::SetText(title_text_, *font_, "Herbert's Adventure!", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
-	C_Utilities::SetText(message_, *font_, "Click Anywhere!", 50, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.5f));
+	C_Utilities::SetText(title_text_, *font_, "Herbert's Adventure!", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f), C_Utilities::TextAlignment::centre);
+	C_Utilities::SetText(message_, *font_, "Click Anywhere!", 50, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::centre);
 
 	main_theme_music_->play();
 

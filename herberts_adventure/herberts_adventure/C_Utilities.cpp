@@ -72,14 +72,27 @@ void C_Utilities::CleanUp()
 	const sf::Vector2f position	-	The position of the text.
 
 */
-void C_Utilities::SetText(sf::Text & text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position)
+void C_Utilities::SetText(sf::Text& text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position, TextAlignment alignment)
 {
 	/* Setting up the text. */
 	text.setFont(font);
 	text.setString(message);
 	text.setFillColor(sf::Color::White);
 	text.setCharacterSize(size);
-	text.setOrigin(text.getLocalBounds().width * 0.5f, text.getLocalBounds().height * 0.5f);
+
+	if (alignment == TextAlignment::left)
+	{
+		text.setOrigin(text.getLocalBounds().width * 0.0f, text.getLocalBounds().height * 0.5f);
+	}
+	else if (alignment == TextAlignment::centre)
+	{
+		text.setOrigin(text.getLocalBounds().width * 0.5f, text.getLocalBounds().height * 0.5f);
+	}
+	else if (alignment == TextAlignment::right)
+	{
+		text.setOrigin(text.getLocalBounds().width * 1.0f, text.getLocalBounds().height * 0.5f);
+	}	
+
 	text.setPosition(position);
 }
 

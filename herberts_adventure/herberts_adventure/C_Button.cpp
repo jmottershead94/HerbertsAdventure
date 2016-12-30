@@ -50,7 +50,7 @@ void C_Button::Init(sf::RenderWindow* window, sf::Font* font, const std::string 
 	C_UIElement::Init(window, font);
 
 	/* Initialising local attributes. */
-	C_Utilities::SetText(text_, *font, message, size, position);
+	C_Utilities::SetText(text_, *font, message, size, position, C_Utilities::TextAlignment::centre);
 	original_colour_ = text_.getFillColor();
 	original_scale_ = size;
 	highlighted_colour_ = sf::Color::Red;
