@@ -46,6 +46,7 @@ class C_Application
 		const unsigned int kFrameRate = 60;		/* Used to determine the framerate of the application. */
 		float fps_;								/* Used to display the frame rate. */
 		sf::RenderWindow window_;				/* Used to display the application. */
+		sf::RenderWindow fullscreen_window_;	/* Used to display the application in fullscreen mode. */
 		sf::Event event_;						/* Used to check window events. */
 		sf::Vector2i screen_resolution_;		/* Used to store the current resolution. */
 		sf::Text fps_counter_;					/* Used to display the FPS. */

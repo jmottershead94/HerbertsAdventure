@@ -44,7 +44,7 @@ void C_Options::CleanUp()
 	}
 }
 
-void C_Options::SetFPS(const bool value)
+void C_Options::SetDisplayFPS(const bool value)
 {
 	if (options_instance_->display_fps_ != value)
 	{
@@ -52,7 +52,20 @@ void C_Options::SetFPS(const bool value)
 	}
 }
 
+void C_Options::SetVSync(const bool value)
+{
+	if (options_instance_->vsync_ != value)
+	{
+		options_instance_->vsync_ = value;
+	}
+}
+
 bool& C_Options::DisplayFPS()
 {
 	return options_instance_->display_fps_;
+}
+
+bool& C_Options::UseVSync()
+{
+	return options_instance_->vsync_;
 }

@@ -11,13 +11,16 @@ class C_Options
 
 public:
 	/* Methods. */
-	static void SetFPS(const bool value);
+	static void SetDisplayFPS(const bool value);
+	static void SetVSync(const bool value);
 
 	static bool& DisplayFPS();
+	static bool& UseVSync();
 
 private:
 	/* Attributes. */
 	bool display_fps_;
+	bool vsync_;
 
 	/* Methods. */
 	C_Options();

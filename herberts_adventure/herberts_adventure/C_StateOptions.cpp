@@ -67,7 +67,7 @@ void C_StateOptions::OnEnter()
 {
 	C_Utilities::SetText(title_text_, *font_, "Options", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
 	C_Utilities::SetText(display_fps_text_, *font_, "Display FPS", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
-	C_Utilities::SetText(display_option_text_, *font_, "Display Option Example", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
+	C_Utilities::SetText(display_option_text_, *font_, "VSync", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
 	C_Utilities::SetText(sound_option_text_, *font_, "Sound Option Example", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f));
 
 	/* Initialising local attributes. */
@@ -76,14 +76,12 @@ void C_StateOptions::OnEnter()
 	button_sound_.Init(window_, font_, "Sound", 50, sf::Vector2f(window_->getSize().x * 0.75f, window_->getSize().y * 0.4f));
 	button_menu_.Init(window_, font_, "Back", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.9f));
 
-	toggle_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f), C_Options::DisplayFPS());
+	toggle_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
+	toggle_vsync_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
 
-	/* If the application should display the FPS counter. */
-	if (C_Options::DisplayFPS())
-	{
-		/* Set the fps toggle to the display FPS counter option value. */
-		toggle_fps_.set_checked(C_Options::DisplayFPS());
-	}
+	/* Set the option toggle values. */
+	toggle_fps_.set_checked(C_Options::DisplayFPS());
+	toggle_vsync_.set_checked(C_Options::UseVSync());
 
 	/* Start with the game options displayed. */
 	button_game_.set_clicked(true);
@@ -111,6 +109,7 @@ void C_StateOptions::RenderGameOptions()
 void C_StateOptions::RenderDisplayOptions()
 {
 	window_->draw(display_option_text_);
+	window_->draw(toggle_vsync_);
 }
 
 void C_StateOptions::RenderSoundOptions()
@@ -174,7 +173,27 @@ void C_StateOptions::Render()
 			button_sound_.set_clicked(true);
 		}
 	}
-	
+}
+
+void C_StateOptions::HandleGameOptionUpdates(float& dt)
+{
+	toggle_fps_.Update(dt);
+
+	/* Set the value of the display FPS option to the toggle value of the fps option. */
+	C_Options::SetDisplayFPS(toggle_fps_.checked());
+}
+
+void C_StateOptions::HandleDisplayOptionUpdates(float& dt)
+{
+	//UNUSED(dt);
+	toggle_vsync_.Update(dt);
+
+	C_Options::SetVSync(toggle_vsync_.checked());
+}
+
+void C_StateOptions::HandleSoundOptionUpdates(float& dt)
+{
+	UNUSED(dt);
 }
 
 /*
@@ -199,10 +218,16 @@ void C_StateOptions::Update(float& dt)
 
 	if (button_game_.clicked_on())
 	{
-		toggle_fps_.Update(dt);
-
-		/* Set the value of the display FPS option to the toggle value of the fps option. */
-		C_Options::SetFPS(toggle_fps_.checked());
+		HandleGameOptionUpdates(dt);
 	}
-	
+
+	if (button_display_.clicked_on())
+	{
+		HandleDisplayOptionUpdates(dt);
+	}
+
+	if (button_sound_.clicked_on())
+	{
+		HandleSoundOptionUpdates(dt);
+	}
 }

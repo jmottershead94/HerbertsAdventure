@@ -42,8 +42,8 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 {
 	/* Initialising local attributes. */
 	screen_resolution_ = screen_resolution;
-	//window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Fullscreen);
-	window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Default);
+	window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Fullscreen);
+	//window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Default);
 	window_.setFramerateLimit(kFrameRate);
 	utilities_.Init();
 	options_.Init();
@@ -148,6 +148,16 @@ void C_Application::Render()
 	{
 		/* Display the fps. */
 		window_.draw(fps_counter_);
+	}
+
+	if (C_Options::UseVSync())
+	{
+		/* Display the fps. */
+		window_.setVerticalSyncEnabled(true);
+	}
+	else
+	{
+		window_.setVerticalSyncEnabled(false);
 	}
 
 	/* Display the new render window layout. */

@@ -9,7 +9,7 @@ C_Toggle::C_Toggle() :
 C_Toggle::~C_Toggle()
 {}
 
-void C_Toggle::Init(sf::RenderWindow * window, sf::Font* font, const sf::Vector2f position, bool& option_to_toggle)
+void C_Toggle::Init(sf::RenderWindow * window, sf::Font* font, const sf::Vector2f position)
 {
 	/* Handles base UI element initialisation. */
 	C_UIElement::Init(window, font);
@@ -23,8 +23,7 @@ void C_Toggle::Init(sf::RenderWindow * window, sf::Font* font, const sf::Vector2
 	setTextureRect(sf::IntRect(0, 0, 128, 128));
 	setPosition(position);
 	setRotation(0.0f);
-	setScale(sf::Vector2f(1.0f, 1.0f));	
-	option_to_toggle_ = option_to_toggle;
+	setScale(sf::Vector2f(1.0f, 1.0f));
 }
 
 void C_Toggle::Update(float & dt)
@@ -74,7 +73,6 @@ void C_Toggle::Update(float & dt)
 					is_checked_ = false;
 				}
 
-				option_to_toggle_ = is_checked_;
 				just_changed_ = true;
 			}
 		}

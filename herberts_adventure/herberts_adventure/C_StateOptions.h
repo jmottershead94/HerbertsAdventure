@@ -41,6 +41,9 @@ class C_StateOptions : public C_State
 		void RenderDisplayOptions();
 		void RenderSoundOptions();
 		void Render();
+		void HandleGameOptionUpdates(float& dt);
+		void HandleDisplayOptionUpdates(float& dt);
+		void HandleSoundOptionUpdates(float& dt);
 		void Update(float& dt);
 
 	private:
@@ -48,7 +51,7 @@ class C_StateOptions : public C_State
 		sf::Text display_fps_text_, display_option_text_, sound_option_text_;	/* The text used to display the option for display fps information. */
 		C_Button button_game_, button_display_, button_sound_;					/* The buttons used for the different application options. */
 		C_Button button_menu_;													/* The button used to navigate back to the main menu. */
-		C_Toggle toggle_fps_;													/* . */
+		C_Toggle toggle_fps_, toggle_vsync_;								/* . */
 };
 
 #endif
