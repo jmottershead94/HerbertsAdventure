@@ -63,6 +63,8 @@ class C_State
 		sf::Font* font_;					/* Will be used to point to the main font. */
 		sf::Text title_text_;				/* Used to allow inheriting states their own title text. */
 		sf::Music* main_theme_music_;
+		sf::SoundBuffer* ui_effect_buffer_;
+		sf::Sound* ui_sfx_;
 		C_World* world_;					/* Will be used to point to the main Box2D world. */
 		C_Timer input_delay_;				/* Used to delay input slightly between state transitions. */
 		C_Level	level_;						/* Used to access the level for the game state (and possibly game over for game play elements). */

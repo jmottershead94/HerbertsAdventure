@@ -43,6 +43,8 @@ C_State* C_StateTitle::HandleTransitions()
 		/* If the user clicks the left mouse button. */
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 		{
+			ui_sfx_->play();
+
 			/* Go to the main menu. */
 			return new C_StateMenu(*this);
 		}
@@ -63,6 +65,8 @@ void C_StateTitle::OnEnter()
 {
 	C_Utilities::SetText(title_text_, *font_, "Herbert's Adventure!", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f));
 	C_Utilities::SetText(message_, *font_, "Click Anywhere!", 50, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.5f));
+
+	main_theme_music_->play();
 
 	/* Start the input delay timer. */
 	input_delay_.start();

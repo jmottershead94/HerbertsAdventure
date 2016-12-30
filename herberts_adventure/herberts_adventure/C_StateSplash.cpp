@@ -62,16 +62,20 @@ bool C_StateSplash::LoadResources()
 	bool loaded = true;
 
 	main_theme_music_ = new sf::Music();
+	ui_effect_buffer_ = new sf::SoundBuffer();
+	ui_sfx_ = new sf::Sound();
 
 	/* Load the assets. */
-	//loaded &= font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf");
 	loaded &= ui_bg_->loadFromFile("../assets/art/SPR_swamp.png");
 	loaded &= main_theme_music_->openFromFile("../assets/audio/AUD_main_theme.ogg");
+	loaded &= ui_effect_buffer_->loadFromFile("../assets/audio/AUD_ui_effect.ogg");
 
 	/* Set the texture of the background UI sprite. */
 	ui_bg_sprite_.setTexture(*ui_bg_);
 	main_theme_music_->setLoop(true);
 	main_theme_music_->setVolume(C_Options::MusicVolume() * C_Options::MasterVolume());
+	ui_sfx_->setBuffer(*ui_effect_buffer_);
+	ui_sfx_->setVolume(C_Options::SFXVolume() * C_Options::MasterVolume());
 
 	/* Let the application know if the assets have been loaded. */
 	return loaded;
@@ -146,9 +150,7 @@ void C_StateSplash::OnEnter()
 
 */
 void C_StateSplash::OnExit()
-{
-	main_theme_music_->play();
-}
+{}
 
 /*
 

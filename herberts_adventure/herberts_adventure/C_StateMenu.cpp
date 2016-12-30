@@ -46,6 +46,8 @@ C_State* C_StateMenu::HandleTransitions()
 			/* If the user clicked on the play button. */
 			if (button_play_.is_mouse_over())
 			{
+				ui_sfx_->play();
+
 				/* Go to the game. */
 				return new C_StateGame(*this);
 			}
@@ -53,6 +55,8 @@ C_State* C_StateMenu::HandleTransitions()
 			/* If the user clicked on the options button. */
 			if (button_options_.is_mouse_over())
 			{
+				ui_sfx_->play();
+
 				/* Go to the options state. */
 				return new C_StateOptions(*this);
 			}
@@ -60,6 +64,8 @@ C_State* C_StateMenu::HandleTransitions()
 			/* If the user clicked on the credits button. */
 			if (button_credits_.is_mouse_over())
 			{
+				ui_sfx_->play();
+
 				/* Go to credits. */
 				return new C_StateCredits(*this);
 			}
@@ -67,6 +73,8 @@ C_State* C_StateMenu::HandleTransitions()
 			/* If the user clicked on the quit button. */
 			if (button_quit_.is_mouse_over())
 			{
+				ui_sfx_->play();
+
 				/* Close the window. */
 				window_->close();
 			}

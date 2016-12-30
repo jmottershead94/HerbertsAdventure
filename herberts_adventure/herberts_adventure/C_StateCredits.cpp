@@ -46,6 +46,8 @@ C_State* C_StateCredits::HandleTransitions()
 			/* If the user clicked on the menu button. */
 			if (button_menu_.is_mouse_over())
 			{
+				ui_sfx_->play();
+
 				/* Go to the main menu. */
 				return new C_StateMenu(*this);
 			}

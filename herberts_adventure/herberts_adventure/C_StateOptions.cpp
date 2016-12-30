@@ -46,6 +46,8 @@ C_State* C_StateOptions::HandleTransitions()
 			/* If the user clicked on the menu button. */
 			if (button_menu_.is_mouse_over())
 			{
+				ui_sfx_->play();
+
 				/* Go to the main menu. */
 				return new C_StateMenu(*this);
 			}
@@ -189,6 +191,11 @@ void C_StateOptions::Render()
 	{
 		if (button_game_.is_mouse_over())
 		{
+			if (ui_sfx_->getStatus() != sf::Sound::Status::Playing)
+			{
+				ui_sfx_->play();
+			}
+
 			button_game_.set_clicked(true);
 			button_display_.set_clicked(false);
 			button_sound_.set_clicked(false);
@@ -196,6 +203,11 @@ void C_StateOptions::Render()
 
 		if (button_display_.is_mouse_over())
 		{
+			if (ui_sfx_->getStatus() != sf::Sound::Status::Playing)
+			{
+				ui_sfx_->play();
+			}
+
 			button_game_.set_clicked(false);
 			button_display_.set_clicked(true);
 			button_sound_.set_clicked(false);
@@ -203,6 +215,11 @@ void C_StateOptions::Render()
 
 		if (button_sound_.is_mouse_over())
 		{
+			if (ui_sfx_->getStatus() != sf::Sound::Status::Playing)
+			{
+				ui_sfx_->play();
+			}
+
 			button_game_.set_clicked(false);
 			button_display_.set_clicked(false);
 			button_sound_.set_clicked(true);
@@ -221,7 +238,6 @@ void C_StateOptions::HandleGameOptionUpdates(float& dt)
 void C_StateOptions::HandleDisplayOptionUpdates(float& dt)
 {
 	toggle_vsync_.Update(dt);
-
 	C_Options::SetVSync(toggle_vsync_.checked());
 }
 
@@ -236,6 +252,7 @@ void C_StateOptions::HandleSoundOptionUpdates(float& dt)
 	C_Options::SetSFXVolume(slider_sfx_volume_.value());
 
 	main_theme_music_->setVolume(C_Options::MusicVolume() * C_Options::MasterVolume());
+	ui_sfx_->setVolume(C_Options::SFXVolume() * C_Options::MasterVolume());
 }
 
 /*

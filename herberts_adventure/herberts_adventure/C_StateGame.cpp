@@ -43,6 +43,8 @@ C_State* C_StateGame::HandleTransitions()
 		/* If the user clicks the left mouse button. */
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 		{
+			ui_sfx_->play();
+
 			/* Go to the main menu. */
 			return new C_StateMenu(*this);
 		}
