@@ -185,7 +185,6 @@ void C_StateOptions::HandleGameOptionUpdates(float& dt)
 
 void C_StateOptions::HandleDisplayOptionUpdates(float& dt)
 {
-	//UNUSED(dt);
 	toggle_vsync_.Update(dt);
 
 	C_Options::SetVSync(toggle_vsync_.checked());

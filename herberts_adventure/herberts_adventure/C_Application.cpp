@@ -152,7 +152,6 @@ void C_Application::Render()
 
 	if (C_Options::UseVSync())
 	{
-		/* Display the fps. */
 		window_.setVerticalSyncEnabled(true);
 	}
 	else

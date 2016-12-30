@@ -3,7 +3,12 @@
 /* The static instance of options. */
 C_Options* options_instance_ = nullptr;
 
-C_Options::C_Options()
+C_Options::C_Options() :
+	display_fps_(true),
+	vsync_(true),
+	master_volume_(100.0f),
+	music_volume_(100.0f),
+	sfx_volume_(100.0f)
 {}
 
 /*
@@ -44,6 +49,7 @@ void C_Options::CleanUp()
 	}
 }
 
+/* Game Options. */
 void C_Options::SetDisplayFPS(const bool value)
 {
 	if (options_instance_->display_fps_ != value)
@@ -52,6 +58,12 @@ void C_Options::SetDisplayFPS(const bool value)
 	}
 }
 
+bool& C_Options::DisplayFPS()
+{
+	return options_instance_->display_fps_;
+}
+
+/* Display Options. */
 void C_Options::SetVSync(const bool value)
 {
 	if (options_instance_->vsync_ != value)
@@ -60,12 +72,38 @@ void C_Options::SetVSync(const bool value)
 	}
 }
 
-bool& C_Options::DisplayFPS()
-{
-	return options_instance_->display_fps_;
-}
-
 bool& C_Options::UseVSync()
 {
 	return options_instance_->vsync_;
+}
+
+/* Sound Options. */
+void C_Options::SetMasterVolume(const float value)
+{
+	options_instance_->master_volume_ = value;
+}
+
+float& C_Options::MasterVolume()
+{
+	return options_instance_->master_volume_;
+}
+
+void C_Options::SetMusicVolume(const float value)
+{
+	options_instance_->music_volume_ = value;
+}
+
+float& C_Options::MusicVolume()
+{
+	return options_instance_->music_volume_;
+}
+
+void C_Options::SetSFXVolume(const float value)
+{
+	options_instance_->sfx_volume_ = value;
+}
+
+float& C_Options::SFXVolume()
+{
+	return options_instance_->sfx_volume_;
 }

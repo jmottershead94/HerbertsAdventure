@@ -119,10 +119,13 @@
     <ClCompile Include="C_Debug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
-    <ClCompile Include="C_Toggle.cpp">
+    <ClCompile Include="C_Options.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C_Options.cpp">
+    <ClCompile Include="C_Toggle.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Slider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -211,10 +214,13 @@
     <ClInclude Include="C_Debug.h">
       <Filter>Debug</Filter>
     </ClInclude>
-    <ClInclude Include="C_Toggle.h">
+    <ClInclude Include="C_Options.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C_Options.h">
+    <ClInclude Include="C_Toggle.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Slider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
