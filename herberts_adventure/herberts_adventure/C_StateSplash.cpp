@@ -127,7 +127,8 @@ void C_StateSplash::OnEnter()
 
 	/* Setup the sound */
 	sfx_.setBuffer(sfx_buffer_);
-	sfx_.setVolume(10.0f);
+	sfx_.setVolume(20.0f);
+	//sfx_.setVolume(C_Options::SFXVolume() * C_Options::MasterVolume());
 
 	/* Play the sound effect. */
 	sfx_.play();

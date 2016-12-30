@@ -21,7 +21,8 @@ public:
 
 	/* Sound Options. */
 	static void SetMasterVolume(const float value);
-	static float& MasterVolume();
+	static float& MasterVolumeSlider();
+	static float MasterVolume();
 
 	static void SetMusicVolume(const float value);
 	static float& MusicVolume();

@@ -83,9 +83,15 @@ void C_Options::SetMasterVolume(const float value)
 	options_instance_->master_volume_ = value;
 }
 
-float& C_Options::MasterVolume()
+float & C_Options::MasterVolumeSlider()
 {
 	return options_instance_->master_volume_;
+}
+
+float C_Options::MasterVolume()
+{
+	float master_volume = options_instance_->master_volume_ * 0.01f;
+	return master_volume;
 }
 
 void C_Options::SetMusicVolume(const float value)

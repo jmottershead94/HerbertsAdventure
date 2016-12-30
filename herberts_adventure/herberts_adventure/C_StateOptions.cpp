@@ -81,15 +81,15 @@ void C_StateOptions::OnEnter()
 	toggle_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
 	toggle_vsync_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
 
-	slider_master_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
-	slider_music_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.55f));
-	slider_sfx_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.65f));
+	slider_master_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.475f));
+	slider_music_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.575f));
+	slider_sfx_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.675f));
 
 	/* Set the option toggle values. */
 	toggle_fps_.set_checked(C_Options::DisplayFPS());
 	toggle_vsync_.set_checked(C_Options::UseVSync());
 
-	slider_master_volume_.set_value(C_Options::MasterVolume());
+	slider_master_volume_.set_value(C_Options::MasterVolumeSlider());
 	slider_music_volume_.set_value(C_Options::MusicVolume());
 	slider_sfx_volume_.set_value(C_Options::SFXVolume());
 
@@ -127,9 +127,21 @@ void C_StateOptions::RenderSoundOptions()
 	window_->draw(master_volume_text_);
 	window_->draw(music_volume_text_);
 	window_->draw(sfx_volume_text_);
-	window_->draw(slider_master_volume_);
-	window_->draw(slider_music_volume_);
-	window_->draw(slider_sfx_volume_);
+
+	for (int i = 0; i < 10; i++)
+	{
+		window_->draw(slider_master_volume_.get_sprites()[i]);
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		window_->draw(slider_music_volume_.get_sprites()[i]);
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		window_->draw(slider_sfx_volume_.get_sprites()[i]);
+	}
 
 	C_Utilities::SetText(master_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_master_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.5f));
 	C_Utilities::SetText(music_volume_value_text_, *font_, C_Utilities::FloatToString(0, slider_music_volume_.value()), 20, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.6f));
