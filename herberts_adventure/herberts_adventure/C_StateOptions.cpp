@@ -82,9 +82,12 @@ void C_StateOptions::OnEnter()
 	button_menu_.Init(window_, font_, "Back", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.9f));
 
 	toggle_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
+	toggle_fps_.setScale(0.75f, 0.75f);
 
 	toggle_vsync_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
+	toggle_vsync_.setScale(0.75f, 0.75f);
 	toggle_locked_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.55f));
+	toggle_locked_fps_.setScale(0.75f, 0.75f);
 
 	slider_master_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.475f), 10, sf::Vector2f(0.0f, 100.0f));
 	slider_music_volume_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.575f), 10, sf::Vector2f(0.0f, 100.0f));
