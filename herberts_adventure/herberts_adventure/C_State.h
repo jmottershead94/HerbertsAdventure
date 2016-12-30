@@ -23,7 +23,6 @@
 
 /* Include header files here. */
 /* Application. */
-#include "C_Utilities.h"
 #include "C_Options.h"
 #include "C_Timer.h"
 #include "C_Level.h"
@@ -58,14 +57,15 @@ class C_State
 
 	protected:
 		/* Attributes. */
-		sf::RenderWindow* window_;		/* Will be used to point to the main game window. */
-		sf::Texture* ui_bg_;			/* Used to store the background image for different states. */
-		sf::Sprite ui_bg_sprite_;		/* Used to display the background image. */
-		sf::Font* font_;				/* Will be used to point to the main font. */
-		sf::Text title_text_;			/* Used to allow inheriting states their own title text. */
-		C_World* world_;				/* Will be used to point to the main Box2D world. */
-		C_Timer input_delay_;			/* Used to delay input slightly between state transitions. */
-		C_Level	level_;					/* Used to access the level for the game state (and possibly game over for game play elements). */
+		sf::RenderWindow* window_;			/* Will be used to point to the main game window. */
+		sf::Texture* ui_bg_;				/* Used to store the background image for different states. */
+		sf::Sprite ui_bg_sprite_;			/* Used to display the background image. */
+		sf::Font* font_;					/* Will be used to point to the main font. */
+		sf::Text title_text_;				/* Used to allow inheriting states their own title text. */
+		sf::Music* main_theme_music_;
+		C_World* world_;					/* Will be used to point to the main Box2D world. */
+		C_Timer input_delay_;				/* Used to delay input slightly between state transitions. */
+		C_Level	level_;						/* Used to access the level for the game state (and possibly game over for game play elements). */
 };
 
 #endif

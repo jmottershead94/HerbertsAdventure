@@ -234,6 +234,8 @@ void C_StateOptions::HandleSoundOptionUpdates(float& dt)
 	C_Options::SetMasterVolume(slider_master_volume_.value());
 	C_Options::SetMusicVolume(slider_music_volume_.value());
 	C_Options::SetSFXVolume(slider_sfx_volume_.value());
+
+	main_theme_music_->setVolume(C_Options::MusicVolume() * C_Options::MasterVolume());
 }
 
 /*

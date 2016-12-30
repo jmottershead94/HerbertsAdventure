@@ -61,12 +61,17 @@ bool C_StateSplash::LoadResources()
 	/* The current loaded status of the assets. */
 	bool loaded = true;
 
+	main_theme_music_ = new sf::Music();
+
 	/* Load the assets. */
 	//loaded &= font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf");
 	loaded &= ui_bg_->loadFromFile("../assets/art/SPR_swamp.png");
+	loaded &= main_theme_music_->openFromFile("../assets/audio/AUD_main_theme.ogg");
 
 	/* Set the texture of the background UI sprite. */
 	ui_bg_sprite_.setTexture(*ui_bg_);
+	main_theme_music_->setLoop(true);
+	main_theme_music_->setVolume(C_Options::MusicVolume() * C_Options::MasterVolume());
 
 	/* Let the application know if the assets have been loaded. */
 	return loaded;
@@ -116,7 +121,7 @@ void C_StateSplash::OnEnter()
 
 	/* If the splash screen image cannot be loaded correctly. */
 	if (!indie_jay->loadFromFile("../assets/art/SPR_indie_jay_splash_screen_1080px.png")
-		|| !sfx_buffer_.loadFromFile("../assets/audio/AUD_splash_screen_sound_effect.wav"))
+		|| !sfx_buffer_.loadFromFile("../assets/audio/AUD_splash_screen_sound_effect.ogg"))
 	{
 		/* Exit the application. */
 		exit(-1);
@@ -127,8 +132,7 @@ void C_StateSplash::OnEnter()
 
 	/* Setup the sound */
 	sfx_.setBuffer(sfx_buffer_);
-	sfx_.setVolume(20.0f);
-	//sfx_.setVolume(C_Options::SFXVolume() * C_Options::MasterVolume());
+	sfx_.setVolume(10.0f);
 
 	/* Play the sound effect. */
 	sfx_.play();
@@ -142,7 +146,9 @@ void C_StateSplash::OnEnter()
 
 */
 void C_StateSplash::OnExit()
-{}
+{
+	main_theme_music_->play();
+}
 
 /*
 
