@@ -50,6 +50,13 @@ C_State* C_StateMenu::HandleTransitions()
 				return new C_StateGame(*this);
 			}
 
+			/* If the user clicked on the options button. */
+			if (button_options_.is_mouse_over())
+			{
+				/* Go to the options state. */
+				return new C_StateOptions(*this);
+			}
+
 			/* If the user clicked on the credits button. */
 			if (button_credits_.is_mouse_over())
 			{

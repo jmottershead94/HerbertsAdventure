@@ -95,6 +95,13 @@ void C_Button::Update(float& dt)
 		{
 			/* It is in focus. */
 			set_focus(true);
+
+			/* If the user has clicked on this button. */
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				/* Set the clicked on flag to true. */
+				clicked_on_ = true;
+			}
 		}
 		/* Otherwise, the mouse is not over this button. */
 		else
@@ -102,6 +109,11 @@ void C_Button::Update(float& dt)
 			/* It is no longer in focus. */
 			set_focus(false);
 		}
+	}
+
+	if (clicked_on_)
+	{
+		InFocusResponse();
 	}
 }
 

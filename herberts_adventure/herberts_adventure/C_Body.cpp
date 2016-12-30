@@ -14,6 +14,7 @@ void C_Body::Init(const int id, C_GameObject& game_object, const float mass, con
 	rotation_ = game_object.getRotation();
 	collider_ = game_object.getGlobalBounds();
 	mass_ = mass;
+	inverse_mass_ = 1.0f / mass_;
 	is_kinematic_ = is_kinematic;
 	density_ = density;
 	friction_ = friction;
@@ -23,7 +24,7 @@ void C_Body::Init(const int id, C_GameObject& game_object, const float mass, con
 void C_Body::ApplyForce(const sf::Vector2f force, float& dt)
 {
 	/* Calculate the acceleration based on the force desired and the mass of the body. */
-	sf::Vector2f a = force / mass_;
+	sf::Vector2f a = force / inverse_mass_;
 
 	/* Calculate the difference in the velocity. */
 	sf::Vector2f dv = a * dt;

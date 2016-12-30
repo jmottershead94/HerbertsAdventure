@@ -38,6 +38,7 @@ class C_Body
 		float rotation_;			/* Stores the rotation of the collider. */
 		sf::FloatRect collider_;	/* Stores the bounds of the collider. */
 		float mass_;				/* How much the object weighs. */
+		float inverse_mass_;		/* The inverse of the mass. */
 		bool is_kinematic_;			/* If this body is kinematic or not. */
 		float density_;				/* The density for the body. */
 		float friction_;			/* How much friction the body has. */

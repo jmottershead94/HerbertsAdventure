@@ -41,8 +41,14 @@ class C_Button : public C_UIElement
 		/* This will allow us to see if the button is interactable. */
 		inline const bool& is_interactable() { return (interactable_);  }
 
+		/* This will allow us to see if the button is interactable. */
+		inline const bool& clicked_on() { return (clicked_on_); }
+
 		/* This will allow us to set the button as interactable or not. */
 		inline void set_interactable(const bool value) { interactable_ = value; }
+
+		/* This will allow us to set the button as initially clicked on or not. */
+		inline void set_clicked(const bool value) { clicked_on_ = value; }
 
 	protected:
 		/* Methods. */
@@ -53,6 +59,7 @@ class C_Button : public C_UIElement
 		/* Attributes. */
 		unsigned int original_scale_, highlighted_scale_;	/* This will be used to scale the button up/down. */
 		bool interactable_;									/* If this button is interactable. */
+		bool clicked_on_;									/* If this button has been clicked on. */
 		sf::Text text_;										/* The text that will be displayed to describe the button. */
 		sf::Color original_colour_, highlighted_colour_;	/* This will be used to change the colour depending if the user is hovering the mouse over the button. */
 };

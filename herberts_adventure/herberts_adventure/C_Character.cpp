@@ -49,7 +49,7 @@ void C_Character::Init(const int id, C_World* world, C_InputComponent* input, co
 
 	/* Handles base game object initialisation. */
 	C_GameObject::Init(id, world, physics_body, input, filename, position, rotation, scale);
-	physics_body->Init(id, *this, 1.0f, false, 1.0f, 0.3f, 0.0f);
+	physics_body->Init(id, *this, 10.0f, false, 1.0f, 0.3f, 0.0f);
 }
 
 /*

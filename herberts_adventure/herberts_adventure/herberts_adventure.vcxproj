@@ -182,6 +182,7 @@
     <ClCompile Include="C_StateSplash.cpp" />
     <ClCompile Include="C_StateTitle.cpp" />
     <ClCompile Include="C_Timer.cpp" />
+    <ClCompile Include="C_Toggle.cpp" />
     <ClCompile Include="C_UIElement.cpp" />
     <ClCompile Include="C_Utilities.cpp" />
     <ClCompile Include="C_World.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="C_StateSplash.h" />
     <ClInclude Include="C_StateTitle.h" />
     <ClInclude Include="C_Timer.h" />
+    <ClInclude Include="C_Toggle.h" />
     <ClInclude Include="C_UIElement.h" />
     <ClInclude Include="C_Utilities.h" />
     <ClInclude Include="C_World.h" />
