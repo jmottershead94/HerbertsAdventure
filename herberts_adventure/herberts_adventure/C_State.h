@@ -24,6 +24,7 @@
 /* Include header files here. */
 /* Application. */
 #include "C_Utilities.h"
+#include "C_Options.h"
 #include "C_Timer.h"
 #include "C_Level.h"
 #include "C_Button.h"

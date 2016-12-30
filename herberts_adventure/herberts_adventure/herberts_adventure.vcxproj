@@ -169,6 +169,7 @@
     <ClCompile Include="C_InputComponent.cpp" />
     <ClCompile Include="C_Level.cpp" />
     <ClCompile Include="C_NullPhysicsComponent.cpp" />
+    <ClCompile Include="C_Options.cpp" />
     <ClCompile Include="C_PhysicsBody.cpp" />
     <ClCompile Include="C_Player.cpp" />
     <ClCompile Include="C_PlayerInputComponent.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="C_InputComponent.h" />
     <ClInclude Include="C_Level.h" />
     <ClInclude Include="C_NullPhysicsComponent.h" />
+    <ClInclude Include="C_Options.h" />
     <ClInclude Include="C_PhysicsBody.h" />
     <ClInclude Include="C_Player.h" />
     <ClInclude Include="C_PlayerInputComponent.h" />

@@ -76,7 +76,14 @@ void C_StateOptions::OnEnter()
 	button_sound_.Init(window_, font_, "Sound", 50, sf::Vector2f(window_->getSize().x * 0.75f, window_->getSize().y * 0.4f));
 	button_menu_.Init(window_, font_, "Back", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.9f));
 
-	toggle_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f));
+	toggle_fps_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.65f, window_->getSize().y * 0.45f), C_Options::DisplayFPS());
+
+	/* If the application should display the FPS counter. */
+	if (C_Options::DisplayFPS())
+	{
+		/* Set the fps toggle to the display FPS counter option value. */
+		toggle_fps_.set_checked(C_Options::DisplayFPS());
+	}
 
 	/* Start with the game options displayed. */
 	button_game_.set_clicked(true);
@@ -99,7 +106,6 @@ void C_StateOptions::RenderGameOptions()
 {	
 	window_->draw(display_fps_text_);
 	window_->draw(toggle_fps_);
-	//toggle_fps_.Render();
 }
 
 void C_StateOptions::RenderDisplayOptions()
@@ -194,5 +200,9 @@ void C_StateOptions::Update(float& dt)
 	if (button_game_.clicked_on())
 	{
 		toggle_fps_.Update(dt);
+
+		/* Set the value of the display FPS option to the toggle value of the fps option. */
+		C_Options::SetFPS(toggle_fps_.checked());
 	}
+	
 }

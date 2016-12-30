@@ -46,6 +46,7 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Default);
 	window_.setFramerateLimit(kFrameRate);
 	utilities_.Init();
+	options_.Init();
 	debug_.Init();
 
 	/* If the main font file does not load. */
@@ -78,6 +79,7 @@ void C_Application::CleanUp()
 {
 	/* Clean up attribute values. */
 	utilities_.CleanUp();
+	options_.CleanUp();
 	CLEANUPDELETE(current_state_);
 	DELETE(world_);
 }
@@ -142,8 +144,11 @@ void C_Application::Render()
 	/* Render application stuff here... */
 	current_state_->Render();
 
-	/* Display the fps. */
-	window_.draw(fps_counter_);
+	if (C_Options::DisplayFPS())
+	{
+		/* Display the fps. */
+		window_.draw(fps_counter_);
+	}
 
 	/* Display the new render window layout. */
 	window_.display();
