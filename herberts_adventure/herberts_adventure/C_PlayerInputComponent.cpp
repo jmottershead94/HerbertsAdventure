@@ -41,8 +41,11 @@ void C_PlayerInputComponent::Update(C_GameObject& game_object, float& dt)
 	{
 		if (game_object.rigidbody()->body()->on_the_ground() || game_object.rigidbody()->body()->has_collided())
 		{
-			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(0.0f, -game_object.movement_speed() * 20.0f), dt);
-			//game_object.rigidbody()->body()->ResetCollisionProperties();
+			if (game_object.rigidbody()->body()->can_jump())
+			{
+				game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(0.0f, -game_object.movement_speed() * 20.0f), dt);
+				game_object.rigidbody()->body()->set_jump_flag(false);
+			}
 		}
 	}
 

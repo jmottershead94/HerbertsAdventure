@@ -37,7 +37,7 @@ void C_Level::Init(C_World* world, sf::RenderWindow* window)
 	floor_physics_body->Init(floor_.id(), floor_, 100.0f, true, 1.0f, 0.3f, 0.3f);
 
 	C_PhysicsBody* platform_physics_body = new C_PhysicsBody();
-	platform_.Init(3, world_, platform_physics_body, new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.0f, window_->getSize().y * 0.65f), 0.0f, sf::Vector2f(5.0f, 1.0f));
+	platform_.Init(2, world_, platform_physics_body, new C_DemoInputComponent(), "SPR_button.png", sf::Vector2f(window_->getSize().x * 0.75f, window_->getSize().y * 0.75f), 0.0f, sf::Vector2f(5.0f, 1.0f));
 	platform_physics_body->Init(platform_.id(), platform_, 100.0f, true, 1.0f, 0.3f, 0.3f);
 }
 

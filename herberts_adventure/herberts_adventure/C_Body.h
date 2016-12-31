@@ -30,6 +30,8 @@ class C_Body
 
 		inline const bool& on_the_ground() { return on_ground_; }
 
+		inline const bool& can_jump() { return can_jump_; }
+
 		inline const bool& has_collided() { return collided_; }
 
 		inline sf::Vector2f& velocity() { return velocity_; }
@@ -37,6 +39,8 @@ class C_Body
 		inline sf::FloatRect& collider() { return collider_; }
 
 		inline void set_on_ground(const bool value) { on_ground_ = value; }
+
+		inline void set_jump_flag(const bool value) { can_jump_ = value; }
 
 		inline void set_collided(const bool value) { collided_ = value; }
 
@@ -48,6 +52,7 @@ class C_Body
 		std::vector<bool> collision_flags_;
 		int id_ = 0;
 		bool on_ground_ = false;
+		bool can_jump_ = false;
 		bool collided_ = false;
 		C_Body* colliding_body_;	/* Stores the body that the collider is currently colliding with. */
 		sf::Vector2f position_;		/* Stores the position of the collider */

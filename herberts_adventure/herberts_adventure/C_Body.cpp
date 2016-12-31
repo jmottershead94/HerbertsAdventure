@@ -28,13 +28,14 @@ void C_Body::ApplyForce(const sf::Vector2f force, float& dt)
 
 	/* Calculate the acceleration based on the force desired and the mass of the body. */
 	sf::Vector2f a = force / inverse_mass_;
+	//sf::Vector2f a = force / mass_;
 
 	/* Calculate the difference in the velocity. */
-	sf::Vector2f dv = a/* * dt*/;
+	sf::Vector2f dv = a;
 	velocity_ += dv;
 
 	/* Calculate the difference in the position. */
-	sf::Vector2f ds = velocity_/* * dt*/;
+	sf::Vector2f ds = velocity_;
 	translation_ += ds;
 
 	position_ += (translation_ * dt);
@@ -43,6 +44,7 @@ void C_Body::ApplyForce(const sf::Vector2f force, float& dt)
 void C_Body::ResetCollisionProperties()
 {
 	on_ground_ = false;
+	can_jump_ = true;
 	collided_ = false;
 	colliding_bodies_.clear();
 	collision_flags_.clear();
