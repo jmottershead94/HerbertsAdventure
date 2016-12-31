@@ -23,6 +23,9 @@ void C_World::CleanUp()
 
 void C_World::CheckBodyCollisions(C_Body& body)
 {
+	/* Reset collision properties because we are about to check them again. */
+	body.ResetCollisionProperties();
+
 	/* O(N^2) - Well this sucks... */
 	/* Loop through all of the bodies backwards. */
 	for (std::vector<C_Body*>::iterator other_body = bodies_.begin(); other_body != bodies_.end(); other_body++)
@@ -32,7 +35,6 @@ void C_World::CheckBodyCollisions(C_Body& body)
 		{
 			if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::none)
 			{
-				body.on_ground_ = false;
 				body.collision_flags_.push_back(false);
 			}
 			else
@@ -44,12 +46,18 @@ void C_World::CheckBodyCollisions(C_Body& body)
 				{
 					body.on_ground_ = true;
 				}
-				else if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::top)
-				{}
-				else if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::right)
-				{}
-				else if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::left)
-				{}
+				
+				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::top)
+				{
+				}
+				
+				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::right)
+				{
+				}
+				
+				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::left)
+				{
+				}
 			}
 		}
 	}
@@ -57,48 +65,45 @@ void C_World::CheckBodyCollisions(C_Body& body)
 
 void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 {
-	/* Assume the body has not collided. */
-	body.collided_ = false;
-
+	/* If the body is not on the ground. */
 	if (!body.on_ground_)
 	{
+		/* Apply gravity to the body. */
 		body.ApplyForce(-gravity_, dt);
 	}
 
+	/* Looping through each of the collision flags. */
 	for (std::vector<bool>::iterator collision = body.collision_flags_.begin(); collision != body.collision_flags_.end(); collision++)
 	{
+		/* If any of the collision flags are true. */
 		if ((*collision))
 		{
+			/* The body has collided with something. */
 			body.collided_ = true;
 			break;
 		}
 	}
 
-	if (!body.collided_)
-	{
-		body.colliding_bodies_.clear();
-		body.collision_flags_.clear();
-	}
+	/* TODO: Loop through colliding bodies and provide standard collision response. */
+
 }
 
 void C_World::ProcessBodies(float& dt)
 {
-	UNUSED(dt);
-
 	/* Looping through all of the bodies. */
 	if (!bodies_.empty())
 	{
 		for (std::vector<C_Body*>::iterator body = bodies_.begin(); body != bodies_.end(); body++)
 		{
 			/* If the body is dynamic. */
-			if (!(**body).is_kinematic_)
-			{
+			//if (!(**body).is_kinematic_)
+			//{
 				/* Loop through each body in the world and check for collisions. */
 				CheckBodyCollisions((**body));
+			//}
 
-				/* Provide a response for any collisions. */
-				BodyCollisionResponse((**body), dt);
-			}
+			/* Provide a response for any collisions. */
+			BodyCollisionResponse((**body), dt);
 		}
 	}
 }
@@ -108,7 +113,7 @@ void C_World::Update(float& dt)
 	ProcessBodies(dt);
 }
 
-C_Body * C_World::CreateBody(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
+C_Body* C_World::CreateBody(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
 {
 	/* Initialising a new body. */
 	C_Body* new_body = new C_Body();

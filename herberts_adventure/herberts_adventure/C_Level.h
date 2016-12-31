@@ -43,7 +43,7 @@ class C_Level
 		C_Player test_;					/* Testing game objects out. */
 		C_Character collider_test_;		/* Testing collisions out. */
 		C_Collision2D collider_;		/* Testing collisions out. */
-		C_GameObject floor_;	
+		C_GameObject floor_, platform_;	
 };
 
 #endif

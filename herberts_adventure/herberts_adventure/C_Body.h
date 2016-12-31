@@ -4,6 +4,7 @@
 #include "C_GameObject.h"
 
 class C_GameObject;
+class C_Collision2D;
 
 class C_Body
 {

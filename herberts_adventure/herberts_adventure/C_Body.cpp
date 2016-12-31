@@ -23,7 +23,6 @@ void C_Body::Init(const int id, C_GameObject& game_object, const float mass, con
 
 void C_Body::ApplyForce(const sf::Vector2f force, float& dt)
 {
-	UNUSED(dt);
 	velocity_ = sf::Vector2f(0.0f, 0.0f);
 	translation_ = sf::Vector2f(0.0f, 0.0f);
 
