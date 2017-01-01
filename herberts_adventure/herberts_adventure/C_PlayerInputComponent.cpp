@@ -61,7 +61,7 @@ void C_PlayerInputComponent::Update(C_GameObject& game_object, float& dt)
 		if (game_object.rigidbody()->body()->on_the_ground() || game_object.rigidbody()->body()->has_collided())
 		{
 			/* Move the rigidbody to the left and act against gravity. */
-			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-game_object.movement_speed(), -game_object.movement_speed()), dt);
+			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-game_object.movement_speed(), -game_object.movement_speed() * 0.5f), dt);
 		}
 		/* Otherwise, if the rigidbody is not on the ground. */
 		else if(!game_object.rigidbody()->body()->on_the_ground())
@@ -77,7 +77,7 @@ void C_PlayerInputComponent::Update(C_GameObject& game_object, float& dt)
 		if (game_object.rigidbody()->body()->on_the_ground() || game_object.rigidbody()->body()->has_collided())
 		{
 			/* Move the rigidbody to the right and act against gravity. */
-			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(game_object.movement_speed(), -game_object.movement_speed()), dt);
+			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(game_object.movement_speed(), -game_object.movement_speed() * 0.5f), dt);
 		}
 		/* Otherwise, if the rigidbody is not on the ground. */
 		else if (!game_object.rigidbody()->body()->on_the_ground())

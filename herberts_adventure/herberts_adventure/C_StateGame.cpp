@@ -82,7 +82,6 @@ void C_StateGame::OnEnter()
 void C_StateGame::OnExit()
 {
 	camera_->reset(camera_->viewport());
-	//camera_->setCenter(sf::Vector2f(camera_->viewport().left + (camera_->viewport_.width * 0.5f), viewport_.top + (viewport_.height * 0.5f)));
 
 	world_->CleanUp();
 }

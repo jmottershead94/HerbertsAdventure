@@ -65,9 +65,7 @@ void C_Level::Render()
 
 void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
 {
-	ObjectID id = game_object.id();
-
-	switch (id)
+	switch (game_object.id())
 	{
 		case(ObjectID::staticObject):
 		{
@@ -87,7 +85,6 @@ void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
 		case(ObjectID::ui) :
 		{
 			game_object.Update(dt);
-
 			break;
 		}
 		case(ObjectID::playerOne) :
