@@ -44,9 +44,12 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	screen_resolution_ = screen_resolution;
 	window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Fullscreen);
 	//window_.create(sf::VideoMode(screen_resolution_.x, screen_resolution_.y), "Herberts Adventure", sf::Style::Default);
+	camera_.Init(&window_, sf::FloatRect(0.0f, 0.0f, 1920.0f, 1080.0f));
 	utilities_.Init();
 	options_.Init();
 	debug_.Init();
+
+	window_.setView(camera_);
 
 	/* If the main font file does not load. */
 	if (!font_.loadFromFile("../assets/art/FNT_heygorgeous.ttf"))
@@ -63,7 +66,7 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	world_->Init(gravity);
 
 	/* Starting the state machine. */
-	current_state_ = new C_StateSplash(&window_, &font_, world_);
+	current_state_ = new C_StateSplash(&window_, &font_, world_, &camera_);
 	current_state_->OnEnter();
 }
 
@@ -140,11 +143,17 @@ void C_Application::Render()
 	/* Clear the current render window. */
 	window_.clear();
 
+	/* Update the view of the application with the camera. */
+	window_.setView(camera_);
+
 	/* Render application stuff here... */
 	current_state_->Render();
 
 	if (C_Options::DisplayFPS())
 	{
+		/* Keeps the FPS counter in the bottom right of the screen, so it follows the camera wherever it goes. */
+		fps_counter_.setPosition(sf::Vector2f(camera_.getCenter().x + (camera_.viewport().width * 0.4f), camera_.getCenter().y + (camera_.viewport().height * 0.45f)));
+
 		/* Display the fps. */
 		window_.draw(fps_counter_);
 	}

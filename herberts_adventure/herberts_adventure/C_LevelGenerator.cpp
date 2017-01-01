@@ -6,11 +6,12 @@ C_LevelGenerator::C_LevelGenerator()
 C_LevelGenerator::~C_LevelGenerator()
 {}
 
-void C_LevelGenerator::Init(sf::RenderWindow* window, C_World * world, int& level_number)
+void C_LevelGenerator::Init(sf::RenderWindow* window, C_World * world, C_Camera* camera, int& level_number)
 {
 	/* Initialising local attributes. */
 	window_ = window;
 	world_ = world;
+	camera_ = camera;
 	ifstream_ = new std::ifstream();
 
 	RestartLevel(level_number);
@@ -122,7 +123,7 @@ void C_LevelGenerator::ReadTextFile()
 					IncrementObjectWidth(default_width, text_file_width, map_coordinates.x, text_file_char);
 				}
 
-				CreatePlayer(ObjectID::playerOne, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
+				CreatePlayer(ObjectID::playerOne, camera_, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
 			case ('\n') :
@@ -142,11 +143,11 @@ void C_LevelGenerator::ReadTextFile()
 	}
 }
 
-C_Player* C_LevelGenerator::CreatePlayer(const ObjectID id, sf::Vector2f position, sf::Vector2f scale)
+C_Player* C_LevelGenerator::CreatePlayer(const ObjectID id, C_Camera* camera, sf::Vector2f position, sf::Vector2f scale)
 {
 	C_Player* player = new C_Player();
 
-	player->Init(id, world_, "SPR_button.png", position, 0.0f, scale);
+	player->Init(id, world_, camera, "SPR_button.png", position, 0.0f, scale);
 
 	objects_.push_back(player);
 

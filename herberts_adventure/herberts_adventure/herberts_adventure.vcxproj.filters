@@ -128,6 +128,9 @@
     <ClCompile Include="C_LevelGenerator.cpp">
       <Filter>Levels</Filter>
     </ClCompile>
+    <ClCompile Include="C_Camera.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Application.h">
@@ -228,6 +231,9 @@
     </ClInclude>
     <ClInclude Include="C_LevelGenerator.h">
       <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Camera.h">
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

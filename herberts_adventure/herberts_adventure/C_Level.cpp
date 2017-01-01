@@ -26,17 +26,13 @@ C_Level::C_Level() :
 	sf::RenderWindow* window	-	Provides access to the main render window in the application class.
 
 */
-void C_Level::Init(C_World* world, sf::RenderWindow* window)
+void C_Level::Init(C_World* world, C_Camera* camera, sf::RenderWindow* window)
 {
 	/* Initialising local attributes. */
 	window_ = window;
+	camera_ = camera;
 	world_ = world;
-	level_generator_.Init(window, world, level_number_);
-
-	/*level_generator_.CreatePlayer(ObjectID::playerOne, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f), sf::Vector2f(1.0f, 1.0f));
-	level_generator_.CreateCharacter(ObjectID::character, sf::Vector2f(window_->getSize().x * 0.55f, window_->getSize().y * 0.5f), sf::Vector2f(1.0f, 1.0f));
-	level_generator_.CreatePlatform(ObjectID::staticObject, sf::Vector2f(window_->getSize().x * 0.0f, window_->getSize().y * 0.85f), sf::Vector2f(17.0f, 1.0f));
-	level_generator_.CreatePlatform(ObjectID::staticObject, sf::Vector2f(window_->getSize().x * 0.75f, window_->getSize().y * 0.75f), sf::Vector2f(5.0f, 1.0f));*/
+	level_generator_.Init(window, world, camera_, level_number_);
 }
 
 /*
@@ -67,6 +63,62 @@ void C_Level::Render()
 	}
 }
 
+void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
+{
+	ObjectID id = game_object.id();
+
+	switch (id)
+	{
+		case(ObjectID::staticObject):
+		{
+			game_object.Update(dt);
+			break;
+		}
+		case(ObjectID::dynamicObject) :
+		{
+			game_object.Update(dt);
+			break;
+		}
+		case(ObjectID::trigger) :
+		{
+			game_object.Update(dt);
+			break;
+		}
+		case(ObjectID::ui) :
+		{
+			game_object.Update(dt);
+
+			break;
+		}
+		case(ObjectID::playerOne) :
+		{
+			C_Player* player = static_cast<C_Player*>(&game_object);
+			player->Update(dt);
+
+			break;
+		}
+		case(ObjectID::character) :
+		{
+			C_Character* character = static_cast<C_Character*>(&game_object);
+			character->Update(dt);
+
+			break;
+		}
+		case(ObjectID::enemy) :
+		{
+			game_object.Update(dt);
+
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	game_object.Update(dt);
+}
+
 /*
 
 	Overview
@@ -84,6 +136,6 @@ void C_Level::Update(float& dt)
 	/* Update attributes. */
 	for (size_t i = 0; i < level_generator_.objects_.size(); i++)
 	{
-		level_generator_.objects_.at(i)->Update(dt);
+		ProcessLevelObjects(*level_generator_.objects_.at(i), dt);
 	}
 }

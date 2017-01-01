@@ -41,16 +41,17 @@ class C_LevelGenerator
 		std::ifstream* ifstream_;
 		std::vector<C_GameObject*> objects_;
 		sf::RenderWindow* window_;
+		C_Camera* camera_;
 		C_World* world_;
 
 		/* Methods. */
 		C_LevelGenerator();
 		~C_LevelGenerator();
-		void Init(sf::RenderWindow* window, C_World* world, int& level_number);
+		void Init(sf::RenderWindow* window, C_World* world, C_Camera* camera, int& level_number);
 		void RestartLevel(int& level_number);
 		void IncrementObjectWidth(float& width, int& text_file_width, int& map_x, char& file_char);
 		void ReadTextFile();
-		C_Player* CreatePlayer(const ObjectID id, sf::Vector2f position, sf::Vector2f scale);
+		C_Player* CreatePlayer(const ObjectID id, C_Camera* camera, sf::Vector2f position, sf::Vector2f scale);
 		C_Character* CreateCharacter(const ObjectID id, sf::Vector2f position, sf::Vector2f scale);
 		C_GameObject* CreateBox(const ObjectID id, sf::Vector2f position, sf::Vector2f scale);
 		C_GameObject* CreatePlatform(const ObjectID id, sf::Vector2f position, sf::Vector2f scale);

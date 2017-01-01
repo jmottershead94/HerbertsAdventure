@@ -25,6 +25,7 @@
 /* Application. */
 #include "C_Options.h"
 #include "C_Timer.h"
+#include "C_Camera.h"
 #include "C_Level.h"
 #include "C_Button.h"
 
@@ -65,6 +66,7 @@ class C_State
 		sf::Music* main_theme_music_;
 		sf::SoundBuffer* ui_effect_buffer_;
 		sf::Sound* ui_sfx_;
+		C_Camera* camera_;
 		C_World* world_;					/* Will be used to point to the main Box2D world. */
 		C_Timer input_delay_;				/* Used to delay input slightly between state transitions. */
 		C_Level	level_;						/* Used to access the level for the game state (and possibly game over for game play elements). */

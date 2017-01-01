@@ -161,6 +161,7 @@
     <ClCompile Include="C_Application.cpp" />
     <ClCompile Include="C_Body.cpp" />
     <ClCompile Include="C_Button.cpp" />
+    <ClCompile Include="C_Camera.cpp" />
     <ClCompile Include="C_Character.cpp" />
     <ClCompile Include="C_Collision2D.cpp" />
     <ClCompile Include="C_Debug.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="C_Application.h" />
     <ClInclude Include="C_Body.h" />
     <ClInclude Include="C_Button.h" />
+    <ClInclude Include="C_Camera.h" />
     <ClInclude Include="C_Character.h" />
     <ClInclude Include="C_Collision2D.h" />
     <ClInclude Include="C_Debug.h" />

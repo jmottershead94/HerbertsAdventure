@@ -48,6 +48,7 @@ class C_Application
 		sf::Vector2i screen_resolution_;		/* Used to store the current resolution. */
 		sf::Text fps_counter_;					/* Used to display the FPS. */
 		sf::Font font_;							/* The main font to use for the game. */
+		C_Camera camera_;
 		C_World* world_;						/* The main box2D world. */
 		C_Utilities utilities_;					/* Used to setup the singleton Utilities access for other classes. */
 		C_Options options_;						/* . */
