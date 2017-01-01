@@ -69,8 +69,11 @@ void C_StateOptions::OnEnter()
 {
 	C_Utilities::SetText(title_text_, *font_, "Options", 100, sf::Vector2f(window_->getSize().x * 0.5f, window_->getSize().y * 0.25f), C_Utilities::TextAlignment::centre);
 	C_Utilities::SetText(display_fps_text_, *font_, "Display FPS Stats", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::left);
-	C_Utilities::SetText(fps_text_, *font_, "Lock FPS", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f), C_Utilities::TextAlignment::left);
+	C_Utilities::SetText(display_fps_additional_text_, *font_, "If enabled will display an FPS\ncounter in the bottom right.", 20, sf::Vector2f(window_->getSize().x * 0.7f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::left);
 	C_Utilities::SetText(vsync_text_, *font_, "VSync", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::left);
+	C_Utilities::SetText(vsync_additional_text_, *font_, "If enabled will use the refresh\nrate of the display device.\nOtherwise, if disabled screen\ntearing could occur but may\ngain framerate.", 20, sf::Vector2f(window_->getSize().x * 0.7f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::left);
+	C_Utilities::SetText(fps_text_, *font_, "Lock FPS", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f), C_Utilities::TextAlignment::left);
+	C_Utilities::SetText(fps_additional_text_, *font_, "If enabled will lock at 60fps.\nOtherwise if disabled there\nwill be no framerate cap.", 20, sf::Vector2f(window_->getSize().x * 0.7f, window_->getSize().y * 0.6f), C_Utilities::TextAlignment::left);
 	C_Utilities::SetText(master_volume_text_, *font_, "Master Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.5f), C_Utilities::TextAlignment::left);
 	C_Utilities::SetText(music_volume_text_, *font_, "Music Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.6f), C_Utilities::TextAlignment::left);
 	C_Utilities::SetText(sfx_volume_text_, *font_, "SFX Volume", 20, sf::Vector2f(window_->getSize().x * 0.35f, window_->getSize().y * 0.7f), C_Utilities::TextAlignment::left);
@@ -124,6 +127,11 @@ void C_StateOptions::RenderGameOptions()
 {	
 	window_->draw(display_fps_text_);
 	window_->draw(toggle_fps_);
+
+	if (toggle_fps_.is_in_focus())
+	{
+		window_->draw(display_fps_additional_text_);
+	}
 }
 
 void C_StateOptions::RenderDisplayOptions()
@@ -132,6 +140,20 @@ void C_StateOptions::RenderDisplayOptions()
 	window_->draw(fps_text_);
 	window_->draw(toggle_vsync_);
 	window_->draw(toggle_locked_fps_);
+
+	/* If the locked fps option is in focus. */
+	if (toggle_vsync_.is_in_focus())
+	{
+		/* Display additional information. */
+		window_->draw(vsync_additional_text_);
+	}
+
+	/* If the locked fps option is in focus. */
+	if (toggle_locked_fps_.is_in_focus())
+	{
+		/* Display additional information. */
+		window_->draw(fps_additional_text_);
+	}
 }
 
 void C_StateOptions::RenderSoundOptions()

@@ -49,8 +49,8 @@ class C_StateOptions : public C_State
 
 	private:
 		/* Attributes. */
-		sf::Text display_fps_text_;													/* The text used to display the option for display fps information. */
-		sf::Text vsync_text_, fps_text_;
+		sf::Text display_fps_text_, display_fps_additional_text_;																/* The text used to display the option for display fps information. */
+		sf::Text vsync_text_, vsync_additional_text_, fps_text_, fps_additional_text_;
 		sf::Text master_volume_text_, music_volume_text_, sfx_volume_text_;
 		sf::Text master_volume_value_text_, music_volume_value_text_, sfx_volume_value_text_;
 		C_Button button_game_, button_display_, button_sound_;									/* The buttons used for the different application options. */

@@ -95,9 +95,6 @@
     <ClCompile Include="C_DemoInputComponent.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>
-    <ClCompile Include="C_InputComponent.cpp">
-      <Filter>Components\Input</Filter>
-    </ClCompile>
     <ClCompile Include="C_PlayerInputComponent.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>

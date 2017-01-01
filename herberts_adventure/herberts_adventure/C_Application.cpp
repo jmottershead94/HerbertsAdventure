@@ -160,7 +160,6 @@ void C_Application::Render()
 		window_.setFramerateLimit(0);
 	}
 	
-
 	if (C_Options::UseVSync())
 	{
 		window_.setVerticalSyncEnabled(true);

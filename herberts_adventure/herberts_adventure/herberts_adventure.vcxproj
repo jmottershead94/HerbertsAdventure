@@ -166,7 +166,6 @@
     <ClCompile Include="C_Debug.cpp" />
     <ClCompile Include="C_DemoInputComponent.cpp" />
     <ClCompile Include="C_GameObject.cpp" />
-    <ClCompile Include="C_InputComponent.cpp" />
     <ClCompile Include="C_Level.cpp" />
     <ClCompile Include="C_NullPhysicsComponent.cpp" />
     <ClCompile Include="C_Options.cpp" />
