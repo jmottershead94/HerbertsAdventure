@@ -221,6 +221,7 @@
     <ClInclude Include="C_UIElement.h" />
     <ClInclude Include="C_Utilities.h" />
     <ClInclude Include="C_World.h" />
+    <ClInclude Include="ObjectID.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

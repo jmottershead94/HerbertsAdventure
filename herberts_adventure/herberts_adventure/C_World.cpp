@@ -21,46 +21,42 @@ void C_World::CleanUp()
 	}
 }
 
-void C_World::CheckBodyCollisions(C_Body& body)
+void C_World::CheckBodyCollisions(C_Body& body, size_t index)
 {
 	/* Reset collision properties because we are about to check them again. */
 	body.ResetCollisionProperties();
 
 	/* O(N^2) - Well this sucks... */
 	/* Loop through all of the bodies backwards. */
-	for (std::vector<C_Body*>::iterator other_body = bodies_.begin(); other_body != bodies_.end(); other_body++)
+	for (size_t j = index + 1; j < bodies_.size(); j++)
 	{
-		/* If the body is not equal to the other body we are looking at. */
-		if (body.id_ != (**other_body).id_)
+		if (collider_manager_->IsColliding(body, *bodies_.at(j)) == C_Collision2D::none)
 		{
-			if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::none)
+			body.collision_flags_.push_back(false);
+		}
+		else
+		{
+			body.colliding_bodies_.push_back(bodies_.at(j));
+			body.collision_flags_.push_back(true);
+
+			if (collider_manager_->IsColliding(body, *bodies_.at(j)) == C_Collision2D::bottom)
 			{
-				body.collision_flags_.push_back(false);
+				body.on_ground_ = true;
 			}
-			else
+				
+			if (collider_manager_->IsColliding(body, *bodies_.at(j)) == C_Collision2D::top)
 			{
-				body.colliding_bodies_.push_back((*other_body));
-				body.collision_flags_.push_back(true);
+				body.can_jump_ = false;
 
-				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::bottom)
-				{
-					body.on_ground_ = true;
-				}
+				C_Debug::PrintToConsole("Should not be able to jump...");
+			}
+			
+			if (collider_manager_->IsColliding(body, *bodies_.at(j)) == C_Collision2D::right)
+			{
+			}
 				
-				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::top)
-				{
-					body.can_jump_ = false;
-
-					C_Debug::PrintToConsole("Should not be able to jump...");
-				}
-				
-				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::right)
-				{
-				}
-				
-				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::left)
-				{
-				}
+			if (collider_manager_->IsColliding(body, *bodies_.at(j)) == C_Collision2D::left)
+			{
 			}
 		}
 	}
@@ -96,17 +92,13 @@ void C_World::ProcessBodies(float& dt)
 	/* Looping through all of the bodies. */
 	if (!bodies_.empty())
 	{
-		for (std::vector<C_Body*>::iterator body = bodies_.begin(); body != bodies_.end(); body++)
+		for (size_t i = 0; i < bodies_.size(); i++)
 		{
-			/* If the body is dynamic. */
-			//if (!(**body).is_kinematic_)
-			//{
-				/* Loop through each body in the world and check for collisions. */
-				CheckBodyCollisions((**body));
-			//}
+			/* Loop through each body in the world and check for collisions. */
+			CheckBodyCollisions(*bodies_.at(i), i);
 
 			/* Provide a response for any collisions. */
-			BodyCollisionResponse((**body), dt);
+			BodyCollisionResponse(*bodies_.at(i), dt);
 		}
 	}
 }

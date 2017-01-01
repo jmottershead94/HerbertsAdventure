@@ -220,5 +220,8 @@
     <ClInclude Include="C_Slider.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectID.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
