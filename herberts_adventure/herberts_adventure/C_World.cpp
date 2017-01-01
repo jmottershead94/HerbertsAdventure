@@ -108,7 +108,7 @@ void C_World::Update(float& dt)
 	ProcessBodies(dt);
 }
 
-C_Body* C_World::CreateBody(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
+C_Body* C_World::CreateBody(const ObjectID id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
 {
 	/* Initialising a new body. */
 	C_Body* new_body = new C_Body();

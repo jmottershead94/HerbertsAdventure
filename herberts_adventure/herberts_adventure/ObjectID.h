@@ -6,6 +6,7 @@ enum ObjectID
 	staticObject,
 	dynamicObject,
 	trigger,
+	ui,
 	playerOne,
 	character,
 	enemy

@@ -6,7 +6,7 @@ C_Body::C_Body()
 C_Body::~C_Body()
 {}
 
-void C_Body::Init(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
+void C_Body::Init(const ObjectID id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
 {
 	/* Initialising local attributes. */
 	id_ = id;

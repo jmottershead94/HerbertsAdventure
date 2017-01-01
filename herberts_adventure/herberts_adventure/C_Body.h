@@ -15,7 +15,7 @@ class C_Body
 		/* Methods. */
 		C_Body();
 		~C_Body();
-		void Init(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
+		void Init(const ObjectID id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
 		void ApplyForce(const sf::Vector2f force, float& dt);
 		void ResetCollisionProperties();
 		//bool Raycast();
@@ -50,7 +50,7 @@ class C_Body
 		/* Attributes. */
 		std::vector<C_Body*> colliding_bodies_;
 		std::vector<bool> collision_flags_;
-		int id_ = 0;
+		ObjectID id_ = ObjectID::staticObject;
 		bool on_ground_ = false;
 		bool can_jump_ = false;
 		bool collided_ = false;

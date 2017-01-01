@@ -6,7 +6,7 @@ C_PhysicsBody::C_PhysicsBody()
 C_PhysicsBody::~C_PhysicsBody()
 {}
 
-void C_PhysicsBody::Init(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
+void C_PhysicsBody::Init(const ObjectID id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
 {
 	body_ = game_object.world()->CreateBody(id, game_object, mass, is_kinematic, density, friction, bounciness);
 }

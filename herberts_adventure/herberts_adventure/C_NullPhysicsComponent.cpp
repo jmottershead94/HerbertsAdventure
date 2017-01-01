@@ -6,7 +6,7 @@ C_NullPhysicsComponent::C_NullPhysicsComponent()
 C_NullPhysicsComponent::~C_NullPhysicsComponent()
 {}
 
-void C_NullPhysicsComponent::Init(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
+void C_NullPhysicsComponent::Init(const ObjectID id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness)
 {
 	UNUSED(id);
 	UNUSED(game_object);

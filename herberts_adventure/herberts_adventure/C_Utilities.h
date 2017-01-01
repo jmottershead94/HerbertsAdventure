@@ -36,6 +36,7 @@
 #include <Box2D\Box2D.h>
 
 /* Application. */
+#include "ObjectID.h"
 #include "C_World.h"
 #include "C_Debug.h"
 

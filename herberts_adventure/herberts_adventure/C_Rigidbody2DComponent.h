@@ -32,7 +32,7 @@ class C_Rigidbody2DComponent
 {
 	public:
 		virtual ~C_Rigidbody2DComponent() {};
-		virtual void Init(const int id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness) = 0;
+		virtual void Init(const ObjectID id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness) = 0;
 		virtual void Update(C_GameObject& game_object, float& dt) = 0;
 
 		/* Getters. */
