@@ -95,7 +95,6 @@ void C_LevelGenerator::ReadTextFile()
 				}
 
 				CreatePlatform(ObjectID::staticObject, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
-				//CreatePlatform(ObjectID::staticObject, sf::Vector2f((float)map_coordinates.x, (float)map_coordinates.y), sf::Vector2f(1.0f, 1.0f));
 				break;
 			}
 			case ('C') :
@@ -114,17 +113,16 @@ void C_LevelGenerator::ReadTextFile()
 			}
 			case ('P') :
 			{
-				/*float default_width = 128.0f;
+				float default_width = 1.0f;
 				int original_map_x = map_coordinates.x;
-				int text_file_width = 0;*/
+				int text_file_width = 0;
 
-				/*while (ifstream_->peek() == 'P')
+				while (ifstream_->peek() == 'P')
 				{
 					IncrementObjectWidth(default_width, text_file_width, map_coordinates.x, text_file_char);
-				}*/
+				}
 
-				//CreatePlayer(ObjectID::playerOne, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
-				CreatePlayer(ObjectID::playerOne, sf::Vector2f((float)map_coordinates.x, (float)map_coordinates.y), sf::Vector2f(1.0f, 1.0f));
+				CreatePlayer(ObjectID::playerOne, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
 			case ('\n') :
