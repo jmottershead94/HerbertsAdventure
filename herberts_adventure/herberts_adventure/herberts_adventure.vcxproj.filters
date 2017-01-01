@@ -33,6 +33,9 @@
     <Filter Include="Debug">
       <UniqueIdentifier>{31b8be15-e869-4c35-b6e8-78ceb356f3a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Levels">
+      <UniqueIdentifier>{5901eb04-63f9-467c-b2c3-469cc2b55e0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -73,9 +76,6 @@
     </ClCompile>
     <ClCompile Include="C_GameObject.cpp">
       <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Level.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C_UIElement.cpp">
       <Filter>UI</Filter>
@@ -122,6 +122,12 @@
     <ClCompile Include="C_Slider.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="C_Level.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="C_LevelGenerator.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Application.h">
@@ -159,9 +165,6 @@
     </ClInclude>
     <ClInclude Include="C_GameObject.h">
       <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Level.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C_UIElement.h">
       <Filter>UI</Filter>
@@ -220,5 +223,16 @@
     <ClInclude Include="ObjectID.h">
       <Filter>Objects</Filter>
     </ClInclude>
+    <ClInclude Include="C_Level.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="C_LevelGenerator.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Levels\level_1.txt">
+      <Filter>Levels</Filter>
+    </Text>
   </ItemGroup>
 </Project>

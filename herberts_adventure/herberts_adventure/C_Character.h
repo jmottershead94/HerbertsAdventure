@@ -23,6 +23,7 @@
 #include "C_GameObject.h"
 #include "C_PhysicsBody.h"
 #include "C_NullPhysicsComponent.h"
+#include "C_DemoInputComponent.h"
 
 /* Character IS A game object, therefore inherits from it. */
 class C_Character : public C_GameObject

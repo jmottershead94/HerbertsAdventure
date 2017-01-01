@@ -167,6 +167,7 @@
     <ClCompile Include="C_DemoInputComponent.cpp" />
     <ClCompile Include="C_GameObject.cpp" />
     <ClCompile Include="C_Level.cpp" />
+    <ClCompile Include="C_LevelGenerator.cpp" />
     <ClCompile Include="C_NullPhysicsComponent.cpp" />
     <ClCompile Include="C_Options.cpp" />
     <ClCompile Include="C_PhysicsBody.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="C_GameObject.h" />
     <ClInclude Include="C_InputComponent.h" />
     <ClInclude Include="C_Level.h" />
+    <ClInclude Include="C_LevelGenerator.h" />
     <ClInclude Include="C_NullPhysicsComponent.h" />
     <ClInclude Include="C_Options.h" />
     <ClInclude Include="C_PhysicsBody.h" />
@@ -221,6 +223,9 @@
     <ClInclude Include="C_Utilities.h" />
     <ClInclude Include="C_World.h" />
     <ClInclude Include="ObjectID.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Levels\level_1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

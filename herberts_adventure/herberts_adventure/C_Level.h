@@ -4,7 +4,7 @@
 	===========
 
 	Created:	16th December 2016
-	Filter:		Header/Source Files
+	Filter:		Levels
 	Class Name:	C_Level
 	Base Class: N/A
 	Author:		Jason Mottershead
@@ -20,10 +20,10 @@
 
 /* Include header files here. */
 /* Application. */
-#include "C_Utilities.h"
-#include "C_Player.h"
-#include "C_Collision2D.h"
-#include "C_DemoInputComponent.h"
+//#include "C_Player.h"
+//#include "C_Collision2D.h"
+//#include "C_DemoInputComponent.h"
+#include "C_LevelGenerator.h"
 
 /* Level is just a standard class. */
 class C_Level
@@ -38,12 +38,13 @@ class C_Level
 
 	private:
 		/* Attributes. */
-		sf::RenderWindow* window_;		/* Points to the main render window in the application class. */
-		C_World* world_;				/* Points to the main world in the application class. */
-		C_Player test_;					/* Testing game objects out. */
-		C_Character collider_test_;		/* Testing collisions out. */
-		C_Collision2D collider_;		/* Testing collisions out. */
-		C_GameObject floor_, platform_;	
+		int level_number_ = 1;
+		sf::RenderWindow* window_;			/* Points to the main render window in the application class. */
+		C_World* world_;					/* Points to the main world in the application class. */
+		C_LevelGenerator level_generator_;
+		//C_Player test_;					/* Testing game objects out. */
+		//C_Character collider_test_;		/* Testing collisions out. */
+		//C_GameObject floor_, platform_;	
 };
 
 #endif

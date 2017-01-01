@@ -65,7 +65,7 @@ void C_World::CheckBodyCollisions(C_Body& body, size_t index)
 void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 {
 	/* If the body is not on the ground. */
-	if (!body.on_ground_)
+	if (!body.on_ground_ && body.id_ != ObjectID::staticObject)
 	{
 		/* Apply gravity to the body. */
 		body.ApplyForce(-gravity_, dt);
