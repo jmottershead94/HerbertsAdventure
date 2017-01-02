@@ -46,8 +46,16 @@ void C_Body::ResetCollisionProperties()
 	on_ground_ = false;
 	can_jump_ = true;
 	collided_ = false;
-	colliding_bodies_.clear();
-	collision_flags_.clear();
+
+	if (!colliding_bodies_.empty())
+	{
+		colliding_bodies_.clear();
+	}
+
+	if (!collision_flags_.empty())
+	{
+		collision_flags_.clear();
+	}
 }
 
 void C_Body::Update(C_GameObject & game_object)
