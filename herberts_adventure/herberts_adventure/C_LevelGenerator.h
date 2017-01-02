@@ -54,8 +54,8 @@ class C_LevelGenerator
 		C_Player* CreatePlayer(const ObjectID id, C_Camera* camera, sf::Vector2f position, sf::Vector2f scale);
 		C_Character* CreateCharacter(const ObjectID id, sf::Vector2f position, sf::Vector2f scale);
 		C_GameObject* CreateBox(const ObjectID id, sf::Vector2f position, sf::Vector2f scale);
+		C_GameObject* CreateFinishPoint(const ObjectID id, sf::Vector2f position, sf::Vector2f scale);
 		C_GameObject* CreatePlatform(const ObjectID id, sf::Vector2f position, sf::Vector2f scale);
-
 };
 
 #endif

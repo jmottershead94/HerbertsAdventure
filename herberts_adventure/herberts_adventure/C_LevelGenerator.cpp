@@ -126,6 +126,11 @@ void C_LevelGenerator::ReadTextFile()
 				CreatePlayer(ObjectID::playerOne, camera_, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
+			case ('F') :
+			{
+				CreateFinishPoint(ObjectID::endLevelTrigger, sf::Vector2f((float)map_coordinates.x, (float)map_coordinates.y), sf::Vector2f(1.0f, 1.0f));
+				break;
+			}
 			case ('\n') :
 			{
 				map_coordinates.y+=128;
@@ -174,6 +179,20 @@ C_GameObject* C_LevelGenerator::CreateBox(const ObjectID id, sf::Vector2f positi
 
 	game_object->Init(id, world_, physics_component, input_component, "SPR_button.png", position, 0.0f, scale);
 	physics_component->Init(id, *game_object, 100.0f, false, 1.0f, 0.3f, 0.3f);
+
+	objects_.push_back(game_object);
+
+	return game_object;
+}
+
+C_GameObject * C_LevelGenerator::CreateFinishPoint(const ObjectID id, sf::Vector2f position, sf::Vector2f scale)
+{
+	C_GameObject* game_object = new C_GameObject();
+	C_DemoInputComponent* input_component = new C_DemoInputComponent();
+	C_PhysicsBody* physics_component = new C_PhysicsBody();
+
+	game_object->Init(id, world_, physics_component, input_component, "SPR_button.png", position, 0.0f, scale);
+	physics_component->Init(id, *game_object, 100.0f, true, 1.0f, 0.3f, 0.3f);
 
 	objects_.push_back(game_object);
 

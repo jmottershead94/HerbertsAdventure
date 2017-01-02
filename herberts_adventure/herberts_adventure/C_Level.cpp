@@ -69,28 +69,36 @@ void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
 	{
 		case(ObjectID::staticObject):
 		{
-			game_object.Update(dt);
 			break;
 		}
 		case(ObjectID::dynamicObject) :
 		{
-			game_object.Update(dt);
 			break;
 		}
 		case(ObjectID::trigger) :
 		{
-			game_object.Update(dt);
+			break;
+		}
+		case(ObjectID::endLevelTrigger) :
+		{
 			break;
 		}
 		case(ObjectID::ui) :
 		{
-			game_object.Update(dt);
 			break;
 		}
 		case(ObjectID::playerOne) :
 		{
 			C_Player* player = static_cast<C_Player*>(&game_object);
 			player->Update(dt);
+			
+			for (size_t i = 0; i < player->contact().size(); i++)
+			{
+				if (player->contact()[i]->id() == ObjectID::endLevelTrigger)
+				{
+					level_generator_.RestartLevel(level_number_);
+				}
+			}
 
 			break;
 		}
@@ -103,15 +111,13 @@ void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
 		}
 		case(ObjectID::enemy) :
 		{
-			game_object.Update(dt);
-
 			break;
 		}
 		default:
 		{
 			break;
 		}
-	}
+	};
 
 	game_object.Update(dt);
 }

@@ -26,6 +26,8 @@ class C_Body
 
 		inline std::vector<bool> collision_flags() { return collision_flags_; }
 
+		inline ObjectID id() { return id_; }
+
 		inline const float& mass() { return (mass_); }
 
 		inline const bool& on_the_ground() { return on_ground_; }

@@ -6,6 +6,7 @@ enum ObjectID
 	staticObject,
 	dynamicObject,
 	trigger,
+	endLevelTrigger,
 	ui,
 	playerOne,
 	character,

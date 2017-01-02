@@ -43,7 +43,7 @@ void C_World::CheckBodyCollisions(C_Body& body, size_t index)
 			{
 				body.on_ground_ = true;
 			}
-				
+			
 			if (collider_manager_->IsColliding(body, *bodies_.at(j)) == C_Collision2D::top)
 			{
 				body.can_jump_ = false;
