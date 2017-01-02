@@ -13,10 +13,15 @@ void C_World::Init(const sf::Vector2f gravity)
 	collider_manager_ = new C_Collision2D();
 }
 
-void C_World::CleanUp()
+void C_World::ClearBodies()
 {
 	if (!bodies_.empty())
 	{
+		for (size_t i = 0; i < bodies_.size(); i++)
+		{
+			bodies_[i]->ResetCollisionProperties();
+		}
+
 		bodies_.clear();
 	}
 }

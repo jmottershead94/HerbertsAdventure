@@ -83,7 +83,7 @@ void C_StateGame::OnExit()
 {
 	camera_->reset(camera_->viewport());
 
-	world_->CleanUp();
+	world_->ClearBodies();
 }
 
 /*

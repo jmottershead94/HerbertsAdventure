@@ -32,6 +32,7 @@ class C_Level
 		void Init(C_World* world, C_Camera* camera, sf::RenderWindow* window);
 		void CleanUp();
 		void Render();
+		void ProcessPlayerCollisions(C_Body& game_object);
 		void ProcessLevelObjects(C_GameObject& game_object, float& dt);
 		void Update(float& dt);
 

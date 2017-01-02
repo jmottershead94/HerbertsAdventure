@@ -29,6 +29,8 @@ void C_LevelGenerator::RestartLevel(int& level_number)
 		objects_.clear();
 	}
 
+	world_->ClearBodies();
+
 	/* Open the current level text file. */
 	ifstream_->open("../assets/design/level_" + std::to_string(level_number) + ".txt");
 

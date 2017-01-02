@@ -63,6 +63,16 @@ void C_Level::Render()
 	}
 }
 
+void C_Level::ProcessPlayerCollisions(C_Body& body)
+{
+	/* If the player has collided with an end level trigger. */
+	if (body.id() == ObjectID::endLevelTrigger)
+	{
+		/* Process... */
+		level_generator_.RestartLevel(level_number_);
+	}
+}
+
 void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
 {
 	switch (game_object.id())
@@ -94,10 +104,7 @@ void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
 			
 			for (size_t i = 0; i < player->contact().size(); i++)
 			{
-				if (player->contact()[i]->id() == ObjectID::endLevelTrigger)
-				{
-					level_generator_.RestartLevel(level_number_);
-				}
+				ProcessPlayerCollisions(*player->contact()[i]);
 			}
 
 			break;
