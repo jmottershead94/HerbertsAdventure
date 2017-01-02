@@ -32,7 +32,7 @@ void C_Level::Init(C_World* world, C_Camera* camera, sf::RenderWindow* window)
 	window_ = window;
 	camera_ = camera;
 	world_ = world;
-	level_generator_.Init(window, world, camera_, level_number_);
+	level_generator_.Init(window, world, camera_, level_number_, C_LevelGenerator::Type::forest);
 }
 
 /*
@@ -69,7 +69,7 @@ void C_Level::ProcessPlayerCollisions(C_Body& body)
 	if (body.id() == ObjectID::endLevelTrigger)
 	{
 		/* Process... */
-		level_generator_.RestartLevel(level_number_);
+		level_generator_.RestartLevel(level_number_, C_LevelGenerator::Type::desert);
 	}
 }
 
@@ -102,6 +102,9 @@ void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
 			C_Player* player = static_cast<C_Player*>(&game_object);
 			player->Update(dt);
 			
+			/* Move the background sprite with the player. */
+			level_generator_.background_sprite()->setPosition(sf::Vector2f(player->getPosition().x + -(camera_->viewport().width * 0.5f), player->getPosition().y + -(camera_->viewport().height * 0.5f)));
+
 			for (size_t i = 0; i < player->contact().size(); i++)
 			{
 				ProcessPlayerCollisions(*player->contact()[i]);

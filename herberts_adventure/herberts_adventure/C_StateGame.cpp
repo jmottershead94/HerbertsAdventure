@@ -96,8 +96,8 @@ void C_StateGame::OnExit()
 void C_StateGame::Render()
 {
 	/* Draw elements. */
-	window_->draw(ui_bg_sprite_);
-	window_->draw(title_text_);
+	//window_->draw(ui_bg_sprite_);
+	//window_->draw(title_text_);
 
 	/* Render level elements. */
 	level_.Render();

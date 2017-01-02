@@ -6,7 +6,7 @@ C_LevelGenerator::C_LevelGenerator()
 C_LevelGenerator::~C_LevelGenerator()
 {}
 
-void C_LevelGenerator::Init(sf::RenderWindow* window, C_World * world, C_Camera* camera, int& level_number)
+void C_LevelGenerator::Init(sf::RenderWindow* window, C_World * world, C_Camera* camera, int& level_number, Type level_type)
 {
 	/* Initialising local attributes. */
 	window_ = window;
@@ -14,10 +14,10 @@ void C_LevelGenerator::Init(sf::RenderWindow* window, C_World * world, C_Camera*
 	camera_ = camera;
 	ifstream_ = new std::ifstream();
 
-	RestartLevel(level_number);
+	RestartLevel(level_number, level_type);
 }
 
-void C_LevelGenerator::RestartLevel(int& level_number)
+void C_LevelGenerator::RestartLevel(int& level_number, Type level_type)
 {
 	if(ifstream_->is_open())
 	{
@@ -33,6 +33,15 @@ void C_LevelGenerator::RestartLevel(int& level_number)
 
 	/* Open the current level text file. */
 	ifstream_->open("../assets/design/level_" + std::to_string(level_number) + ".txt");
+
+	if (level_type == Type::forest)
+	{
+		CreateBackground("SPR_swamp.png");
+	}
+	else if (level_type == Type::desert)
+	{
+		CreateBackground("SPR_desert.png");
+	}
 
 	ReadTextFile();
 }
@@ -55,10 +64,11 @@ void C_LevelGenerator::ReadTextFile()
 
 	/* Error checking. */
 	/* If the file stream doesn't exist OR cannot be read. */
-	if (!ifstream_ || ifstream_->bad())
+	if (!ifstream_ || ifstream_->bad() || !ifstream_->is_open())
 	{
 		/* Exit the application. */
-		exit(-1);
+		C_Debug::PrintToConsole("ERROR: Level file could not be opened.");
+		window_->close();
 	}
 
 	/* Keep looping until we have reached the end of the file. */
@@ -130,12 +140,12 @@ void C_LevelGenerator::ReadTextFile()
 			}
 			case ('F') :
 			{
-				CreateFinishPoint(ObjectID::endLevelTrigger, sf::Vector2f((float)map_coordinates.x, (float)map_coordinates.y), sf::Vector2f(1.0f, 1.0f));
+				CreateFinishPoint(ObjectID::endLevelTrigger, sf::Vector2f((float)map_coordinates.x, (float)map_coordinates.y), sf::Vector2f(1.0f, 1.5f));
 				break;
 			}
 			case ('\n') :
 			{
-				map_coordinates.y+=128;
+				map_coordinates.y += 128;
 				map_coordinates.x = 0;
 				break;
 			}
@@ -146,8 +156,22 @@ void C_LevelGenerator::ReadTextFile()
 		};
 
 		/* Move to the next text file character. */
-		map_coordinates.x+=128;
+		map_coordinates.x += 128;
 	}
+}
+
+C_GameObject* C_LevelGenerator::CreateBackground(const std::string filename)
+{
+	bg_ = new C_GameObject();
+	C_DemoInputComponent* input_component = new C_DemoInputComponent();
+	C_NullPhysicsComponent* physics_component = new C_NullPhysicsComponent();
+
+	bg_->Init(ObjectID::ui, world_, physics_component, input_component, filename, sf::Vector2f(0.0f, 0.0f), 0.0f, sf::Vector2f(1.0f, 1.0f));
+	physics_component->Init(bg_->id(), *bg_, 0.0f, true, 0.0f, 0.0f, 0.0f);
+
+	objects_.push_back(bg_);
+
+	return bg_;
 }
 
 C_Player* C_LevelGenerator::CreatePlayer(const ObjectID id, C_Camera* camera, sf::Vector2f position, sf::Vector2f scale)
@@ -193,7 +217,7 @@ C_GameObject * C_LevelGenerator::CreateFinishPoint(const ObjectID id, sf::Vector
 	C_DemoInputComponent* input_component = new C_DemoInputComponent();
 	C_PhysicsBody* physics_component = new C_PhysicsBody();
 
-	game_object->Init(id, world_, physics_component, input_component, "SPR_button.png", position, 0.0f, scale);
+	game_object->Init(id, world_, physics_component, input_component, "SPR_bubble.png", position, 0.0f, scale);
 	physics_component->Init(id, *game_object, 100.0f, true, 1.0f, 0.3f, 0.3f);
 
 	objects_.push_back(game_object);

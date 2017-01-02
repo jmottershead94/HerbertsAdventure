@@ -33,7 +33,8 @@ C_StateSplash::C_StateSplash(sf::RenderWindow* window, sf::Font* font, C_World* 
 	if (!LoadResources())
 	{
 		/* Exit the application. */
-		exit(-1);
+		C_Debug::PrintToConsole("ERROR: Could not load game resources.");
+		window_->close();
 	}
 }
 

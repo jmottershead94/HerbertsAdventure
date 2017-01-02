@@ -18,7 +18,7 @@ class C_World
 		~C_World();
 		void Init(const sf::Vector2f gravity);
 		void ClearBodies();
-		void CheckBodyCollisions(C_Body& body, size_t index);
+		void CheckBodyCollisions(C_Body& body);
 		void BodyCollisionResponse(C_Body& body, float& dt);
 		void ProcessBodies(float& dt);
 		void Update(float& dt);
