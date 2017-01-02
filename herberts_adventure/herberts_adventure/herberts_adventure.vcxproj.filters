@@ -237,7 +237,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Levels\level_1.txt">
+    <Text Include="..\assets\design\level_1.txt">
       <Filter>Levels</Filter>
     </Text>
   </ItemGroup>

@@ -66,6 +66,6 @@ void C_Player::Update(float & dt)
 	/* Handles character updates. */
 	C_Character::Update(dt);
 
-	//sf::Vector2f camera_position(rigidbody()->body()->collider().left, rigidbody()->body()->collider().top);
+	/* Update the camera with the player position. */
 	camera_->Update(getPosition(), dt);
 }
