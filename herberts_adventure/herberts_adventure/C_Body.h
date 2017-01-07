@@ -47,8 +47,6 @@ class C_Body
 
 		inline void set_collided(const bool value) { collided_ = value; }
 
-		//inline void ApplyForce(const sf::Vector2f acceleration) { position_ += (mass_ * acceleration); }
-
 	private:
 		/* Attributes. */
 		std::vector<C_Body*> colliding_bodies_;
@@ -61,7 +59,7 @@ class C_Body
 		sf::Vector2f position_;		/* Stores the position of the collider */
 		sf::Vector2f translation_;	
 		sf::Vector2f velocity_;
-		const sf::Vector2f MAX_VELOCITY = sf::Vector2f(100.0f, 250.0f);
+		const sf::Vector2f MAX_VELOCITY = sf::Vector2f(250.0f, 250.0f);
 		float rotation_;			/* Stores the rotation of the collider. */
 		sf::FloatRect collider_;	/* Stores the bounds of the collider. */
 		float mass_;				/* How much the object weighs. */

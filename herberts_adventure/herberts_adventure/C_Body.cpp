@@ -34,15 +34,14 @@ void C_Body::Init(const ObjectID id, C_GameObject& game_object, const float mass
 
 void C_Body::ApplyForce(const sf::Vector2f force, float& dt)
 {
+	UNUSED(dt);
+
 	/* Calculate the acceleration based on the force desired and the mass of the body. */
 	sf::Vector2f a = force / inverse_mass_;
-	//sf::Vector2f a = force / mass_;
-
-	/* Calculate the difference in the velocity. */
-	sf::Vector2f dv = a * dt;
-
-	//if(velocity_.x < MAX_VELOCITY)
-	velocity_ += dv;
+	
+	/* Add on the acceleration value based on the force applied. */
+	/* Delta time is applied to velocity in the main Update, so we don't need to apply it here too. */
+	velocity_ += a;
 }
 
 void C_Body::ResetCollisionProperties()
@@ -90,7 +89,7 @@ void C_Body::Update(C_GameObject & game_object, float& dt)
 	if (velocity_ != sf::Vector2f(0.0f, 0.0f))
 	{
 		/* Updating the position of the collider. */
-		position_ += velocity_;
+		position_ += (velocity_ * dt);
 	}
 
 	/* Updating the collider with the game object it is attached to. */

@@ -57,19 +57,13 @@ void C_PlayerInputComponent::Update(C_GameObject& game_object, float& dt)
 	/* If the user presses left. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 	{
-		if (game_object.rigidbody()->body()->has_collided())
-		{
-			/* Move the rigidbody to the left. */
-			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-100.0f, 0.0f), dt);
-		}
+		/* Move the rigidbody to the left. */
+		game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-250.0f, 0.0f), dt);
 	}
 	/* If the user presses right. */
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
-		if (game_object.rigidbody()->body()->has_collided())
-		{
-			/* Move the rigidbody to the left. */
-			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(100.0f, 0.0f), dt);
-		}
+		/* Move the rigidbody to the left. */
+		game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(250.0f, 0.0f), dt);
 	}
 }

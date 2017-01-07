@@ -55,7 +55,7 @@ void C_World::CheckCollision(C_Body& bodyA, C_Body& bodyB)
 		if (collider_manager_->IsColliding(bodyA, bodyB) == C_Collision2D::top)
 		{
 			bodyA.can_jump_ = false;
-			C_Debug::PrintToConsole("Should not be able to jump...");
+			//C_Debug::PrintToConsole("Should not be able to jump...");
 		}
 
 		if (collider_manager_->IsColliding(bodyA, bodyB) == C_Collision2D::right)
