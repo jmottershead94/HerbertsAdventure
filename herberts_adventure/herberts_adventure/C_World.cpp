@@ -85,32 +85,20 @@ void C_World::CheckBodyCollisions(C_Body& body)
 	}
 }
 
-/* Implemented using laws of reflection. */
 /* Thanks to Paul Firth: http://www.wildbunny.co.uk/blog/2011/04/06/physics-engines-for-dummies/ */
 void C_World::ResolveCollision(C_Body& bodyA, C_Body& bodyB, float& dt)
 {
-	/*UNUSED(bodyA);
-	UNUSED(bodyB);
-	UNUSED(dt);*/
 	UNUSED(dt);
 
 	sf::Vector2f relative_velocity = bodyB.velocity_ - bodyA.velocity_;
 	sf::Vector2f velocity_normal = C_Utilities::Normalize(relative_velocity);
-	//float velocity_dotA = C_Utilities::DotProduct(bodyA.velocity_, velocity_normal);
-	//float velocity_dotB = C_Utilities::DotProduct(bodyB.velocity_, -velocity_normal);
 	float velocity_dot = C_Utilities::DotProduct(relative_velocity, velocity_normal);
-	//float mass_ratioA = bodyB.mass_ / (bodyA.mass_ + bodyB.mass_);
-	//float mass_ratioB = bodyA.mass_ / (bodyB.mass_ + bodyB.mass_);
 
 	sf::Vector2f I = (((1.0f + bodyA.restitution_) * velocity_normal * velocity_dot) / (bodyA.inverse_mass_ + bodyB.inverse_mass_));
-
-	//if(C_Utilities::Abs(bodyA.velocity_.x) < MAX_VELOCITY && C_Utilities::Abs(bodyB.velocity_.y) < MAX_VELOCITY)
-	//bodyA.velocity_ -= ((1.0f + bodyA.restitution_) * velocity_normal * velocity_dotA * mass_ratioA);
-	//bodyB.velocity_ -= ((1.0f + bodyB.restitution_) * -velocity_normal * velocity_dotB * mass_ratioB);
 	
 	bodyA.velocity_ += (I * bodyA.inverse_mass_);
-	
-	if (!bodyB.is_kinematic_)
+
+	if (!bodyB.on_ground_)
 	{
 		bodyB.velocity_ -= (I * bodyB.inverse_mass_);
 	}

@@ -14,7 +14,16 @@ void C_Body::Init(const ObjectID id, C_GameObject& game_object, const float mass
 	rotation_ = game_object.getRotation();
 	collider_ = game_object.getGlobalBounds();
 	mass_ = mass;
-	inverse_mass_ = 1.0f / mass_;
+
+	if (!is_kinematic)
+	{
+		inverse_mass_ = 1.0f / mass_;
+	}
+	else
+	{
+		inverse_mass_ = 0.0f;
+	}
+
 	is_kinematic_ = is_kinematic;
 	density_ = density;
 	friction_ = friction;
@@ -53,10 +62,36 @@ void C_Body::ResetCollisionProperties()
 	}
 }
 
+void C_Body::CheckVelocityValue()
+{
+	if (C_Utilities::Abs(velocity_.x) > MAX_VELOCITY.x)
+	{
+		if(velocity_.x > 0.0f)
+			velocity_.x = MAX_VELOCITY.x;
+		else 
+			velocity_.x = -MAX_VELOCITY.x;
+	}
+
+	if (C_Utilities::Abs(velocity_.y) > MAX_VELOCITY.y)
+	{
+		if (velocity_.y > 0.0f)
+			velocity_.y = MAX_VELOCITY.y;
+		else
+			velocity_.y = -MAX_VELOCITY.y;
+	}
+}
+
 void C_Body::Update(C_GameObject & game_object, float& dt)
 {
-	/* Updating the position of the collider. */
-	position_ += (velocity_ * dt);
+	UNUSED(dt);
+
+	CheckVelocityValue();
+
+	if (velocity_ != sf::Vector2f(0.0f, 0.0f))
+	{
+		/* Updating the position of the collider. */
+		position_ += velocity_;
+	}
 
 	/* Updating the collider with the game object it is attached to. */
 	game_object.setPosition(position_);

@@ -218,7 +218,7 @@ C_GameObject* C_LevelGenerator::CreateBox(const ObjectID id, sf::Vector2f positi
 	C_PhysicsBody* physics_component = new C_PhysicsBody();
 
 	game_object->Init(id, world_, physics_component, input_component, "SPR_button.png", position, 0.0f, scale);
-	physics_component->Init(id, *game_object, 100.0f, false, 1.0f, 0.3f, 0.3f);
+	physics_component->Init(id, *game_object, 1.0f, false, 1.0f, 0.3f, 0.3f);
 
 	objects_.push_back(game_object);
 
@@ -232,7 +232,7 @@ C_GameObject * C_LevelGenerator::CreateFinishPoint(const ObjectID id, sf::Vector
 	C_PhysicsBody* physics_component = new C_PhysicsBody();
 
 	game_object->Init(id, world_, physics_component, input_component, "SPR_bubble.png", position, 0.0f, scale);
-	physics_component->Init(id, *game_object, 100.0f, true, 1.0f, 0.3f, 0.3f);
+	physics_component->Init(id, *game_object, 1.0f, true, 1.0f, 0.3f, 0.3f);
 
 	objects_.push_back(game_object);
 
@@ -246,7 +246,7 @@ C_GameObject* C_LevelGenerator::CreatePlatform(const ObjectID id, sf::Vector2f p
 	C_PhysicsBody* physics_component = new C_PhysicsBody();
 
 	game_object->Init(id, world_, physics_component, input_component, "SPR_button.png", position, 0.0f, scale);
-	physics_component->Init(id, *game_object, 100000.0f, true, 1.0f, 0.3f, 0.3f);
+	physics_component->Init(id, *game_object, 1.0f, true, 1.0f, 0.3f, 0.3f);
 
 	objects_.push_back(game_object);
 

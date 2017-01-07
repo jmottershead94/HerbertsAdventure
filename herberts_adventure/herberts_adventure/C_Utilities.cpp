@@ -106,15 +106,17 @@ float C_Utilities::RadToDeg(float radians)
 	return ((radians * 180.0f) / utilities_instance_->PI);
 }
 
-float& C_Utilities::Abs(float& value)
+float C_Utilities::Abs(const float& value)
 {
-	if (value < 0.0f)
+	float absolute_value = value;
+
+	if (absolute_value < 0.0f)
 	{
-		value *= -1.0f;
-		return value;
+		absolute_value *= -1.0f;
+		return absolute_value;
 	}
 
-	return value;
+	return absolute_value;
 }
 
 float C_Utilities::Length(const sf::Vector2f& v)

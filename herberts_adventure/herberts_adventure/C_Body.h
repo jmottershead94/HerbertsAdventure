@@ -18,6 +18,7 @@ class C_Body
 		void Init(const ObjectID id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
 		void ApplyForce(const sf::Vector2f force, float& dt);
 		void ResetCollisionProperties();
+		
 		//bool Raycast();
 		void Update(C_GameObject& game_object, float& dt);
 
@@ -56,11 +57,11 @@ class C_Body
 		bool on_ground_ = false;
 		bool can_jump_ = false;
 		bool collided_ = false;
-		const float MAX_VELOCITY = 15.0f;
 		C_Body* colliding_body_;	/* Stores the body that the collider is currently colliding with. */
 		sf::Vector2f position_;		/* Stores the position of the collider */
 		sf::Vector2f translation_;	
 		sf::Vector2f velocity_;
+		const sf::Vector2f MAX_VELOCITY = sf::Vector2f(100.0f, 250.0f);
 		float rotation_;			/* Stores the rotation of the collider. */
 		sf::FloatRect collider_;	/* Stores the bounds of the collider. */
 		float mass_;				/* How much the object weighs. */
@@ -69,6 +70,9 @@ class C_Body
 		float density_;				/* The density for the body. */
 		float friction_;			/* How much friction the body has. */
 		float restitution_;			/* How much this body will bounce. */
+
+		/* Methods. */
+		void CheckVelocityValue();
 };
 
 #endif

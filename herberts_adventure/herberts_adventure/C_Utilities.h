@@ -61,7 +61,7 @@ public:
 	static void SetText(sf::Text& text, sf::Font& font, const std::string message, const unsigned int size, const sf::Vector2f position, TextAlignment alignment);
 	static float DegToRad(float degrees);
 	static float RadToDeg(float radians);
-	static float& Abs(float& value);
+	static float Abs(const float& value);
 	static float Length(const sf::Vector2f& v);
 	static float LengthSquared(const sf::Vector2f& v);
 	static sf::Vector2f Normalize(sf::Vector2f& v);
