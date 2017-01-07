@@ -12,7 +12,7 @@
 C_Level::C_Level() :
 	window_(nullptr),
 	world_(nullptr),
-	level_number_(1)
+	level_number_(2)
 {}
 
 /*
@@ -68,6 +68,15 @@ void C_Level::ProcessPlayerCollisions(C_Body& body)
 	/* If the player has collided with an end level trigger. */
 	if (body.id() == ObjectID::endLevelTrigger)
 	{
+		if (level_number_ < 2)
+		{
+			level_number_++;
+		}
+		else
+		{
+			level_number_ = 1;
+		}
+
 		/* Process... */
 		level_generator_.RestartLevel(level_number_, C_LevelGenerator::Type::desert);
 	}

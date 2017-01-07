@@ -26,6 +26,48 @@ void C_World::ClearBodies()
 	}
 }
 
+void C_World::CheckCollision(C_Body& bodyA, C_Body& bodyB)
+{
+	if (collider_manager_->IsColliding(bodyA, bodyB) == C_Collision2D::none)
+	{
+		bodyA.collision_flags_.push_back(false);
+	}
+	else
+	{
+		bodyA.colliding_bodies_.push_back(&bodyB);
+		bodyA.collision_flags_.push_back(true);
+
+		if (collider_manager_->IsColliding(bodyA, bodyB) == C_Collision2D::bottom)
+		{
+			/* If body A is NOT colliding with a trigger. */
+			if (bodyB.id_ != ObjectID::trigger
+				&& bodyB.id_ != ObjectID::endLevelTrigger)
+			{
+				/* If the body B is already on the ground or is static. */
+				if (bodyB.on_ground_ || bodyB.is_kinematic_)
+				{
+					/* Body A now has something below. */
+					bodyA.on_ground_ = true;
+				}
+			}
+		}
+
+		if (collider_manager_->IsColliding(bodyA, bodyB) == C_Collision2D::top)
+		{
+			bodyA.can_jump_ = false;
+			C_Debug::PrintToConsole("Should not be able to jump...");
+		}
+
+		if (collider_manager_->IsColliding(bodyA, bodyB) == C_Collision2D::right)
+		{
+		}
+
+		if (collider_manager_->IsColliding(bodyA, bodyB) == C_Collision2D::left)
+		{
+		}
+	}
+}
+
 void C_World::CheckBodyCollisions(C_Body& body)
 {
 	/* Reset collision properties because we are about to check them again. */
@@ -34,37 +76,11 @@ void C_World::CheckBodyCollisions(C_Body& body)
 	/* O(N^2) - Well this sucks... */
 	for (std::vector<C_Body*>::iterator other_body = bodies_.begin(); other_body != bodies_.end(); other_body++)
 	{
-		if (body.id() != (**other_body).id())
+		/* IF THE IDS NOT ARE THE SAME. */
+		if (body.id_ != (**other_body).id_)
 		{
-			if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::none)
-			{
-				body.collision_flags_.push_back(false);
-			}
-			else
-			{
-				body.colliding_bodies_.push_back((*other_body));
-				body.collision_flags_.push_back(true);
-
-				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::bottom)
-				{
-					body.on_ground_ = true;
-				}
-
-				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::top)
-				{
-					body.can_jump_ = false;
-
-					C_Debug::PrintToConsole("Should not be able to jump...");
-				}
-
-				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::right)
-				{
-				}
-
-				if (collider_manager_->IsColliding(body, (**other_body)) == C_Collision2D::left)
-				{
-				}
-			}
+			/* CHECK COLLISIONS NORMALLY. */
+			CheckCollision(body, (**other_body));
 		}
 	}
 }
@@ -72,7 +88,7 @@ void C_World::CheckBodyCollisions(C_Body& body)
 void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 {
 	/* If the body is not on the ground. */
-	if (!body.on_ground_ && (body.id_ != ObjectID::staticObject && body.id_ != ObjectID::ui && body.id_ != ObjectID::endLevelTrigger))
+	if (!body.on_ground_ && !body.is_kinematic_)
 	{
 		/* Apply gravity to the body. */
 		body.ApplyForce(-gravity_, dt);
@@ -91,7 +107,11 @@ void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 	}
 
 	/* TODO: Loop through colliding bodies and provide standard collision response. */
-
+	/* Looping through each of the collisions. */
+	for (std::vector<C_Body*>::iterator contact = body.colliding_bodies_.begin(); contact != body.colliding_bodies_.end(); contact++)
+	{
+		
+	}
 }
 
 void C_World::ProcessBodies(float& dt)

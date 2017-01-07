@@ -96,6 +96,20 @@ void C_LevelGenerator::ReadTextFile()
 				CreateBox(ObjectID::dynamicObject, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
+			case ('+') :
+			{
+				float default_width = 1.0f;
+				int original_map_x = map_coordinates.x;
+				int text_file_width = 0;
+
+				while (ifstream_->peek() == '+')
+				{
+					IncrementObjectWidth(default_width, text_file_width, map_coordinates.x, text_file_char);
+				}
+
+				CreateBox(ObjectID::dynamicObjectStack, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
+				break;
+			}
 			case ('-') :
 			{
 				float default_width = 1.0f;

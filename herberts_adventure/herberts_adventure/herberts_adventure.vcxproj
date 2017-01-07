@@ -230,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\assets\design\level_1.txt" />
+    <Text Include="..\assets\design\level_2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

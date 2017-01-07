@@ -18,9 +18,7 @@ class C_World
 		~C_World();
 		void Init(const sf::Vector2f gravity);
 		void ClearBodies();
-		void CheckBodyCollisions(C_Body& body);
-		void BodyCollisionResponse(C_Body& body, float& dt);
-		void ProcessBodies(float& dt);
+		void CheckCollision(C_Body& bodyA, C_Body& bodyB);
 		void Update(float& dt);
 		C_Body* CreateBody(const ObjectID id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
 
@@ -29,6 +27,11 @@ class C_World
 		sf::Vector2f gravity_;
 		std::vector<C_Body*> bodies_;
 		C_Collision2D* collider_manager_;
+
+		/* Methods. */
+		void CheckBodyCollisions(C_Body& body);
+		void BodyCollisionResponse(C_Body& body, float& dt);
+		void ProcessBodies(float& dt);
 
 };
 

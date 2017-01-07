@@ -6,16 +6,16 @@ C_Collision2D::C_Collision2D()
 C_Collision2D::~C_Collision2D()
 {}
 
-C_Collision2D::CollidedSide C_Collision2D::IsColliding(C_Body& game_object, C_Body& other_game_object)
+C_Collision2D::CollidedSide C_Collision2D::IsColliding(C_Body& objectA, C_Body& objectB)
 {
-	if (!game_object.collider().intersects(other_game_object.collider()))
+	if (!objectA.collider().intersects(objectB.collider()))
 	{
 		return none;
 	}
 
-	if (C_Utilities::Abs(game_object.velocity().x) < C_Utilities::Abs(game_object.velocity().y))
+	if (C_Utilities::Abs(objectA.velocity().x) < C_Utilities::Abs(objectA.velocity().y))
 	{
-		if (game_object.velocity().y > 0.0f)
+		if (objectA.velocity().y > 0.0f)
 		{
 			return bottom;
 		}
@@ -24,7 +24,7 @@ C_Collision2D::CollidedSide C_Collision2D::IsColliding(C_Body& game_object, C_Bo
 	}
 	else
 	{
-		if (game_object.velocity().x > 0.0f)
+		if (objectA.velocity().x > 0.0f)
 		{
 			return right;
 		}

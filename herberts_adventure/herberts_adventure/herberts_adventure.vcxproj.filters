@@ -240,5 +240,8 @@
     <Text Include="..\assets\design\level_1.txt">
       <Filter>Levels</Filter>
     </Text>
+    <Text Include="..\assets\design\level_2.txt">
+      <Filter>Levels</Filter>
+    </Text>
   </ItemGroup>
 </Project>

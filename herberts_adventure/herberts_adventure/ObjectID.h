@@ -5,6 +5,7 @@ enum ObjectID
 {
 	staticObject,
 	dynamicObject,
+	dynamicObjectStack,
 	trigger,
 	endLevelTrigger,
 	ui,
