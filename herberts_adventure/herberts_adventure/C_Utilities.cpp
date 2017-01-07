@@ -117,6 +117,46 @@ float& C_Utilities::Abs(float& value)
 	return value;
 }
 
+float C_Utilities::Length(const sf::Vector2f& v)
+{
+	return std::sqrt(utilities_instance_->LengthSquared(v));
+}
+
+float C_Utilities::LengthSquared(const sf::Vector2f& v)
+{
+	return
+	(
+		v.x * v.x +
+		v.y * v.y
+	);
+}
+
+sf::Vector2f C_Utilities::Normalize(sf::Vector2f& v)
+{
+	sf::Vector2f normalized = v;
+
+	// TODO: insert return statement here
+	float magnitude = utilities_instance_->Length(normalized);
+
+	if (magnitude)
+	{
+		float multiplier = 1.0f / magnitude;
+		normalized.x *= multiplier;
+		normalized.y *= multiplier;
+	}
+
+	return normalized;
+}
+
+float C_Utilities::DotProduct(const sf::Vector2f& v1, const sf::Vector2f& v2)
+{
+	return
+	(
+		v1.x * v2.x +
+		v1.y * v2.y
+	);
+}
+
 std::string C_Utilities::FloatToString(int precision, float value)
 {
 	/* Set the fps to 2 decimal places. */

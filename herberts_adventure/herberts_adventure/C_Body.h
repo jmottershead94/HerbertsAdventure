@@ -19,7 +19,7 @@ class C_Body
 		void ApplyForce(const sf::Vector2f force, float& dt);
 		void ResetCollisionProperties();
 		//bool Raycast();
-		void Update(C_GameObject& game_object);
+		void Update(C_GameObject& game_object, float& dt);
 
 		/* Getters / Setters. */
 		inline std::vector<C_Body*> colliding_bodies() { return colliding_bodies_; }
@@ -56,6 +56,7 @@ class C_Body
 		bool on_ground_ = false;
 		bool can_jump_ = false;
 		bool collided_ = false;
+		const float MAX_VELOCITY = 15.0f;
 		C_Body* colliding_body_;	/* Stores the body that the collider is currently colliding with. */
 		sf::Vector2f position_;		/* Stores the position of the collider */
 		sf::Vector2f translation_;	

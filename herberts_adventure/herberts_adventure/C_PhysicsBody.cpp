@@ -13,6 +13,5 @@ void C_PhysicsBody::Init(const ObjectID id, C_GameObject& game_object, const flo
 
 void C_PhysicsBody::Update(C_GameObject& game_object, float& dt)
 {
-	UNUSED(dt);
-	body_->Update(game_object);
+	body_->Update(game_object, dt);
 }

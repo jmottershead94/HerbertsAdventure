@@ -19,26 +19,21 @@ void C_Body::Init(const ObjectID id, C_GameObject& game_object, const float mass
 	density_ = density;
 	friction_ = friction;
 	restitution_ = bounciness;
+
+	velocity_ = sf::Vector2f(0.0f, 0.0f);
 }
 
 void C_Body::ApplyForce(const sf::Vector2f force, float& dt)
 {
-	velocity_ = sf::Vector2f(0.0f, 0.0f);
-	translation_ = sf::Vector2f(0.0f, 0.0f);
-
 	/* Calculate the acceleration based on the force desired and the mass of the body. */
 	sf::Vector2f a = force / inverse_mass_;
 	//sf::Vector2f a = force / mass_;
 
 	/* Calculate the difference in the velocity. */
-	sf::Vector2f dv = a;
+	sf::Vector2f dv = a * dt;
+
+	//if(velocity_.x < MAX_VELOCITY)
 	velocity_ += dv;
-
-	/* Calculate the difference in the position. */
-	sf::Vector2f ds = velocity_;
-	translation_ += ds;
-
-	position_ += (translation_ * dt);
 }
 
 void C_Body::ResetCollisionProperties()
@@ -58,8 +53,11 @@ void C_Body::ResetCollisionProperties()
 	}
 }
 
-void C_Body::Update(C_GameObject & game_object)
+void C_Body::Update(C_GameObject & game_object, float& dt)
 {
+	/* Updating the position of the collider. */
+	position_ += (velocity_ * dt);
+
 	/* Updating the collider with the game object it is attached to. */
 	game_object.setPosition(position_);
 	game_object.setRotation(rotation_);

@@ -24,12 +24,14 @@ class C_World
 
 	private:
 		/* Attributes. */
+		const float MAX_VELOCITY = 15.0f;
 		sf::Vector2f gravity_;
 		std::vector<C_Body*> bodies_;
 		C_Collision2D* collider_manager_;
 
 		/* Methods. */
 		void CheckBodyCollisions(C_Body& body);
+		void ResolveCollision(C_Body& bodyA, C_Body& bodyB, float& dt);
 		void BodyCollisionResponse(C_Body& body, float& dt);
 		void ProcessBodies(float& dt);
 

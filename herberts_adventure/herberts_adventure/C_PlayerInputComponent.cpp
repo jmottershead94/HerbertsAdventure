@@ -48,7 +48,7 @@ void C_PlayerInputComponent::Update(C_GameObject& game_object, float& dt)
 			if (game_object.rigidbody()->body()->can_jump())
 			{
 				/* Make the rigidbody jump upward. */
-				game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(0.0f, -game_object.movement_speed() * 20.0f), dt);
+				game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(0.0f, -game_object.movement_speed()), dt);
 				game_object.rigidbody()->body()->set_jump_flag(false);
 			}
 		}
@@ -57,33 +57,39 @@ void C_PlayerInputComponent::Update(C_GameObject& game_object, float& dt)
 	/* If the user presses left. */
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 	{
-		/* If the rigidbody is on the ground OR if the rigidbody has collided with something. */
-		if (game_object.rigidbody()->body()->on_the_ground() || game_object.rigidbody()->body()->has_collided())
-		{
-			/* Move the rigidbody to the left and act against gravity. */
-			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-game_object.movement_speed(), -game_object.movement_speed() * 0.5f), dt);
-		}
-		/* Otherwise, if the rigidbody is not on the ground. */
-		else if(!game_object.rigidbody()->body()->on_the_ground())
-		{
-			/* Move the rigidbody to the left. */
-			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-game_object.movement_speed(), 0.0f), dt);
-		}
+		/* Move the rigidbody to the left. */
+		game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-game_object.movement_speed(), 0.0f), dt);
+
+		///* If the rigidbody is on the ground OR if the rigidbody has collided with something. */
+		//if (game_object.rigidbody()->body()->on_the_ground() || game_object.rigidbody()->body()->has_collided())
+		//{
+		//	/* Move the rigidbody to the left and act against gravity. */
+		//	game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-game_object.movement_speed(), -game_object.movement_speed() * 0.0f), dt);
+		//}
+		///* Otherwise, if the rigidbody is not on the ground. */
+		//else if(!game_object.rigidbody()->body()->on_the_ground())
+		//{
+		//	/* Move the rigidbody to the left. */
+		//	game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-game_object.movement_speed(), 0.0f), dt);
+		//}
 	}
 	/* If the user presses right. */
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
-		/* If the rigidbody is on the ground OR if the rigidbody has collided with something. */
-		if (game_object.rigidbody()->body()->on_the_ground() || game_object.rigidbody()->body()->has_collided())
-		{
-			/* Move the rigidbody to the right and act against gravity. */
-			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(game_object.movement_speed(), -game_object.movement_speed() * 0.5f), dt);
-		}
-		/* Otherwise, if the rigidbody is not on the ground. */
-		else if (!game_object.rigidbody()->body()->on_the_ground())
-		{
-			/* Move the rigidbody to the right. */
-			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(game_object.movement_speed(), 0.0f), dt);
-		}
+		/* Move the rigidbody to the right. */
+		game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(game_object.movement_speed(), 0.0f), dt);
+
+		///* If the rigidbody is on the ground OR if the rigidbody has collided with something. */
+		//if (game_object.rigidbody()->body()->on_the_ground() || game_object.rigidbody()->body()->has_collided())
+		//{
+		//	/* Move the rigidbody to the right and act against gravity. */
+		//	game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(game_object.movement_speed(), -game_object.movement_speed() * 0.0f), dt);
+		//}
+		///* Otherwise, if the rigidbody is not on the ground. */
+		//else if (!game_object.rigidbody()->body()->on_the_ground())
+		//{
+		//	/* Move the rigidbody to the right. */
+		//	game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(game_object.movement_speed(), 0.0f), dt);
+		//}
 	}
 }

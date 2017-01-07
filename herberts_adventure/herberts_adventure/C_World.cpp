@@ -44,7 +44,7 @@ void C_World::CheckCollision(C_Body& bodyA, C_Body& bodyB)
 				&& bodyB.id_ != ObjectID::endLevelTrigger)
 			{
 				/* If the body B is already on the ground or is static. */
-				if (bodyB.on_ground_ || bodyB.is_kinematic_)
+				if (bodyB.velocity_.y == 0.0f || bodyB.on_ground_ || bodyB.is_kinematic_)
 				{
 					/* Body A now has something below. */
 					bodyA.on_ground_ = true;
@@ -85,6 +85,37 @@ void C_World::CheckBodyCollisions(C_Body& body)
 	}
 }
 
+/* Implemented using laws of reflection. */
+/* Thanks to Paul Firth: http://www.wildbunny.co.uk/blog/2011/04/06/physics-engines-for-dummies/ */
+void C_World::ResolveCollision(C_Body& bodyA, C_Body& bodyB, float& dt)
+{
+	/*UNUSED(bodyA);
+	UNUSED(bodyB);
+	UNUSED(dt);*/
+	UNUSED(dt);
+
+	sf::Vector2f relative_velocity = bodyB.velocity_ - bodyA.velocity_;
+	sf::Vector2f velocity_normal = C_Utilities::Normalize(relative_velocity);
+	//float velocity_dotA = C_Utilities::DotProduct(bodyA.velocity_, velocity_normal);
+	//float velocity_dotB = C_Utilities::DotProduct(bodyB.velocity_, -velocity_normal);
+	float velocity_dot = C_Utilities::DotProduct(relative_velocity, velocity_normal);
+	//float mass_ratioA = bodyB.mass_ / (bodyA.mass_ + bodyB.mass_);
+	//float mass_ratioB = bodyA.mass_ / (bodyB.mass_ + bodyB.mass_);
+
+	sf::Vector2f I = (((1.0f + bodyA.restitution_) * velocity_normal * velocity_dot) / (bodyA.inverse_mass_ + bodyB.inverse_mass_));
+
+	//if(C_Utilities::Abs(bodyA.velocity_.x) < MAX_VELOCITY && C_Utilities::Abs(bodyB.velocity_.y) < MAX_VELOCITY)
+	//bodyA.velocity_ -= ((1.0f + bodyA.restitution_) * velocity_normal * velocity_dotA * mass_ratioA);
+	//bodyB.velocity_ -= ((1.0f + bodyB.restitution_) * -velocity_normal * velocity_dotB * mass_ratioB);
+	
+	bodyA.velocity_ += (I * bodyA.inverse_mass_);
+	
+	if (!bodyB.is_kinematic_)
+	{
+		bodyB.velocity_ -= (I * bodyB.inverse_mass_);
+	}
+}
+
 void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 {
 	/* If the body is not on the ground. */
@@ -93,7 +124,7 @@ void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 		/* Apply gravity to the body. */
 		body.ApplyForce(-gravity_, dt);
 	}
-
+	
 	/* Looping through each of the collision flags. */
 	for (std::vector<bool>::iterator collision = body.collision_flags_.begin(); collision != body.collision_flags_.end(); collision++)
 	{
@@ -110,7 +141,10 @@ void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 	/* Looping through each of the collisions. */
 	for (std::vector<C_Body*>::iterator contact = body.colliding_bodies_.begin(); contact != body.colliding_bodies_.end(); contact++)
 	{
-		
+		if (!body.is_kinematic_)
+		{
+			ResolveCollision(body, (**contact), dt);
+		}
 	}
 }
 
