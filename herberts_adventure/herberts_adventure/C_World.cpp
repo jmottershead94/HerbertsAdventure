@@ -97,11 +97,7 @@ void C_World::ResolveCollision(C_Body& bodyA, C_Body& bodyB, float& dt)
 	sf::Vector2f I = (((1.0f + bodyA.restitution_) * velocity_normal * velocity_dot) / (bodyA.inverse_mass_ + bodyB.inverse_mass_));
 	
 	bodyA.velocity_ += (I * bodyA.inverse_mass_);
-
-	if (!bodyB.on_ground_)
-	{
-		bodyB.velocity_ -= (I * bodyB.inverse_mass_);
-	}
+	bodyB.velocity_ -= (I * bodyB.inverse_mass_);
 }
 
 void C_World::BodyCollisionResponse(C_Body& body, float& dt)

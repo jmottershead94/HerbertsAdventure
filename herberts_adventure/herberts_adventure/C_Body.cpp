@@ -71,13 +71,13 @@ void C_Body::CheckVelocityValue()
 			velocity_.x = -MAX_VELOCITY.x;
 	}
 
-	if (C_Utilities::Abs(velocity_.y) > MAX_VELOCITY.y)
+	/*if (C_Utilities::Abs(velocity_.y) > MAX_VELOCITY.y)
 	{
 		if (velocity_.y > 0.0f)
 			velocity_.y = MAX_VELOCITY.y;
 		else
 			velocity_.y = -MAX_VELOCITY.y;
-	}
+	}*/
 }
 
 void C_Body::Update(C_GameObject & game_object, float& dt)

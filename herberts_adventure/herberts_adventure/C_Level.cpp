@@ -12,7 +12,7 @@
 C_Level::C_Level() :
 	window_(nullptr),
 	world_(nullptr),
-	level_number_(2)
+	level_number_(1)
 {}
 
 /*

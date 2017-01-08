@@ -110,6 +110,20 @@ void C_LevelGenerator::ReadTextFile()
 				CreateBox(ObjectID::dynamicObjectStack, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
+			case ('B') :
+			{
+				float default_width = 1.0f;
+				int original_map_x = map_coordinates.x;
+				int text_file_width = 0;
+
+				while (ifstream_->peek() == 'B')
+				{
+					IncrementObjectWidth(default_width, text_file_width, map_coordinates.x, text_file_char);
+				}
+
+				CreateBouncingBox(ObjectID::dynamicObject, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
+				break;
+			}
 			case ('-') :
 			{
 				float default_width = 1.0f;
@@ -225,7 +239,21 @@ C_GameObject* C_LevelGenerator::CreateBox(const ObjectID id, sf::Vector2f positi
 	return game_object;
 }
 
-C_GameObject * C_LevelGenerator::CreateFinishPoint(const ObjectID id, sf::Vector2f position, sf::Vector2f scale)
+C_GameObject* C_LevelGenerator::CreateBouncingBox(const ObjectID id, sf::Vector2f position, sf::Vector2f scale)
+{
+	C_GameObject* game_object = new C_GameObject();
+	C_DemoInputComponent* input_component = new C_DemoInputComponent();
+	C_PhysicsBody* physics_component = new C_PhysicsBody();
+
+	game_object->Init(id, world_, physics_component, input_component, "SPR_button.png", position, 0.0f, scale);
+	physics_component->Init(id, *game_object, 1.0f, false, 1.0f, 0.3f, 1.0f);
+
+	objects_.push_back(game_object);
+
+	return game_object;
+}
+
+C_GameObject* C_LevelGenerator::CreateFinishPoint(const ObjectID id, sf::Vector2f position, sf::Vector2f scale)
 {
 	C_GameObject* game_object = new C_GameObject();
 	C_DemoInputComponent* input_component = new C_DemoInputComponent();
