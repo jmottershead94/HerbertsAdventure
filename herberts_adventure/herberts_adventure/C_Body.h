@@ -18,14 +18,14 @@ class C_Body
 		void Init(const ObjectID id, C_GameObject& game_object, const float mass, const bool is_kinematic, const float density, const float friction, const float bounciness);
 		void ApplyForce(const sf::Vector2f force, float& dt);
 		void ResetCollisionProperties();
-		
-		//bool Raycast();
 		void Update(C_GameObject& game_object, float& dt);
 
 		/* Getters / Setters. */
 		inline std::vector<C_Body*> colliding_bodies() { return colliding_bodies_; }
 
 		inline std::vector<bool> collision_flags() { return collision_flags_; }
+
+		inline std::vector<int> collisions() { return collisions_; }
 
 		inline ObjectID id() { return id_; }
 
@@ -36,6 +36,14 @@ class C_Body
 		inline const bool& can_jump() { return can_jump_; }
 
 		inline const bool& has_collided() { return collided_; }
+
+		inline const bool& collided_left() { return colliding_left_; }
+
+		inline const bool& collided_right() { return colliding_right_; }
+
+		inline const bool& collided_above() { return colliding_top_; }
+
+		inline const bool& collided_below() { return colliding_bottom_; }
 
 		inline sf::Vector2f& velocity() { return velocity_; }
 
@@ -50,8 +58,10 @@ class C_Body
 	private:
 		/* Attributes. */
 		std::vector<C_Body*> colliding_bodies_;
+		std::vector<int> collisions_;
 		std::vector<bool> collision_flags_;
 		ObjectID id_ = ObjectID::staticObject;
+		bool colliding_left_ = false, colliding_top_ = false, colliding_right_ = false, colliding_bottom_ = false;
 		bool on_ground_ = false;
 		bool can_jump_ = false;
 		bool collided_ = false;

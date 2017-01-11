@@ -79,6 +79,45 @@ C_State* C_StateMenu::HandleTransitions()
 				window_->close();
 			}
 		}
+
+		if (sf::Joystick::isConnected(0))
+		{
+			/* If the user clicked on the play button. */
+			if (C_Input::APressed())
+			{
+				ui_sfx_->play();
+
+				/* Go to the game. */
+				return new C_StateGame(*this);
+			}
+
+			/* If the user clicked on the options button. */
+			if (C_Input::XPressed())
+			{
+				ui_sfx_->play();
+
+				/* Go to the options state. */
+				return new C_StateOptions(*this);
+			}
+
+			/* If the user clicked on the credits button. */
+			if (C_Input::YPressed())
+			{
+				ui_sfx_->play();
+
+				/* Go to credits. */
+				return new C_StateCredits(*this);
+			}
+
+			/* If the user clicked on the quit button. */
+			if (C_Input::BPressed())
+			{
+				ui_sfx_->play();
+
+				/* Close the window. */
+				window_->close();
+			}
+		}
 	}
 
 	/* Otherwise, there are no state transitions. */
@@ -101,6 +140,11 @@ void C_StateMenu::OnEnter()
 	button_options_.Init(window_, font_, "Options", 50, sf::Vector2f(window_->getSize().x * 0.4f, window_->getSize().y * 0.65f));
 	button_credits_.Init(window_, font_, "Credits", 50, sf::Vector2f(window_->getSize().x * 0.6f, window_->getSize().y * 0.65f));
 	button_quit_.Init(window_, font_, "Quit", 50, sf::Vector2f(window_->getSize().x * 0.8f, window_->getSize().y * 0.65f));
+
+	spr_A_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.1675f, window_->getSize().y * 0.675f), sf::IntRect(256, 0, 128, 128));
+	spr_X_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.37f, window_->getSize().y * 0.675f), sf::IntRect(256, 384, 128, 128));
+	spr_Y_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.57f, window_->getSize().y * 0.675f), sf::IntRect(256, 256, 128, 128));
+	spr_B_.Init(window_, font_, sf::Vector2f(window_->getSize().x * 0.775f, window_->getSize().y * 0.675f), sf::IntRect(256, 128, 128, 128));
 
 	/* Start the input delay timer. */
 	input_delay_.start();
@@ -132,6 +176,14 @@ void C_StateMenu::Render()
 	button_options_.Render();
 	button_credits_.Render();
 	button_quit_.Render();
+
+	if (sf::Joystick::isConnected(0))
+	{
+		window_->draw(spr_A_);
+		window_->draw(spr_B_);
+		window_->draw(spr_X_);
+		window_->draw(spr_Y_);
+	}
 }
 
 /*

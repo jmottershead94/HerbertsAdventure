@@ -28,12 +28,17 @@ void C_World::ClearBodies()
 
 void C_World::CheckCollision(C_Body& bodyA, C_Body& bodyB)
 {
+
+
 	if (collider_manager_->IsColliding(bodyA, bodyB) == C_Collision2D::none)
 	{
 		bodyA.collision_flags_.push_back(false);
 	}
 	else
 	{
+		// 0 - none, 1 - left, 2 - top, 3 - right, 4 - bottom.
+		bodyA.collisions_.push_back((int)collider_manager_->IsColliding(bodyA, bodyB));
+
 		bodyA.colliding_bodies_.push_back(&bodyB);
 		bodyA.collision_flags_.push_back(true);
 
@@ -121,6 +126,22 @@ void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 		}
 	}
 
+	for (std::vector<int>::iterator collision = body.collisions_.begin(); collision != body.collisions_.end(); collision++)
+	{
+		if (body.colliding_left_ && body.colliding_right_ && body.colliding_top_ && body.colliding_bottom_)
+			break;
+
+		// 0 - none, 1 - left, 2 - top, 3 - right, 4 - bottom.
+		if ((*collision) == 1)
+			body.colliding_left_ = true;
+		else if ((*collision) == 2)
+			body.colliding_top_ = true;
+		else if ((*collision) == 3)
+			body.colliding_right_ = true;
+		else if ((*collision) == 4)
+			body.colliding_bottom_ = true;
+	}
+
 	/* TODO: Loop through colliding bodies and provide standard collision response. */
 	/* Looping through each of the collisions. */
 	for (std::vector<C_Body*>::iterator contact = body.colliding_bodies_.begin(); contact != body.colliding_bodies_.end(); contact++)
@@ -130,6 +151,8 @@ void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 			ResolveCollision(body, (**contact), dt);
 		}
 	}
+
+	
 }
 
 void C_World::ProcessBodies(float& dt)

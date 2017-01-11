@@ -79,7 +79,7 @@ void C_GameObject::Update(float& dt)
 	/* To avoid warnings as errors, dt will be used later. */
 	UNUSED(dt);
 
-	/* Update the input component. */
+	/* Update the components. */
 	input_->Update(*this, dt);
 	rigidbody_->Update(*this, dt);
 }

@@ -41,7 +41,7 @@ C_State* C_StateTitle::HandleTransitions()
 	if (input_delay_.Finished())
 	{
 		/* If the user clicks the left mouse button. */
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+		if (C_Input::AcceptPressed())
 		{
 			ui_sfx_->play();
 

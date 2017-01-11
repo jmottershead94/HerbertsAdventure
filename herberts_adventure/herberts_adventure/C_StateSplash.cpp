@@ -100,7 +100,7 @@ bool C_StateSplash::LoadResources()
 C_State* C_StateSplash::HandleTransitions()
 {
 	/* If the timer has finished OR if the user clicks the left mouse button OR presses the space bar. */
-	if (timer_.Finished() || sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+	if (timer_.Finished() || C_Input::AcceptPressed())
 	{
 		/* Go to the title state. */
 		return new C_StateTitle(*this);

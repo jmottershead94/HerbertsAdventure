@@ -169,6 +169,7 @@
     <ClCompile Include="C_Debug.cpp" />
     <ClCompile Include="C_DemoInputComponent.cpp" />
     <ClCompile Include="C_GameObject.cpp" />
+    <ClCompile Include="C_Input.cpp" />
     <ClCompile Include="C_Level.cpp" />
     <ClCompile Include="C_LevelGenerator.cpp" />
     <ClCompile Include="C_NullPhysicsComponent.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="C_Player.cpp" />
     <ClCompile Include="C_PlayerInputComponent.cpp" />
     <ClCompile Include="C_Slider.cpp" />
+    <ClCompile Include="C_Sprite.cpp" />
     <ClCompile Include="C_State.cpp" />
     <ClCompile Include="C_StateCredits.cpp" />
     <ClCompile Include="C_StateGame.cpp" />
@@ -203,6 +205,7 @@
     <ClInclude Include="C_Debug.h" />
     <ClInclude Include="C_DemoInputComponent.h" />
     <ClInclude Include="C_GameObject.h" />
+    <ClInclude Include="C_Input.h" />
     <ClInclude Include="C_InputComponent.h" />
     <ClInclude Include="C_Level.h" />
     <ClInclude Include="C_LevelGenerator.h" />
@@ -213,6 +216,7 @@
     <ClInclude Include="C_PlayerInputComponent.h" />
     <ClInclude Include="C_Rigidbody2DComponent.h" />
     <ClInclude Include="C_Slider.h" />
+    <ClInclude Include="C_Sprite.h" />
     <ClInclude Include="C_State.h" />
     <ClInclude Include="C_StateCredits.h" />
     <ClInclude Include="C_StateGame.h" />

@@ -19,5 +19,4 @@ void C_Camera::Update(sf::Vector2f position, float& dt)
 {
 	UNUSED(dt);
 	setCenter(position);
-	//move(position);
 }

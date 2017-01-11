@@ -23,11 +23,13 @@
 
 /* Include header files here. */
 /* Application. */
+#include "C_Input.h"
 #include "C_Options.h"
 #include "C_Timer.h"
 #include "C_Camera.h"
 #include "C_Level.h"
 #include "C_Button.h"
+#include "C_Sprite.h"
 
 /* State is just a standard class. */
 class C_State

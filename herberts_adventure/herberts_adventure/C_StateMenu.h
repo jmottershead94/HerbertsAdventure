@@ -45,6 +45,7 @@ public:
 private:
 	/* Attributes. */
 	C_Button button_play_, button_options_, button_credits_, button_quit_;	/* The buttons used for this state. */
+	C_Sprite spr_A_, spr_B_, spr_X_, spr_Y_;
 };
 
 #endif

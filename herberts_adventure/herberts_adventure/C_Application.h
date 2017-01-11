@@ -52,6 +52,7 @@ class C_Application
 		C_World* world_;						/* The main box2D world. */
 		C_Utilities utilities_;					/* Used to setup the singleton Utilities access for other classes. */
 		C_Options options_;						/* . */
+		C_Input input_;
 		C_Debug debug_;							/* Used to setup the singleton Debug access for other classes. */
 		C_State* current_state_;				/* Used to setup the state machine for the game flow. */
 

@@ -38,11 +38,11 @@ C_PlayerInputComponent::~C_PlayerInputComponent()
 */
 void C_PlayerInputComponent::Update(C_GameObject& game_object, float& dt)
 {
-	/* If the user presses up. */
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+	/* If the user presses the jump button. */
+	if (C_Input::JumpPressed())
 	{
 		/* If the rigidbody is on the ground OR if the rigidbody has collided with something. */
-		if (game_object.rigidbody()->body()->on_the_ground() || game_object.rigidbody()->body()->has_collided())
+		if (game_object.rigidbody()->body()->on_the_ground() /*&& !game_object.rigidbody()->body()->collided_above()*/ || game_object.rigidbody()->body()->has_collided())
 		{
 			/* If the rigidbody can jump. */
 			if (game_object.rigidbody()->body()->can_jump())
@@ -55,15 +55,15 @@ void C_PlayerInputComponent::Update(C_GameObject& game_object, float& dt)
 	}
 
 	/* If the user presses left. */
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+	if (C_Input::LeftPressed())
 	{
-		/* Move the rigidbody to the left. */
-		game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-250.0f, 0.0f), dt);
+		/*if(!game_object.rigidbody()->body()->collided_left())*/
+			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(-250.0f, 0.0f), dt);
 	}
 	/* If the user presses right. */
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+	else if (C_Input::RightPressed())
 	{
-		/* Move the rigidbody to the left. */
-		game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(250.0f, 0.0f), dt);
+		/*if(!game_object.rigidbody()->body()->collided_right())*/
+			game_object.rigidbody()->body()->ApplyForce(sf::Vector2f(250.0f, 0.0f), dt);
 	}
 }

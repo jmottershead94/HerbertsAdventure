@@ -36,6 +36,9 @@
     <Filter Include="Levels">
       <UniqueIdentifier>{5901eb04-63f9-467c-b2c3-469cc2b55e0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{a4bbda2b-479d-41b3-85fd-52d878d9c65e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -130,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="C_Camera.cpp">
       <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Sprite.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +243,12 @@
     </ClInclude>
     <ClInclude Include="C_Camera.h">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Sprite.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

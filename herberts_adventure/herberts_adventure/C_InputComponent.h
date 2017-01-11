@@ -20,6 +20,7 @@
 
 /* Include header files here. */
 /* Application. */
+#include "C_Input.h"
 #include "C_GameObject.h"
 
 /* Forward declaration. */

@@ -48,6 +48,7 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	utilities_.Init();
 	options_.Init();
 	debug_.Init();
+	input_.Init();
 
 	window_.setView(camera_);
 

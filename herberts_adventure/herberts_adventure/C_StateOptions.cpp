@@ -52,6 +52,13 @@ C_State* C_StateOptions::HandleTransitions()
 				return new C_StateMenu(*this);
 			}
 		}
+		else if (C_Input::CancelPressed())
+		{
+			ui_sfx_->play();
+
+			/* Go to the main menu. */
+			return new C_StateMenu(*this);
+		}
 	}
 
 	/* Otherwise, there are no state transitions. */

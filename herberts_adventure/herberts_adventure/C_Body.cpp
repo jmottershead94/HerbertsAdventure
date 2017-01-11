@@ -49,6 +49,10 @@ void C_Body::ResetCollisionProperties()
 	on_ground_ = false;
 	can_jump_ = true;
 	collided_ = false;
+	colliding_left_ = false;
+	colliding_top_ = false;
+	colliding_right_ = false;
+	colliding_bottom_ = false;
 
 	if (!colliding_bodies_.empty())
 	{
@@ -58,6 +62,11 @@ void C_Body::ResetCollisionProperties()
 	if (!collision_flags_.empty())
 	{
 		collision_flags_.clear();
+	}
+
+	if (!collisions_.empty())
+	{
+		collisions_.clear();
 	}
 }
 
