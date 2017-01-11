@@ -41,7 +41,7 @@ C_State* C_StateGame::HandleTransitions()
 	if (input_delay_.Finished())
 	{
 		/* If the user clicks the left mouse button. */
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Right) || C_Input::StartPressed())
 		{
 			ui_sfx_->play();
 
