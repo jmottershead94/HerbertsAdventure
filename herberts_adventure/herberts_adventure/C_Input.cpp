@@ -60,7 +60,7 @@ bool C_Input::BPressed()
 
 bool C_Input::XPressed()
 {
-	return sf::Joystick::isButtonPressed(0, 8);
+	return sf::Joystick::isButtonPressed(0, 2);
 }
 
 bool C_Input::YPressed()
@@ -100,11 +100,13 @@ sf::Vector2f C_Input::Axis(const unsigned int joystick_number)
 
 	A - 0
 	B - 1
-	X - ?
-	Y - 4
+	X - 2
+	Y - 3
 	RB - 5
 	LB - 6
 	START - 7
+	Left Analogue Stick Press - 8
+	Right Analogue Stick Press - 9
 
 
 */
