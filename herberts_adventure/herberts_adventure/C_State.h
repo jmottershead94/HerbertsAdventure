@@ -42,7 +42,7 @@ class C_State
 		/* Pure virtual functions that every state MUST have. */
 		/* Intended to be overwritten by the more specific states. */
 		/* Handling transitions between states (either input or automatic). */
-		virtual C_State* HandleTransitions() = 0;
+		virtual std::unique_ptr<C_State> HandleTransitions() = 0;
 
 		/* Providing each state with it's own entering sequence. */
 		virtual void OnEnter() = 0;

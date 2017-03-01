@@ -34,7 +34,7 @@ public:
 	/* Methods. */
 	C_StateGame(const C_State& current_state);
 	~C_StateGame();
-	C_State* HandleTransitions();
+	std::unique_ptr<C_State> HandleTransitions();
 	void OnEnter();
 	void OnExit();
 	void Render();

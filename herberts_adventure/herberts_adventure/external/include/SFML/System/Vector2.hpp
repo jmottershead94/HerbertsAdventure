@@ -219,6 +219,22 @@ Vector2<T>& operator /=(Vector2<T>& left, T right);
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2
+/// \brief Overload of binary operator /=
+///
+/// This operator performs a memberwise division by \a right,
+/// and assigns the result to \a left.
+///
+/// \param left  Left operand (a vector)
+/// \param right Right operand (a scalar value)
+///
+/// \return Reference to \a left
+///
+////////////////////////////////////////////////////////////
+template <typename T>
+Vector2<T>& operator /=(const Vector2<T>& left, const Vector2<T>& right);
+
+////////////////////////////////////////////////////////////
+/// \relates Vector2
 /// \brief Overload of binary operator ==
 ///
 /// This operator compares strict equality between two vectors.

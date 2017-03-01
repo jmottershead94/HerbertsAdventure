@@ -45,9 +45,13 @@ class C_Body
 
 		inline const bool& collided_below() { return colliding_bottom_; }
 
+		inline const bool& being_destroyed() { return destroy_; }
+
 		inline sf::Vector2f& velocity() { return velocity_; }
 
 		inline sf::FloatRect& collider() { return collider_; }
+
+		inline void should_destroy(const bool value) { destroy_ = value; }
 
 		inline void set_on_ground(const bool value) { on_ground_ = value; }
 
@@ -65,6 +69,8 @@ class C_Body
 		bool on_ground_ = false;
 		bool can_jump_ = false;
 		bool collided_ = false;
+		bool is_trigger_ = false;
+		bool destroy_ = false;
 		C_Body* colliding_body_;	/* Stores the body that the collider is currently colliding with. */
 		sf::Vector2f position_;		/* Stores the position of the collider */
 		sf::Vector2f translation_;	

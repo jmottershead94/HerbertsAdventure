@@ -97,13 +97,13 @@ bool C_StateSplash::LoadResources()
 							transition to.
 
 */
-C_State* C_StateSplash::HandleTransitions()
+std::unique_ptr<C_State> C_StateSplash::HandleTransitions()
 {
 	/* If the timer has finished OR if the user clicks the left mouse button OR presses the space bar. */
 	if (timer_.Finished() || C_Input::AcceptPressed())
 	{
 		/* Go to the title state. */
-		return new C_StateTitle(*this);
+		return std::make_unique<C_StateTitle>(*this);
 	}
 
 	/* Otherwise, there are no state transitions. */

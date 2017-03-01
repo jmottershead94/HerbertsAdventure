@@ -29,6 +29,11 @@ void C_Body::Init(const ObjectID id, C_GameObject& game_object, const float mass
 	friction_ = friction;
 	restitution_ = bounciness;
 
+	if (id == ObjectID::trigger || id == ObjectID::cameraZoomTrigger || id == ObjectID::endLevelTrigger)
+	{
+		is_trigger_ = true;
+	}
+
 	velocity_ = sf::Vector2f(0.0f, 0.0f);
 }
 
@@ -80,19 +85,17 @@ void C_Body::CheckVelocityValue()
 			velocity_.x = -MAX_VELOCITY.x;
 	}
 
-	/*if (C_Utilities::Abs(velocity_.y) > MAX_VELOCITY.y)
+	/*if (velocity_.y > 0.0f)
 	{
-		if (velocity_.y > 0.0f)
-			velocity_.y = MAX_VELOCITY.y;
-		else
-			velocity_.y = -MAX_VELOCITY.y;
+		if (on_ground_ || colliding_bottom_)
+		{
+			velocity_.y = 0.0f;
+		}
 	}*/
 }
 
 void C_Body::Update(C_GameObject & game_object, float& dt)
 {
-	UNUSED(dt);
-
 	CheckVelocityValue();
 
 	if (velocity_ != sf::Vector2f(0.0f, 0.0f))

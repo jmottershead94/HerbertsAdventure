@@ -35,7 +35,7 @@ C_StateCredits::~C_StateCredits()
 							transition to.
 
 */
-C_State* C_StateCredits::HandleTransitions()
+std::unique_ptr<C_State> C_StateCredits::HandleTransitions()
 {
 	/* If the input delay timer has finished. */
 	if (input_delay_.Finished())
@@ -49,7 +49,7 @@ C_State* C_StateCredits::HandleTransitions()
 				ui_sfx_->play();
 
 				/* Go to the main menu. */
-				return new C_StateMenu(*this);
+				return std::make_unique<C_StateMenu>(*this);
 			}
 		}
 		else if (C_Input::CancelPressed())
@@ -57,7 +57,7 @@ C_State* C_StateCredits::HandleTransitions()
 			ui_sfx_->play();
 
 			/* Go to the main menu. */
-			return new C_StateMenu(*this);
+			return std::make_unique<C_StateMenu>(*this);
 		}
 	}
 

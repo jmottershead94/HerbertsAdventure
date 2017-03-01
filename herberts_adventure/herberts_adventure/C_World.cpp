@@ -142,11 +142,17 @@ void C_World::BodyCollisionResponse(C_Body& body, float& dt)
 	{
 		if (!body.is_kinematic_)
 		{
-			ResolveCollision(body, (**contact), dt);
+			if(!body.is_trigger_ && !(**contact).is_trigger_)
+			{
+				ResolveCollision(body, (**contact), dt);
+			}
+
+			if ((**contact).is_trigger_)
+			{
+				(**contact).destroy_ = true;
+			}
 		}
 	}
-
-	
 }
 
 void C_World::ProcessBodies(float& dt)
@@ -161,6 +167,14 @@ void C_World::ProcessBodies(float& dt)
 
 			/* Provide a response for any collisions. */
 			BodyCollisionResponse(*bodies_.at(i), dt);
+
+			/* Cleaning up any destroyed bodies. */
+			if (bodies_.at(i)->destroy_)
+			{
+				/* Remove the body from the vector. */
+				bodies_.at(i)->ResetCollisionProperties();
+				bodies_.erase(bodies_.begin() + i);
+			}
 		}
 	}
 }

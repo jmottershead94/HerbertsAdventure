@@ -67,7 +67,7 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	world_->Init(gravity);
 
 	/* Starting the state machine. */
-	current_state_ = new C_StateSplash(&window_, &font_, world_, &camera_);
+	current_state_ = std::make_unique<C_StateSplash>(&window_, &font_, world_, &camera_);
 	current_state_->OnEnter();
 }
 
@@ -83,8 +83,7 @@ void C_Application::CleanUp()
 	/* Clean up attribute values. */
 	utilities_.CleanUp();
 	options_.CleanUp();
-	CLEANUPDELETE(current_state_);
-	DELETE(world_);
+	//DELETE(world_);
 }
 
 /*
@@ -98,17 +97,18 @@ void C_Application::CleanUp()
 void C_Application::HandleStates()
 {
 	/* Creates a new state if one is required. */
-	C_State* new_state = current_state_->HandleTransitions();
+	std::unique_ptr<C_State> new_state = current_state_->HandleTransitions();
 
 	/* If the new state is equal to something. */
 	if (new_state != nullptr)
 	{
 		/* Exit the previous state. */
 		current_state_->OnExit();
-		DELETE(current_state_);
+		
+		//DELETE(current_state_);
 
 		/* Enter the new state. */
-		current_state_ = new_state;
+		current_state_ = std::move(new_state);
 		current_state_->OnEnter();
 	}
 }

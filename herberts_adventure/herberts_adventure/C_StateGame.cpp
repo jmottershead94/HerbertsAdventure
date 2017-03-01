@@ -35,7 +35,7 @@ C_StateGame::~C_StateGame()
 							transition to.
 
 */
-C_State* C_StateGame::HandleTransitions()
+std::unique_ptr<C_State> C_StateGame::HandleTransitions()
 {
 	/* If the input delay timer has finished. */
 	if (input_delay_.Finished())
@@ -46,7 +46,7 @@ C_State* C_StateGame::HandleTransitions()
 			ui_sfx_->play();
 
 			/* Go to the main menu. */
-			return new C_StateMenu(*this);
+			return std::make_unique<C_StateMenu>(*this);
 		}
 	}
 

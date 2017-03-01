@@ -35,7 +35,7 @@ class C_StateSplash : public C_State
 		C_StateSplash(sf::RenderWindow* window, sf::Font* font, C_World* world, C_Camera* camera);
 		~C_StateSplash();
 		bool LoadResources();
-		C_State* HandleTransitions();
+		std::unique_ptr<C_State> HandleTransitions();
 		void OnEnter();
 		void OnExit();
 		void Render();

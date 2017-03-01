@@ -35,7 +35,7 @@ class C_StateOptions : public C_State
 		/* Methods. */
 		C_StateOptions(const C_State& current_state);
 		~C_StateOptions();
-		C_State* HandleTransitions();
+		std::unique_ptr<C_State> HandleTransitions();
 		void OnEnter();
 		void OnExit();
 		void RenderGameOptions();

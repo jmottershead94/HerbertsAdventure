@@ -35,7 +35,7 @@ C_StateMenu::~C_StateMenu()
 							transition to.
 
 */
-C_State* C_StateMenu::HandleTransitions()
+std::unique_ptr<C_State> C_StateMenu::HandleTransitions()
 {
 	/* If the input delay timer has finished. */
 	if (input_delay_.Finished())
@@ -49,7 +49,7 @@ C_State* C_StateMenu::HandleTransitions()
 				ui_sfx_->play();
 
 				/* Go to the game. */
-				return new C_StateGame(*this);
+				return std::make_unique<C_StateGame>(*this);
 			}
 
 			/* If the user clicked on the options button. */
@@ -58,7 +58,7 @@ C_State* C_StateMenu::HandleTransitions()
 				ui_sfx_->play();
 
 				/* Go to the options state. */
-				return new C_StateOptions(*this);
+				return std::make_unique<C_StateOptions>(*this);
 			}
 
 			/* If the user clicked on the credits button. */
@@ -67,7 +67,7 @@ C_State* C_StateMenu::HandleTransitions()
 				ui_sfx_->play();
 
 				/* Go to credits. */
-				return new C_StateCredits(*this);
+				return std::make_unique<C_StateCredits>(*this);
 			}
 
 			/* If the user clicked on the quit button. */
@@ -88,7 +88,7 @@ C_State* C_StateMenu::HandleTransitions()
 				ui_sfx_->play();
 
 				/* Go to the game. */
-				return new C_StateGame(*this);
+				return std::make_unique<C_StateGame>(*this);
 			}
 
 			/* If the user clicked on the options button. */
@@ -97,7 +97,7 @@ C_State* C_StateMenu::HandleTransitions()
 				ui_sfx_->play();
 
 				/* Go to the options state. */
-				return new C_StateOptions(*this);
+				return std::make_unique<C_StateOptions>(*this);
 			}
 
 			/* If the user clicked on the credits button. */
@@ -106,7 +106,7 @@ C_State* C_StateMenu::HandleTransitions()
 				ui_sfx_->play();
 
 				/* Go to credits. */
-				return new C_StateCredits(*this);
+				return std::make_unique<C_StateCredits>(*this);
 			}
 
 			/* If the user clicked on the quit button. */

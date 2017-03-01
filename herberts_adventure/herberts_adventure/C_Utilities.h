@@ -28,6 +28,7 @@
 #include <iomanip>
 #include <iostream>
 #include <cmath>
+#include <memory>
 
 /* SFML. */
 #include "SFML\Audio.hpp"

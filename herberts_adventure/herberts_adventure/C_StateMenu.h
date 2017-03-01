@@ -36,7 +36,7 @@ public:
 	/* Methods. */
 	C_StateMenu(const C_State& current_state);
 	~C_StateMenu();
-	C_State* HandleTransitions();
+	std::unique_ptr<C_State> HandleTransitions();
 	void OnEnter();
 	void OnExit();
 	void Render();

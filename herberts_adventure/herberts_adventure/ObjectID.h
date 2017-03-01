@@ -6,6 +6,7 @@ enum ObjectID
 	staticObject,
 	dynamicObject,
 	dynamicObjectStack,
+	cameraZoomTrigger,
 	trigger,
 	endLevelTrigger,
 	ui,

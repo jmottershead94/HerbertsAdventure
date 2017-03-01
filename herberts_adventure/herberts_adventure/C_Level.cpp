@@ -63,11 +63,16 @@ void C_Level::Render()
 	}
 }
 
-void C_Level::ProcessPlayerCollisions(C_Body& body)
+void C_Level::ProcessPlayerCollisions(C_Player& player, C_Body& body, int index)
 {
+	UNUSED(player);
+	UNUSED(index);
+
 	/* If the player has collided with an end level trigger. */
 	if (body.id() == ObjectID::endLevelTrigger)
 	{
+		C_Debug::PrintToConsole("Should end the level...");
+
 		if (level_number_ < 2)
 		{
 			level_number_++;
@@ -80,6 +85,11 @@ void C_Level::ProcessPlayerCollisions(C_Body& body)
 		/* Process... */
 		level_generator_.RestartLevel(level_number_, C_LevelGenerator::Type::desert);
 	}
+	else if (body.id() == ObjectID::cameraZoomTrigger)
+	{
+		camera_->zoom(0.75f);
+		//level_generator_.objects_.erase(level_generator_.objects_.begin() + index);
+	}
 }
 
 void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
@@ -91,6 +101,10 @@ void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
 			break;
 		}
 		case(ObjectID::dynamicObject) :
+		{
+			break;
+		}
+		case(ObjectID::cameraZoomTrigger) :
 		{
 			break;
 		}
@@ -116,7 +130,7 @@ void C_Level::ProcessLevelObjects(C_GameObject& game_object, float& dt)
 
 			for (size_t i = 0; i < player->contact().size(); i++)
 			{
-				ProcessPlayerCollisions(*player->contact()[i]);
+				ProcessPlayerCollisions(*player, *player->contact()[i], i);
 			}
 
 			break;

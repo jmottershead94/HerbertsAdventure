@@ -33,7 +33,7 @@ class C_StateTitle : public C_State
 		/* Methods. */
 		C_StateTitle(const C_State& current_state);
 		~C_StateTitle();
-		C_State* HandleTransitions();
+		std::unique_ptr<C_State> HandleTransitions();
 		void OnEnter();
 		void OnExit();
 		void Render();

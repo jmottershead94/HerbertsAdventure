@@ -39,6 +39,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{a4bbda2b-479d-41b3-85fd-52d878d9c65e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Triggers">
+      <UniqueIdentifier>{5fff3d35-7329-4cc1-bf06-654b51798d59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

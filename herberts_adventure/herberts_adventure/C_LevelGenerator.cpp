@@ -110,20 +110,6 @@ void C_LevelGenerator::ReadTextFile()
 				CreateBox(ObjectID::dynamicObjectStack, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
-			case ('B') :
-			{
-				float default_width = 1.0f;
-				int original_map_x = map_coordinates.x;
-				int text_file_width = 0;
-
-				while (ifstream_->peek() == 'B')
-				{
-					IncrementObjectWidth(default_width, text_file_width, map_coordinates.x, text_file_char);
-				}
-
-				CreateBouncingBox(ObjectID::dynamicObject, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
-				break;
-			}
 			case ('-') :
 			{
 				float default_width = 1.0f;
@@ -136,6 +122,20 @@ void C_LevelGenerator::ReadTextFile()
 				}
 
 				CreatePlatform(ObjectID::staticObject, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
+				break;
+			}
+			case ('B') :
+			{
+				float default_width = 1.0f;
+				int original_map_x = map_coordinates.x;
+				int text_file_width = 0;
+
+				while (ifstream_->peek() == 'B')
+				{
+					IncrementObjectWidth(default_width, text_file_width, map_coordinates.x, text_file_char);
+				}
+
+				CreateBouncingBox(ObjectID::dynamicObject, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
 			case ('C') :
@@ -152,6 +152,11 @@ void C_LevelGenerator::ReadTextFile()
 				CreateCharacter(ObjectID::character, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
+			case ('F') :
+			{
+				CreateFinishPoint(ObjectID::endLevelTrigger, sf::Vector2f((float)map_coordinates.x, (float)map_coordinates.y), sf::Vector2f(1.0f, 1.5f));
+				break;
+			}
 			case ('P') :
 			{
 				float default_width = 1.0f;
@@ -166,9 +171,18 @@ void C_LevelGenerator::ReadTextFile()
 				CreatePlayer(ObjectID::playerOne, camera_, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
-			case ('F') :
+			case ('Z') :
 			{
-				CreateFinishPoint(ObjectID::endLevelTrigger, sf::Vector2f((float)map_coordinates.x, (float)map_coordinates.y), sf::Vector2f(1.0f, 1.5f));
+				float default_width = 1.0f;
+				int original_map_x = map_coordinates.x;
+				int text_file_width = 0;
+
+				while (ifstream_->peek() == 'Z')
+				{
+					IncrementObjectWidth(default_width, text_file_width, map_coordinates.x, text_file_char);
+				}
+
+				CreateTrigger(ObjectID::cameraZoomTrigger, sf::Vector2f((float)original_map_x, (float)map_coordinates.y), sf::Vector2f(default_width, 1.0f));
 				break;
 			}
 			case ('\n') :
@@ -223,6 +237,20 @@ C_Character* C_LevelGenerator::CreateCharacter(const ObjectID id, sf::Vector2f p
 	objects_.push_back(character);
 
 	return character;
+}
+
+C_GameObject * C_LevelGenerator::CreateTrigger(const ObjectID id, sf::Vector2f position, sf::Vector2f scale)
+{
+	C_GameObject* game_object = new C_GameObject();
+	C_DemoInputComponent* input_component = new C_DemoInputComponent();
+	C_PhysicsBody* physics_component = new C_PhysicsBody();
+
+	game_object->Init(id, world_, physics_component, input_component, "SPR_bubble.png", position, 0.0f, scale);
+	physics_component->Init(id, *game_object, 1.0f, true, 1.0f, 0.3f, 0.0f);
+
+	objects_.push_back(game_object);
+
+	return game_object;
 }
 
 C_GameObject* C_LevelGenerator::CreateBox(const ObjectID id, sf::Vector2f position, sf::Vector2f scale)
