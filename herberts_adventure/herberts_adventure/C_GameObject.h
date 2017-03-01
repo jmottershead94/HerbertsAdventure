@@ -38,7 +38,7 @@ class C_GameObject : public sf::Sprite
 		/* Methods. */
 		C_GameObject();
 		~C_GameObject();
-		void Init(const ObjectID id, C_World* world, C_Rigidbody2DComponent* rigidbody, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
+		void Init(const ObjectID id, std::shared_ptr<C_World> world, C_Rigidbody2DComponent* rigidbody, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 		/* Getters / Setters. */
@@ -51,7 +51,7 @@ class C_GameObject : public sf::Sprite
 		inline const sf::Vector2f& velocity() { return (velocity_); }
 
 		/* This will allow us to get the current Box2D world. */
-		inline C_World* world() { return world_; }
+		inline std::shared_ptr<C_World> world() { return world_; }
 
 		/* This will allow us to access the object's rigidbody. */
 		inline C_Rigidbody2DComponent* rigidbody() { return rigidbody_; }
@@ -70,7 +70,7 @@ class C_GameObject : public sf::Sprite
 		const float speed_ = 100.0f;				/* How fast game objects can move. */
 		ObjectID id_ = ObjectID::staticObject;
 		sf::Vector2f velocity_;					/* How fast the game object is moving. */
-		C_World* world_;						/* Used to access the Box2D world. */
+		std::shared_ptr<C_World> world_;						/* Used to access the Box2D world. */
 		C_Rigidbody2DComponent* rigidbody_;		/* . */
 		C_InputComponent* input_;				/* Used to access the input component. */
 };

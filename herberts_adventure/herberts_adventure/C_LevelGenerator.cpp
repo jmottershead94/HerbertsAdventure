@@ -6,7 +6,7 @@ C_LevelGenerator::C_LevelGenerator()
 C_LevelGenerator::~C_LevelGenerator()
 {}
 
-void C_LevelGenerator::Init(sf::RenderWindow* window, C_World * world, C_Camera* camera, int& level_number, Type level_type)
+void C_LevelGenerator::Init(sf::RenderWindow* window, std::shared_ptr<C_World> world, C_Camera* camera, int& level_number, Type level_type)
 {
 	/* Initialising local attributes. */
 	window_ = window;

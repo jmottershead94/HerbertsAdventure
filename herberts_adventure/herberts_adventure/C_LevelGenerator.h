@@ -44,7 +44,7 @@ class C_LevelGenerator
 		sf::RenderWindow* window_;
 		C_GameObject* bg_;
 		C_Camera* camera_;
-		C_World* world_;
+		std::shared_ptr<C_World> world_;
 		enum Type
 		{
 			forest,
@@ -54,7 +54,7 @@ class C_LevelGenerator
 		/* Methods. */
 		C_LevelGenerator();
 		~C_LevelGenerator();
-		void Init(sf::RenderWindow* window, C_World* world, C_Camera* camera, int& level_number, Type level_type);
+		void Init(sf::RenderWindow* window, std::shared_ptr<C_World> world, C_Camera* camera, int& level_number, Type level_type);
 		void RestartLevel(int& level_number, Type level_type);
 		void IncrementObjectWidth(float& width, int& text_file_width, int& map_x, char& file_char);
 		void ReadTextFile();

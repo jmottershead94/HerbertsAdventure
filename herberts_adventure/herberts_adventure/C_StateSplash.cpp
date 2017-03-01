@@ -15,7 +15,7 @@
 	sf::Font* font				-	Provides access to the main font in the application class.
 
 */
-C_StateSplash::C_StateSplash(sf::RenderWindow* window, sf::Font* font, C_World* world, C_Camera* camera)
+C_StateSplash::C_StateSplash(sf::RenderWindow* window, sf::Font* font, std::shared_ptr<C_World> world, C_Camera* camera)
 {
 	/* Initialising pointer attributes. */
 	window_ = new sf::RenderWindow();

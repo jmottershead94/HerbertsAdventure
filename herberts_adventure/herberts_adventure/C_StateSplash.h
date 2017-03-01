@@ -32,7 +32,7 @@ class C_StateSplash : public C_State
 {
 	public:
 		/* Methods. */
-		C_StateSplash(sf::RenderWindow* window, sf::Font* font, C_World* world, C_Camera* camera);
+		C_StateSplash(sf::RenderWindow* window, sf::Font* font, std::shared_ptr<C_World> world, C_Camera* camera);
 		~C_StateSplash();
 		bool LoadResources();
 		std::unique_ptr<C_State> HandleTransitions();

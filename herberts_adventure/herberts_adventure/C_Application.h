@@ -49,7 +49,7 @@ class C_Application
 		sf::Text fps_counter_;					/* Used to display the FPS. */
 		sf::Font font_;							/* The main font to use for the game. */
 		C_Camera camera_;
-		C_World* world_;						/* The main box2D world. */
+		std::shared_ptr<C_World> world_;						/* The main box2D world. */
 		C_Utilities utilities_;					/* Used to setup the singleton Utilities access for other classes. */
 		C_Options options_;						/* . */
 		C_Input input_;

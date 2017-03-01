@@ -42,7 +42,7 @@ C_GameObject::~C_GameObject()
 	const sf::Vector2 scale		-	This will set the scale of the game object.
 
 */
-void C_GameObject::Init(const ObjectID id, C_World* world, C_Rigidbody2DComponent* rigidbody, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
+void C_GameObject::Init(const ObjectID id, std::shared_ptr<C_World> world, C_Rigidbody2DComponent* rigidbody, C_InputComponent* input, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale)
 {
 	id_ = id;
 

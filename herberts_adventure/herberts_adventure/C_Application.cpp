@@ -63,7 +63,8 @@ void C_Application::Init(const sf::Vector2i screen_resolution)
 	sf::Vector2f gravity(0.0f, -10.0f);
 
 	/* Creating the Box2D world. */
-	world_ = new C_World();
+	//world_ = new C_World();
+	world_ = std::make_shared<C_World>();
 	world_->Init(gravity);
 
 	/* Starting the state machine. */

@@ -26,7 +26,7 @@ C_Level::C_Level() :
 	sf::RenderWindow* window	-	Provides access to the main render window in the application class.
 
 */
-void C_Level::Init(C_World* world, C_Camera* camera, sf::RenderWindow* window)
+void C_Level::Init(std::shared_ptr<C_World> world, C_Camera* camera, sf::RenderWindow* window)
 {
 	/* Initialising local attributes. */
 	window_ = window;

@@ -31,7 +31,7 @@ class C_Player : public C_Character
 		/* Methods. */
 		C_Player();
 		~C_Player();
-		void Init(const ObjectID id, C_World* world, C_Camera* camera, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
+		void Init(const ObjectID id, std::shared_ptr<C_World> world, C_Camera* camera, const std::string filename, const sf::Vector2f position, const float rotation, const sf::Vector2f scale);
 		void Update(float& dt);
 
 		inline std::vector<C_Body*> contact() { return (rigidbody()->body()->colliding_bodies()); }

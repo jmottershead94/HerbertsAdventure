@@ -29,7 +29,7 @@ class C_Level
 	public:
 		/* Methods. */
 		C_Level();
-		void Init(C_World* world, C_Camera* camera, sf::RenderWindow* window);
+		void Init(std::shared_ptr<C_World> world, C_Camera* camera, sf::RenderWindow* window);
 		void CleanUp();
 		void Render();
 		void ProcessPlayerCollisions(C_Player& player, C_Body& game_object, int index);
@@ -41,7 +41,7 @@ class C_Level
 		int level_number_ = 1;
 		sf::RenderWindow* window_;			/* Points to the main render window in the application class. */
 		C_Camera* camera_;
-		C_World* world_;					/* Points to the main world in the application class. */
+		std::shared_ptr<C_World> world_;					/* Points to the main world in the application class. */
 		C_LevelGenerator level_generator_;
 };
 
